@@ -2,6 +2,7 @@
 	<div>
 		<BranchDelivery />
 		<hotselling />
+		<product />
 	</div>
 </template>
 

@@ -1,5 +1,5 @@
 <template>
-	<section class="p-6 bg-[#F1F1F1]">
+	<section class="p-6 bg-[#F2F2F2]">
 		<h1 class="font-semibold text-xl mb-4">Hot Selling</h1>
 		<div class="rounded-lg">
 			<div class="grid grid-cols-2 gap-4">
@@ -38,7 +38,10 @@
 export default {
 	data() {
 		return {
-			items: [{ count: 0 }]
+		items: [{ count: 0 },
+        { count: 0 },
+        { count: 0 },
+        { count: 0 }]
 		};
 	},
 	methods: {
