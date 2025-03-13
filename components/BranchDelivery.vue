@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute flex items-center justify-center p-5 bg-black/70 h-full w-full top-0 left-0 z-50"
+    <div class="fixed flex items-center justify-center p-5 bg-black/70 h-full w-full top-0 left-0 z-50"
         :class="[BDMenuOpen ? 'block' : 'hidden']">
         <div class="h-full w-full bg-white rounded-lg p-3 flex flex-col items-start">
             <font-awesome :icon="['fas', 'x']" class="text-gray-500 cursor-pointer" @click="BDMenuOpen = !BDMenuOpen" />
@@ -15,7 +15,7 @@
                     <option v-for="branch in branches" :key="branch.id" :value="branch.slug">{{
                         branch.name }}</option>
                 </select>
-                <input :min="today" type="date" name="date" ref="date" id="date" @focusout="loadSLots">
+                <input v-model="date" :min="today" type="date" name="date" id="date" @focusout="loadSLots">
                 <select ref="interval" name="interval" id="interval">
                     <option value="" disabled selected>Select a slot</option>
                     <option v-for="slot in slots" :key="slot.id" :value="slot.id">{{ slot.start_time }} - {{
@@ -31,34 +31,50 @@
 <script setup>
 import { useBranchDelivery } from '#imports';
 
-const { getBranch, getIntervals, getHotMeals, getCategoryMeals } = useBranchDelivery()
-const branches = ref([])
-const slots = ref([])
-const selBranch = ref(null)
-const date = ref(null)
+const { getBranch, getIntervals, getHotSelling, getCategoryMeals } = useBranchDelivery()
+
+// ref elements
+const selBranch = ref(null);
+const date = ref(null);
+const interval = ref(null);
+
+// global variables
+const branchGlobal = useState('branch',()=>null)
+const dateGlobal = useState('dated',()=>null)
+const intervalGlobal = useState('interval',()=>null)
+
+// variables
+const branches = ref([]);
+const slots = ref([]);
 const today = ref('');
-const interval = ref(null)
 
 onMounted(async () => {
     const now = new Date();
     today.value = now.toISOString().split('T')[0];
-    branches.value = await getBranch()
-})
+    date.value = today.value;  // Initialize date with today
+    branches.value = await getBranch();
+});
+
 
 const BDMenuOpen = useState('BDMenuOpen', () => true) // change to false later
 
 const loadSLots = async () => {
-    slots.value = await getIntervals(date.value.value, selBranch.value.value)
+    slots.value = await getIntervals(date.value, selBranch.value.value)
 }
 
-const hotMeals = useState('hotMeals', () => []);
+const hotSelling = useState('hotSelling', () => []);
+const categoryMeals = useState('categoryMeals', () => {});
 const saveOptions = async () => {
-    if (selBranch.value.value.trim().length != 0 && date.value.value.trim().length != 0 && interval.value.value.trim().length != 0) {
+    if (selBranch.value.value.trim().length != 0 && date.value.trim().length != 0 && interval.value.value.trim().length != 0) {
         BDMenuOpen.value = false
-        
-        hotMeals.value = await getHotMeals(selBranch.value.value, date.value.value, interval.value.value)
-        await getCategoryMeals(selBranch.value.value, date.value.value, interval.value.value)
 
+        branchGlobal.value = selBranch.value.value
+        dateGlobal.value = date.value
+        intervalGlobal.value = interval.value.value
+        
+        hotSelling.value = await getHotSelling(selBranch.value.value, date.value, interval.value.value)
+        categoryMeals.value = await getCategoryMeals(selBranch.value.value, date.value, interval.value.value)
+        
     }
 }
 </script>

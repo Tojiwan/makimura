@@ -2,11 +2,13 @@
 	<div>
 		<BranchDelivery />
 		<hotselling />
-		<product />
+		<product v-for="category in categoryMeals" :category="category" />
 	</div>
 </template>
 
 <script setup>
+
+const categoryMeals = useState('categoryMeals', () => { });
 
 </script>
 
