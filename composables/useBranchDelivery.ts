@@ -48,10 +48,15 @@ export const useBranchDelivery = () => {
         const formattedHours = hours % 12 || 12; // Convert 0 to 12
         return `${formattedHours}:${String(minutes).padStart(2, '0')} ${period}`;
       };
-      
+
+      const getHotMeals = async(branch:string, date:string, interval:string)=>{
+        const req = await $fetch(`https://bio.makimuraramen.com/api/products/branch/${branch}/hot?date=${date}&branch_interval_id=${interval}`)
+        return req
+      }
 
     return {
         getBranch,
-        getIntervals
+        getIntervals,
+        getHotMeals
     }
 }

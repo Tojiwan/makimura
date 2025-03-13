@@ -1,5 +1,5 @@
 <template>
-    <div class="absolute flex items-center justify-center p-5 bg-black/70 h-full w-full top-0 left-0"
+    <div class="absolute flex items-center justify-center p-5 bg-black/70 h-full w-full top-0 left-0 z-50"
         :class="[BDMenuOpen ? 'block' : 'hidden']">
         <div class="h-full w-full bg-white rounded-lg p-3 flex flex-col items-start">
             <font-awesome :icon="['fas', 'x']" class="text-gray-500 cursor-pointer" @click="BDMenuOpen = !BDMenuOpen" />
@@ -16,7 +16,7 @@
                         branch.name }}</option>
                 </select>
                 <input :value="today" :min="today" type="date" name="date" ref="date" id="date">
-                <select name="interval" id="interval">
+                <select ref="interval" name="interval" id="interval">
                     <option value="" disabled selected>Select a slot</option>
                     <option v-for="slot in slots" :key="slot.id" :value="slot.id">{{ slot.start_time }} - {{ slot.end_time }} - {{ slot.categories[0].name }} {{ slot.categories[0].pivot.slots }} available</option>
                 </select>
@@ -29,12 +29,13 @@
 <script setup>
 import { useBranchDelivery } from '#imports';
 
-const { getBranch, getIntervals } = useBranchDelivery()
+const { getBranch, getIntervals, getHotMeals } = useBranchDelivery()
 const branches = ref([])
 const slots = ref([])
 const selBranch = ref(null)
 const date = ref(null)
 const today = ref('');
+const interval = ref(null)
 
 onMounted(async () => {
     const now = new Date();
@@ -42,7 +43,7 @@ onMounted(async () => {
     branches.value = await getBranch()
 })
 
-const BDMenuOpen = useState('BDMenuOpen', () => false) // change to false later
+const BDMenuOpen = useState('BDMenuOpen', () => true) // change to false later
 
 const loadSLots = async () => {
     slots.value = await getIntervals(date.value.value, selBranch.value.value)
@@ -50,7 +51,12 @@ const loadSLots = async () => {
 
 const hotMeals = useState('hotMeals', ()=> []);
 const saveOptions = async()=>{
+    if(selBranch.value.value.trim().length != 0 && date.value.value.trim().length != 0 && interval.value.value.trim().length != 0){
+        BDMenuOpen.value = false
 
+        hotMeals.value = await getHotMeals(selBranch.value.value, date.value.value, interval.value.value)
+        
+    }
 }
 </script>
 
