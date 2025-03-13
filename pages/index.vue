@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<hotselling />
+		<product />
 	</div>
 </template>
 
