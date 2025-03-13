@@ -10,7 +10,7 @@ export default defineNuxtConfig({
 
   fontawesome: {
     icons: {
-      solid: ['dollar-sign', 'cog', 'circle', 'check', 'calendar'],
+      solid: ['dollar-sign', 'cog', 'circle', 'check', 'calendar', 'x'],
       regular: ['user']
     }
   }
