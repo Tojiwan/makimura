@@ -39,7 +39,7 @@ onMounted(async () => {
     branches.value = await getBranch()
 })
 
-const BDMenuOpen = useState('BDMenuOpen', ()=>true) // change to false later
+const BDMenuOpen = useState('BDMenuOpen', ()=>false) // change to false later
 
 const  loadSLots = async()=>{
     slots.value = await getIntervals(date.value.value, selBranch.value.value)
