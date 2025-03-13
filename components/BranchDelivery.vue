@@ -15,10 +15,12 @@
                     <option v-for="branch in branches" :key="branch.id" :value="branch.slug">{{
                         branch.name }}</option>
                 </select>
-                <input :value="today" :min="today" type="date" name="date" ref="date" id="date">
+                <input :min="today" type="date" name="date" ref="date" id="date" @focusout="loadSLots">
                 <select ref="interval" name="interval" id="interval">
                     <option value="" disabled selected>Select a slot</option>
-                    <option v-for="slot in slots" :key="slot.id" :value="slot.id">{{ slot.start_time }} - {{ slot.end_time }} - {{ slot.categories[0].name }} {{ slot.categories[0].pivot.slots }} available</option>
+                    <option v-for="slot in slots" :key="slot.id" :value="slot.id">{{ slot.start_time }} - {{
+                        slot.end_time }} - {{ slot.categories[0].name }} {{ slot.categories[0].pivot.slots }} available
+                    </option>
                 </select>
                 <button @click="saveOptions">save</button>
             </div>
@@ -29,7 +31,7 @@
 <script setup>
 import { useBranchDelivery } from '#imports';
 
-const { getBranch, getIntervals, getHotMeals } = useBranchDelivery()
+const { getBranch, getIntervals, getHotMeals, getCategoryMeals } = useBranchDelivery()
 const branches = ref([])
 const slots = ref([])
 const selBranch = ref(null)
@@ -49,13 +51,14 @@ const loadSLots = async () => {
     slots.value = await getIntervals(date.value.value, selBranch.value.value)
 }
 
-const hotMeals = useState('hotMeals', ()=> []);
-const saveOptions = async()=>{
-    if(selBranch.value.value.trim().length != 0 && date.value.value.trim().length != 0 && interval.value.value.trim().length != 0){
+const hotMeals = useState('hotMeals', () => []);
+const saveOptions = async () => {
+    if (selBranch.value.value.trim().length != 0 && date.value.value.trim().length != 0 && interval.value.value.trim().length != 0) {
         BDMenuOpen.value = false
-
-        hotMeals.value = await getHotMeals(selBranch.value.value, date.value.value, interval.value.value)
         
+        hotMeals.value = await getHotMeals(selBranch.value.value, date.value.value, interval.value.value)
+        await getCategoryMeals(selBranch.value.value, date.value.value, interval.value.value)
+
     }
 }
 </script>

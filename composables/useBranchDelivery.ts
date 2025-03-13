@@ -28,7 +28,7 @@ export const useBranchDelivery = () => {
       }
       
       const getIntervals = async (date: string, branch: string): Promise<Interval[]> => {
-        if (date.trim().length !== 0) {
+        if (date.trim().length > 0 || branch.trim().length > 0) {
           const req = await $fetch<Interval[]>(`https://bio.makimuraramen.com/api/branch/${branch}/intervals?date=${date}`);
       
           // Convert time format
@@ -53,10 +53,30 @@ export const useBranchDelivery = () => {
         const req = await $fetch(`https://bio.makimuraramen.com/api/products/branch/${branch}/hot?date=${date}&branch_interval_id=${interval}`)
         return req
       }
+      
+
+      interface Categories{
+        id:number,
+        name:string,
+        slug:string,
+        created_at:string,
+        updated_at:string
+      }
+      const getCategoryMeals = async(branch:string, date:string, interval:string)=>{
+        const req_categories = await $fetch<Categories[]>('https://bio.makimuraramen.com/api/categories')
+        for (let i = 0; i < req_categories.length; i++) {
+          const element = req_categories[i];
+          console.log(element);
+          
+        }
+        const req = await $fetch(`https://bio.makimuraramen.com/api/products/branch/${branch}?category=ramen&date=${date}&branch_interval_id=${interval}`)
+        return req
+      }
 
     return {
         getBranch,
         getIntervals,
-        getHotMeals
+        getHotMeals,
+        getCategoryMeals
     }
 }
