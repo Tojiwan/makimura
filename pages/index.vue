@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<BranchDelivery />
 		<hotselling />
 	</div>
 </template>

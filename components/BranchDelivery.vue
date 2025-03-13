@@ -9,11 +9,15 @@
                     <option value="pickup" selected>Pickup</option>
                     <option value="delivery" >Delivery</option>
                 </select>
-                <select name="branches" id="branches">
+                <select name="branches" ref="selBranch" id="branches">
                     <option value="" disabled selected>Select a branch</option>
                     <option v-for="branch in branches" :key="branch.id" :value="branch.slug">{{ branch.name }}</option>
                 </select>
-                <input type="date" name="" id="">
+                <input :min="today" type="date" name="date" ref="date" id="date" @change="loadSLots">
+                <select name="interval" id="interval">
+                    <option value="" disabled selected>Select a slot</option>
+                    <option v-for="slot in slots" :key="slot.id" :value="slot.id">{{ slot.id }}</option>
+                </select>
             </div>
         </div>
     </div>
@@ -24,12 +28,22 @@ import { useBranchDelivery } from '#imports';
 
 const { getBranch, getIntervals } = useBranchDelivery()
 const branches = ref([])
+const slots = ref([])
+const selBranch = ref(null)
+const date = ref(null)
+const today = ref('');
 
 onMounted(async () => {
+    const now = new Date();
+    today.value = now.toISOString().split('T')[0];
     branches.value = await getBranch()
 })
 
 const BDMenuOpen = useState('BDMenuOpen', ()=>true) // change to false later
+
+const  loadSLots = async()=>{
+    slots.value = await getIntervals(date.value.value, selBranch.value.value)
+}
 </script>
 
 <style scoped>
