@@ -15,4 +15,13 @@ export default defineNuxtConfig({
     }
   },
 
+  googleFonts: {
+    families: {
+      'League+Spartan': [100, 200, 300, 400, 500, 600, 700, 800, 900],
+    },
+    display: 'swap',
+    prefetch: true,
+    preconnect: true,
+    preload: true
+  },
 })
