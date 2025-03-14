@@ -1,6 +1,7 @@
 <template>
-	<div :class="{ 'pb-20':count > 0}">
+	<div class="p-6 bg-white flex flex-col items-center justify-center" :class="{ 'pb-20':count > 0}">
 		<BranchDelivery />
+		<h1 class="tf-bebas text-4xl font-bold -tracking-[4px]">FROM OUR MENU</h1>
 		<hotselling />
 		<product :id="category.slug" v-for="category in categoryMeals" :category="category" />
 		<Cart />

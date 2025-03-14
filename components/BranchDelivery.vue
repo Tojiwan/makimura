@@ -4,7 +4,7 @@
         <div class="w-[90%] bg-white rounded-[5px] p-3 flex flex-col items-start">
             <font-awesome v-if="saved" :icon="['fas', 'x']" class="text-gray-500 cursor-pointer"
                 @click="BDMenuOpen = !BDMenuOpen" />
-            <h1 class="self-center text-[25px] font-bold mt-3">Branch & Delivery</h1>
+            <h1 class="self-center text-[25px] font-bold mt-3 tf-bebas">Branch & Delivery</h1>
             <div class="w-full h-full flex flex-col p-4 self-center space-y-2">
 
                 <select name="pickup-type" ref="pickup-type" id="pickup-type"
