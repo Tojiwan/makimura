@@ -1,6 +1,6 @@
 <template>
 	<section class="p-6 bg-[#F2F2F2]">
-		<h1 class="font-semibold text-xl mb-4">Party Platter</h1>
+		<h1 class="font-semibold text-xl mb-4">{{ props.category.name }}</h1>
 		<div class="rounded-lg">
 			<div class="flex flex-col space-y-4">
 				<div v-for="(item, index) in items" :key="index" class="bg-white p-4 flex items-center rounded-lg">
@@ -14,14 +14,15 @@
 						</div>
 
 						<div class="flex justify-end space-x-2 mt-[30px]">
-							<button v-if="item.count > 0" @click="decreaseOrder(index)"
+							<button v-if="order.some(item => meal.name in item)" @click="decreaseOrder(meal.name)"
 								class="bg-gray-300 rounded-full w-8 h-8 flex items-center justify-center">
 								<font-awesome icon="fa-solid fa-minus" style="color: #000;" />
 							</button>
 
-							<span v-if="item.count > 0" class="font-semibold">{{ item.count }}</span>
+							<span v-if="order.some(item => meal.name in item)" class="font-semibold">{{order.find(item =>
+								meal.name in item)[meal.name] }}</span>
 
-							<button @click="increaseOrder(index)"
+							<button @click="increaseOrder(meal.name)"
 								class="bg-[#EE2737] rounded-full w-8 h-8 flex items-center justify-center">
 								<font-awesome icon="fa-solid fa-plus" style="color: #ffffff;" />
 							</button>
@@ -34,27 +35,24 @@
 	</section>
 </template>
 
-<script>
-export default {
-	data() {
-		return {
-			items: [{ count: 0 },
-			{ count: 0 },
-			{ count: 0 },
-			{ count: 0 }]
-		};
-	},
-	methods: {
-		increaseOrder(index) {
-			this.items[index].count++;
-		},
-		decreaseOrder(index) {
-			if (this.items[index].count > 0) {
-				this.items[index].count--;
-			}
-		}
-	}
-};
+<script setup>
+import { useOrder } from '#imports';
+
+const { increaseOrder, decreaseOrder } = useOrder()
+
+const props = defineProps(['category'])
+
+const order = useState('order', () => [])
+const branchGlobal = useState('branch', () => null)
+const dateGlobal = useState('dated', () => null)
+const intervalGlobal = useState('interval', () => null)
+
+const meals = ref([])
+
+onMounted(async () => {
+	const req = await $fetch(`https://bio.makimuraramen.com/api/products/branch/${branchGlobal.value}?category=${props.category.slug}&date=${dateGlobal.value}&branch_interval_id=${intervalGlobal.value}`)
+	meals.value = Object.values(req)
+})
 </script>
 
 <style scoped></style>
