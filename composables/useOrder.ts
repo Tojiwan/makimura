@@ -1,43 +1,43 @@
 type OrderItem = { 
   [key: string]: {
-    count:number,
-    price:number,
-    name:string
-  } 
+    count: number;
+    price: number;
+    name: string;
+  };
 };
 
 export const useOrder = () => {
-  const order = useState<OrderItem[]>('order', () => []);
+  const order = useState<OrderItem>('order', () => ({}));
 
-  const increaseOrder = (meal: string, price:number, name:string) => {
-    const item = order.value.find((item) => meal in item);
-    if (item) {
-      item[meal].count += 1;
+  const increaseOrder = (meal: string, price: number, name: string) => {
+    if (order.value[meal]) {
+      order.value[meal].count += 1;
     } else {
-      order.value.push({ 
-        [meal]: {
-          count:1,
-          price,
-          name
-      } 
-    });
+      order.value = {
+        ...order.value,
+        [meal]: { count: 1, price, name }
+      };
     }
-    console.log(order.value);
-    
   };
 
   const decreaseOrder = (meal: string) => {
-    const item = order.value.find((item) => meal in item);
-    if (item) {
-      item[meal].count -= 1;
-      if (item[meal].count === 0) {
-        order.value.splice(order.value.indexOf(item), 1); // Fix incorrect removal
-      }
+    if (!order.value[meal]) return;
+
+    const updatedOrder = { ...order.value };
+
+    if (updatedOrder[meal].count > 1) {
+      updatedOrder[meal].count -= 1;
+    } else {
+      delete updatedOrder[meal]; 
     }
+
+    order.value = updatedOrder; 
   };
 
-  return { 
-    increaseOrder, 
-    decreaseOrder 
-  };
+  // ✅ Add computed property for total count
+  const count = computed(() => {
+    return Object.values(order.value).reduce((sum, item) => sum + (item.count || 0), 0);
+  });
+
+  return { increaseOrder, decreaseOrder, order, count };
 };
