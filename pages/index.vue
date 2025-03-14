@@ -2,7 +2,7 @@
 	<div>
 		<BranchDelivery />
 		<hotselling />
-		<product v-for="category in categoryMeals" :category="category" />
+		<product :id="category.slug" v-for="category in categoryMeals" :category="category" />
 	</div>
 </template>
 
