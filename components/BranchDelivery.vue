@@ -2,7 +2,7 @@
     <div class="fixed flex items-center justify-center p-5 bg-black/70 h-full w-full top-0 left-0 z-50"
         :class="[BDMenuOpen ? 'block' : 'hidden']">
         <div class="h-full w-full bg-white rounded-lg p-3 flex flex-col items-start">
-            <font-awesome :icon="['fas', 'x']" class="text-gray-500 cursor-pointer" @click="BDMenuOpen = !BDMenuOpen" />
+            <font-awesome v-if="saved" :icon="['fas', 'x']" class="text-gray-500 cursor-pointer" @click="BDMenuOpen = !BDMenuOpen" />
             <h1 class="self-center">Branch & Delivery</h1>
             <div class="w-full h-full flex flex-col p-10 self-center">
                 <select name="pickup-type" ref="pickup-type" id="pickup-type">
@@ -23,6 +23,7 @@
                     </option>
                 </select>
                 <button @click="saveOptions">save</button>
+                <button @click="clearOptions">clear</button>
             </div>
         </div>
     </div>
@@ -37,6 +38,7 @@ const { getBranch, getIntervals, getHotSelling, getCategoryMeals } = useBranchDe
 const selBranch = ref(null);
 const date = ref(null);
 const interval = ref(null);
+const saved = ref(false)
 
 // global variables
 const branchGlobal = useState('branch',()=>null)
@@ -75,7 +77,18 @@ const saveOptions = async () => {
         hotSelling.value = await getHotSelling(selBranch.value.value, date.value, interval.value.value)
         categoryMeals.value = await getCategoryMeals(selBranch.value.value, date.value, interval.value.value)
         
+        saved.value = true;
     }
+}
+
+const clearOptions = ()=>{
+    selBranch.value.value = ""
+    interval.value.value = ""
+    saved.value = false
+
+    branchGlobal.value = selBranch.value.value
+    dateGlobal.value = date.value
+    intervalGlobal.value = interval.value.value
 }
 </script>
 
