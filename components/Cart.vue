@@ -3,7 +3,7 @@
         <div v-if="count && price" class="fixed bottom-0 w-full bg-white p-5">
             <div class="bg-[#EE2737] text-white font-bold flex justify-between rounded-full p-3">
                 <p>Basket - {{ count }} Items</p>
-                <p>₱{{ price }}</p>
+                <p>₱{{ price }}.00</p>
             </div>
         </div>
     </transition>
