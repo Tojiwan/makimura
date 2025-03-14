@@ -15,7 +15,7 @@ const count = computed(() => {
     return Object.values(order.value).reduce((sum, item) => sum + (item.count || 0), 0);
 });
 const price = computed(() => {
-    return Object.values(order.value).reduce((total, item) => parseInt(total) + parseInt(parseInt(item.price) * parseInt(item.count) || 0), 0);
+    return Object.values(order.value).reduce((total, item) => parseInt(total) + parseInt(parseInt(item.price) * parseInt(item.count) || 0), 0).toLocaleString('en-US');
 })
 </script>
 
