@@ -48,7 +48,6 @@
 
 <script setup>
 import { useBranchDelivery } from '#imports';
-import Hotselling from './hotselling.vue';
 
 const { getBranch, getIntervals, getHotSelling, getCategoryMeals } = useBranchDelivery()
 
