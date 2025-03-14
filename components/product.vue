@@ -3,14 +3,14 @@
 		<h1 class="font-semibold text-xl mb-4">{{ props.category.name }}</h1>
 		<div class="rounded-lg">
 			<div class="flex flex-col space-y-4">
-				<div v-for="(item, index) in items" :key="index" class="bg-white p-4 flex items-center rounded-lg">
+				<div v-for="(meal, index) in meals" :key="index" class="bg-white p-4 flex items-center rounded-lg">
 					<img class="w-[120px] h-[120px] rounded-[20px] object-contain" src="/public/6762c39f9d19d.png" alt="">
 
 					<div class="flex flex-col flex-grow justify-between ml-4 h-full truncate">
 						<div class="space-y-2">
-							<p class="mt-2 font-medium">Item Name</p>
+							<p class="mt-2 font-medium">{{ meal.name }}</p>
 							<p class="font-bold text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, quibusdam obcaecati natus maiores labore rem? Ex quia assumenda sunt quidem veritatis, quam cumque necessitatibus modi aliquam pariatur quod eos minus?</p>
-							<p class="font-bold text-sm">1202</p>
+							<p class="font-bold text-sm">₱{{ meal.price }}</p>
 						</div>
 
 						<div class="flex justify-end space-x-2 mt-[30px]">
