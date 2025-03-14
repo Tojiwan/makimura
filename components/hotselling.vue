@@ -27,7 +27,7 @@
 							</button>
 						</div>
 					</div>
-					<p class="mt-2 font-medium text-start">{{ meal.name }}</p>
+					<p class="mt-2 font-medium text-start tf-spartan">{{ meal.name }}</p>
 					<p class="font-bold text-sm text-start">₱{{ meal.price }}</p>
 				</div>
 			</div>

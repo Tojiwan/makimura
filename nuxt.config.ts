@@ -20,8 +20,23 @@ export default defineNuxtConfig({
       'League+Spartan': [100, 200, 300, 400, 500, 600, 700, 800, 900],
     },
     display: 'swap',
-    prefetch: true,
-    preconnect: true,
-    preload: true
+    
+    // Download fonts instead of linking to Google Fonts CDN
+    download: true,  
+    base64: false, // Set to true if you want fonts embedded in CSS (not recommended for large projects)
+    
+    inject: false, // Prevent automatic injection (we will manually include it)
+    overwriting: true, // Avoid redundant downloads
+
+    // Set the output directory for CSS and fonts
+    outputDir: 'assets',
+    stylePath: 'css/google-fonts.css',
+    fontsDir: 'fonts',
+    fontsPath: '../fonts'
   },
+  css: [
+    '@/assets/css/google-fonts.css',
+    '@/assets/css/main.css',
+
+  ]
 })
