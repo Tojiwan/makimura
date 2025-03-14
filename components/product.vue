@@ -12,21 +12,7 @@
 							<p class="font-bold text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur, quibusdam obcaecati natus maiores labore rem? Ex quia assumenda sunt quidem veritatis, quam cumque necessitatibus modi aliquam pariatur quod eos minus?</p>
 							<p class="font-bold text-sm">₱{{ meal.price }}</p>
 						</div>
-
-						<div class="flex justify-end space-x-2 mt-[30px]">
-							<button v-if="order.some(item => meal.name in item)" @click="decreaseOrder(meal.name)"
-								class="bg-gray-300 rounded-full w-8 h-8 flex items-center justify-center">
-								<font-awesome icon="fa-solid fa-minus" style="color: #000;" />
-							</button>
-
-							<span v-if="order.some(item => meal.name in item)" class="font-semibold">{{order.find(item =>
-								meal.name in item)[meal.name] }}</span>
-
-							<button @click="increaseOrder(meal.name)"
-								class="bg-[#EE2737] rounded-full w-8 h-8 flex items-center justify-center">
-								<font-awesome icon="fa-solid fa-plus" style="color: #ffffff;" />
-							</button>
-						</div>
+						<OrderAdd class="flex justify-end space-x-2 mt-[30px]" :meal="meal"/>
 					</div>
 				</div>
 			</div>
