@@ -4,7 +4,7 @@
         <div class="w-[90%] bg-white rounded-[5px] p-3 flex flex-col items-start">
             <font-awesome v-if="saved" :icon="['fas', 'x']" class="text-gray-500 cursor-pointer"
                 @click="BDMenuOpen = !BDMenuOpen" />
-            <h1 class="self-center text-[25px] font-bold mt-3">Branch & Delivery</h1>
+            <h1 class="self-center text-[25px] font-bold mt-3 tf-bebas">Branch & Delivery</h1>
             <div class="w-full h-full flex flex-col p-4 self-center space-y-2">
 
                 <select name="pickup-type" ref="pickup-type" id="pickup-type"
@@ -48,6 +48,7 @@
 
 <script setup>
 import { useBranchDelivery } from '#imports';
+import Hotselling from './hotselling.vue';
 
 const { getBranch, getIntervals, getHotSelling, getCategoryMeals } = useBranchDelivery()
 
@@ -75,17 +76,21 @@ onMounted(async () => {
 });
 
 
-const BDMenuOpen = useState('BDMenuOpen', () => true) // change to false later
+const BDMenuOpen = useState('BDMenuOpen', () => true)
 
 const loadSLots = async () => {
     slots.value = await getIntervals(date.value, selBranch.value.value)
 }
 
 const hotSelling = useState('hotSelling', () => []);
-const categoryMeals = useState('categoryMeals', () => { });
+const categoryMeals = useState('categoryMeals', () => {});
 const saveOptions = async () => {
     if (selBranch.value.value.trim().length != 0 && date.value.trim().length != 0 && interval.value.value.trim().length != 0) {
+        hotSelling.value = []
+        categoryMeals.value = []
+        
         BDMenuOpen.value = false
+        saved.value = true;
 
         branchGlobal.value = selBranch.value.value
         dateGlobal.value = date.value
@@ -94,7 +99,6 @@ const saveOptions = async () => {
         hotSelling.value = await getHotSelling(selBranch.value.value, date.value, interval.value.value)
         categoryMeals.value = await getCategoryMeals(selBranch.value.value, date.value, interval.value.value)
 
-        saved.value = true;
     }
 }
 
@@ -102,6 +106,9 @@ const clearOptions = () => {
     selBranch.value.value = ""
     interval.value.value = ""
     saved.value = false
+
+    hotSelling.value = []
+    categoryMeals.value = []
 
     branchGlobal.value = selBranch.value.value
     dateGlobal.value = date.value

@@ -1,17 +1,18 @@
 <template>
-	<section class="p-6 bg-[#F2F2F2]">
-		<h1 class="font-semibold text-xl mb-4">Hot Selling</h1>
+	<section>
+		<h1 v-if="hotSelling.length !== 0" class="font-semibold text-xl mb-4">Hot Selling</h1>
 		<div class="rounded-lg">
 			<div class="grid grid-cols-2 gap-4">
+				<img v-if="hotSelling.length === 0" src="https://order.makimuraramen.com/assets/loading-C8RNs0gu.gif" alt="" class="col-span-full">
 				<div v-for="(meal, index) in hotSelling" :key="meal.id"
-					class="bg-white p-4 flex flex-col rounded-lg">
-					<div class="flex space-x-1 mb-2">
-						<font-awesome icon="fa-solid fa-fire" style="color: #EE2737;" />
-						<font-awesome icon="fa-solid fa-fire" style="color: #EE2737;" />
-						<font-awesome icon="fa-solid fa-fire" style="color: #EE2737;" />
+					class="bg-white drop-shadow-lg border p-4 flex flex-col rounded-lg">
+					<div class="flex space-x-1 mb-2 text-[#EE2737]">
+						<font-awesome icon="fa-solid fa-fire"/>
+						<font-awesome icon="fa-solid fa-fire"/>
+						<font-awesome icon="fa-solid fa-fire"/>
 					</div>
 					<div class="relative">
-						<img class="w-[150px] h-[150px] rounded-[20px] object-contain" :src="meal.image" alt="">
+						<img class="w-[150px] h-[150px] rounded-[20px] object-contain" :src="meal.image_small ?? 'https://order.makimuraramen.com/assets/pic1-BJG-xmCB.jpg'" alt="">
 						<OrderAdd :meal="meal" class="absolute flex items-center space-x-2 mt-2 bottom-0 right-0" />
 					</div>
 					<p class="mt-2 font-medium text-start tf-spartan">{{ meal.name }}</p>
