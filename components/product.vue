@@ -4,7 +4,7 @@
 		<div class="rounded-lg">
 			<div class="flex flex-col space-y-4">
 				<div v-for="(meal, index) in meals" :key="index" class="bg-white p-4 flex items-center rounded-lg">
-					<img class="w-[120px] h-[120px] rounded-[20px] object-contain" src="/public/6762c39f9d19d.png" alt="">
+					<img class="w-[120px] h-[120px] rounded-[20px] object-contain" :src="meal.image" alt="">
 
 					<div class="flex flex-col flex-grow justify-between ml-4 h-full truncate">
 						<div class="space-y-2">
@@ -28,14 +28,13 @@ const { increaseOrder, decreaseOrder } = useOrder()
 
 const props = defineProps(['category'])
 
-const order = useState('order', () => [])
 const branchGlobal = useState('branch', () => null)
 const dateGlobal = useState('dated', () => null)
 const intervalGlobal = useState('interval', () => null)
 
 const meals = ref([])
 
-onMounted(async () => {
+onMounted(async () => {	
 	const req = await $fetch(`https://bio.makimuraramen.com/api/products/branch/${branchGlobal.value}?category=${props.category.slug}&date=${dateGlobal.value}&branch_interval_id=${intervalGlobal.value}`)
 	meals.value = Object.values(req)
 })
