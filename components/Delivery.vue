@@ -65,21 +65,20 @@
 					</div>
 				</div>
 				<hr class="border-1 border-gray-400" />
-
-				<h1 class="text-[#666666] tf-bebas">People also ordered</h1>
-				<section class="w-full flex gap-4 overflow-x-auto pb-5">
-					<div v-for="meal in hotSelling" :key="meal.name"
-						class="flex  items-center justify-between text-wrap border min-w-[200px] bg-white p-4 rounded-[15px] shadow-lg tf-spartan">
-						<div class="text-sm">
-							<h1 class="font-medium">{{ meal.name }}</h1>
-							<p class="font-semibold">{{ meal.price.toLocaleString() }}.00</p>
+				<div v-if="filteredMeals.length > 0" class="space-y-4">
+					<h1 class="text-[#666666] tf-bebas">People also ordered</h1>
+					<section class="w-full flex gap-4 overflow-x-auto pb-5">
+						<div v-for="meal in filteredMeals" :key="meal.name"
+							class="flex  items-center justify-between text-wrap border min-w-[200px] bg-white p-4 rounded-[15px] shadow-lg tf-spartan">
+							<div class="text-sm">
+								<h1 class="font-medium">{{ meal.name }}</h1>
+								<p class="font-semibold">{{ meal.price.toLocaleString() }}.00</p>
+							</div>
+							<img class="h-[80px] w-[80px] object-contain" :src="meal.image_small" alt="Product Image" />
 						</div>
-						<img class="h-[80px] w-[80px] object-contain" :src="meal.image_small" alt="Product Image" />
-					</div>
-				</section>
-
-
-				<hr class="border-1 border-gray-400" />
+					</section>
+					<hr class="border-1 border-gray-400" />
+				</div>
 
 				<div class="grid grid-cols-2 gap-y-2 w-full tf-spartan">
 					<h3>Subtotal</h3>
@@ -164,6 +163,9 @@ const price = computed(() => {
 	total_price.value = Object.values(orders.value).reduce((total, item) => parseInt(total) + parseInt(parseInt(item.price) * parseInt(item.count) || 0), 0).toLocaleString('en-US');
 	return total_price.value
 })
+const filteredMeals = computed(() => {
+	return Object.values(hotSelling.value).filter(meal => !(meal.name in orders.value));
+});
 </script>
 
 <style scoped></style>
