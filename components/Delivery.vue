@@ -68,7 +68,7 @@
 				<div v-if="filteredMeals.length > 0" class="space-y-4">
 					<h1 class="text-[#666666] tf-bebas">People also ordered</h1>
 					<section class="w-full flex gap-4 overflow-x-auto pb-5">
-						<div v-for="meal in filteredMeals" :key="meal.name"
+						<div @click.stop="increaseOrder(meal.name, meal.price, meal.name, meal.image_small)" v-for="meal in filteredMeals" :key="meal.name"
 							class="flex  items-center justify-between text-wrap border min-w-[200px] bg-white p-4 rounded-[15px] shadow-lg tf-spartan">
 							<div class="text-sm">
 								<h1 class="font-medium">{{ meal.name }}</h1>
@@ -156,6 +156,7 @@
 </template>
 
 <script setup>
+const { increaseOrder, decreaseOrder } = useOrder();
 const orders = useState('order', () => []);
 const total_price = useState('total_price', () => 0)
 const hotSelling = useState('hotSelling', () => [])
