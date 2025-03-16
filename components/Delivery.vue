@@ -67,19 +67,17 @@
 				<hr class="border-1 border-gray-400" />
 
 				<h1 class="text-[#666666] tf-bebas">People also ordered</h1>
-				<div class="space-y-4 max-h-[250px] overflow-scroll">
-					<div v-for="meal in hotSelling" :key="meal.id"
-						class="flex justify-between items-center w-full bg-white p-4 rounded-[15px] shadow-lg tf-spartan">
-						<div>
+				<section class="w-full flex gap-4 overflow-x-auto pb-5">
+					<div v-for="meal in hotSelling" :key="meal.name"
+						class="flex  items-center justify-between text-wrap border min-w-[200px] bg-white p-4 rounded-[15px] shadow-lg tf-spartan">
+						<div class="text-sm">
 							<h1 class="font-medium">{{ meal.name }}</h1>
 							<p class="font-semibold">{{ meal.price.toLocaleString() }}.00</p>
 						</div>
-						<div>
-							<img class="w-[80px] h-[80px] object-contain" :src="meal.image_small" alt="Product Image" />
-						</div>
-						<OrderAdd :meal="meal" class="flex items-center space-x-2 mt-2 bottom-0 right-0" />
+						<img class="h-[80px] w-[80px] object-contain" :src="meal.image_small" alt="Product Image" />
 					</div>
-				</div>
+				</section>
+
 
 				<hr class="border-1 border-gray-400" />
 
@@ -163,8 +161,8 @@ const orders = useState('order', () => []);
 const total_price = useState('total_price', () => 0)
 const hotSelling = useState('hotSelling', () => [])
 const price = computed(() => {
-    total_price.value = Object.values(orders.value).reduce((total, item) => parseInt(total) + parseInt(parseInt(item.price) * parseInt(item.count) || 0), 0).toLocaleString('en-US');
-    return total_price.value
+	total_price.value = Object.values(orders.value).reduce((total, item) => parseInt(total) + parseInt(parseInt(item.price) * parseInt(item.count) || 0), 0).toLocaleString('en-US');
+	return total_price.value
 })
 </script>
 
