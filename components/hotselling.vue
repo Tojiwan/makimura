@@ -1,6 +1,6 @@
 <template>
 	<section>
-		<h1 v-if="hotSelling.length !== 0" class="font-semibold text-xl mb-4">Hot Selling</h1>
+		<h1 v-if="hotSelling.length !== 0" id="hot-selling" class="font-semibold text-xl mb-4">Hot Selling</h1>
 		<div class="rounded-lg">
 			<div class="grid grid-cols-2 gap-4">
 				<img v-if="hotSelling.length === 0" src="https://order.makimuraramen.com/assets/loading-C8RNs0gu.gif" alt="" class="col-span-full">
