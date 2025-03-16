@@ -10,7 +10,7 @@
             class="bg-gray-100 flex justify-between items-center px-3 tf-spartan rounded-full text-gray-500">
             <font-awesome icon="fas magnifying-glass" />
             <p v-if="!searchOpen">Search</p>
-            <input v-if="!isHeaderFixed && searchOpen" ref="search" @keyup="handleSearch" @focusout="searchOpen = false; search = ''"
+            <input v-if="!isHeaderFixed && searchOpen" ref="search" @keyup="handleSearch" :value="search_query" @focusout="handleFocusOut"
                 @click.stop="" class="grow pl-3 py-1 bg-transparent outline-0" type="text"
                 placeholder="Have a craving?">
         </div>
@@ -31,7 +31,7 @@
                 class="bg-gray-100 flex justify-between items-center px-3 tf-spartan rounded-full text-gray-500">
                 <font-awesome icon="fas magnifying-glass" />
                 <p v-if="!searchOpen">Search</p>
-                <input ref="search" @keyup="handleSearch" @focusout="searchOpen = false; search = ''" @click.stop="" v-if="searchOpen"
+                <input ref="search" @keyup="handleSearch" :value="search_query" @focusout="handleFocusOut" @click.stop="" v-if="searchOpen"
                     class="grow pl-3 py-1 bg-transparent outline-0" type="text" placeholder="Have a craving?">
             </div>
             <button
@@ -62,7 +62,8 @@ import { useScrollHandler } from '#imports';
 
 const { isHeaderFixed } = useScrollHandler()
 const BDMenuOpen = useState('BDMenuOpen', () => true)
-const categoryMeals = useState('categoryMeals', () => { })
+const categoryMeals = useState('categoryMeals', () => {})
+const search_query = useState('search_query', ()=>'')
 
 const searchOpen = ref(false)
 const filterOpen = ref(false)
@@ -79,7 +80,7 @@ const filterArray = computed(() => {
 const scrollTo = (id, name) => {
     const targetElement = document.getElementById(id);
     if (targetElement) {
-        const offset = 100; // Adjust this based on your fixed navbar height
+        const offset = 120; // Adjust this based on your fixed navbar height
         const elementPosition = targetElement.getBoundingClientRect().top + window.scrollY;
 
         window.scrollTo({
@@ -102,9 +103,27 @@ const openFocus = async () => {
 };
 
 // handle search query
-const handleSearch = (event)=>{
-    console.log(event.target.value);
+const handleSearch = async (event)=>{
+    search_query.value = event.target.value
+    await nextTick()
+    setTimeout(() => {
+        search.value.focus()
+    }, 500);
+}
+
+// handle focus out search
+// let value = ''
+const handleFocusOut = async(event)=>{
+    const value = event.target.value
     
+    if(searchOpen.value && value.trim().length > 0){
+        await nextTick()
+        search.value.value = value
+        return
+    }
+    await nextTick()
+    searchOpen.value = false
+    search.value.value = ''
 }
 </script>
 

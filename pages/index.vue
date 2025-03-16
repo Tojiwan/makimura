@@ -5,7 +5,7 @@
 		<BranchDelivery />
 		<SearchFilter />
 		<hotselling />
-		<product :id="category.slug" v-for="category in categoryMeals" :category="category" />
+		<product v-for="category in categoryMeals" :category="category" />
 		<Cart />
 	</div>
 </template>

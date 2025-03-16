@@ -1,10 +1,10 @@
 <template>
-	<section>
-		<h1 v-if="hotSelling.length !== 0" id="hot-selling" class="font-semibold text-xl mb-4">Hot Selling</h1>
+	<img v-if="filteredSelling.length === 0 && Object.values(hotSelling).length === 0" src="https://order.makimuraramen.com/assets/loading-C8RNs0gu.gif" alt="" class="col-span-full">
+	<section v-if="filteredSelling.length > 0" class="w-full">
+		<h1 v-if="hotSelling.length !== 0" id="hot-selling" class="mr-auto font-semibold text-xl mb-4">Hot Selling</h1>
 		<div class="rounded-lg">
 			<div class="grid grid-cols-2 gap-4">
-				<img v-if="hotSelling.length === 0" src="https://order.makimuraramen.com/assets/loading-C8RNs0gu.gif" alt="" class="col-span-full">
-				<div v-for="(meal, index) in hotSelling" :key="meal.id"
+				<div v-for="(meal, index) in filteredSelling" :key="meal.id"
 					class="bg-white drop-shadow-lg border p-4 flex flex-col rounded-lg">
 					<div class="flex space-x-1 mb-2 text-[#EE2737]">
 						<font-awesome icon="fa-solid fa-fire"/>
@@ -24,8 +24,12 @@
 </template>
 
 <script setup>
+const hotSelling = useState('hotSelling', () => [])
+const search_query = useState('search_query')
+const filteredSelling = computed(()=>{
 
-const hotSelling = useState('hotSelling', () => []);
+	return (Object.values(hotSelling.value).filter(item => item.name.toLowerCase().includes(search_query.value.toLowerCase())));
+})
 </script>
 
 <style scoped></style>

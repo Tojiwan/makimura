@@ -1,11 +1,11 @@
 <template>
-	<section class="w-full py-3">
-		<h1 class="font-semibold text-xl mb-4">{{ props.category.name }}</h1>
+	<img v-if="filteredProduct.length === 0 && meals.length === 0" src="https://order.makimuraramen.com/assets/loading-C8RNs0gu.gif" alt=""
+		class="object-contain w-[150px] self-center">
+	<section v-if="filteredProduct.length > 0" class="w-full py-3">
+		<h1 :id="props.category.slug" class="font-semibold text-xl mb-4">{{ props.category.name }}</h1>
 		<div class="rounded-lg">
 			<div class="flex flex-col space-y-4">
-				<img v-if="meals.length === 0" src="https://order.makimuraramen.com/assets/loading-C8RNs0gu.gif" alt=""
-					class="object-contain w-[150px] self-center">
-				<div v-for="(meal, index) in meals" :key="index"
+				<div v-for="(meal) in filteredProduct" :key="meal.id"
 					class="bg-white drop-shadow-lg border p-4 flex items-center rounded-lg">
 					<img class="w-[120px] h-[120px] rounded-[20px] object-contain"
 						:src="meal.image_small ?? 'https://order.makimuraramen.com/assets/pic1-BJG-xmCB.jpg'" alt="">
@@ -28,10 +28,6 @@
 </template>
 
 <script setup>
-import { useOrder } from '#imports';
-
-const { increaseOrder, decreaseOrder } = useOrder()
-
 const props = defineProps(['category'])
 
 const branchGlobal = useState('branch', () => null)
@@ -43,6 +39,11 @@ const meals = ref([])
 onMounted(async () => {
 	const req = await $fetch(`https://bio.makimuraramen.com/api/products/branch/${branchGlobal.value}?category=${props.category.slug}&date=${dateGlobal.value}&branch_interval_id=${intervalGlobal.value}`)
 	meals.value = Object.values(req)
+})
+
+const search_query = useState('search_query')
+const filteredProduct = computed(()=>{
+	return (Object.values(meals.value).filter(item => item.name.toLowerCase().includes(search_query.value.toLowerCase())));
 })
 </script>
 
