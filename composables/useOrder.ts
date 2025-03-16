@@ -3,19 +3,20 @@ type OrderItem = {
     count: number;
     price: number;
     name: string;
+    img:string;
   };
 };
 
 export const useOrder = () => {
   const order = useState<OrderItem>('order', () => ({}));
 
-  const increaseOrder = (meal: string, price: number, name: string) => {
+  const increaseOrder = (meal: string, price: number, name: string, img:string) => {
     if (order.value[meal]) {
       order.value[meal].count += 1;
     } else {
       order.value = {
         ...order.value,
-        [meal]: { count: 1, price, name }
+        [meal]: { count: 1, price, name, img }
       };
     }
   };

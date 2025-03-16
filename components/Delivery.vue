@@ -49,29 +49,35 @@
 		<div class="space-y-4">
 			<div class="flex items-center justify-between">
 				<h1 class="font-semibold tf-bebas">Order Summary</h1>
-				<button class="tf-bebas"><span class="text-[#EE2737] font-semibold">Add items</span></button>
+				<button @click="navigateTo('/')" class="tf-bebas"><span class="text-[#EE2737] font-semibold">Add
+						items</span></button>
 			</div>
 
 			<div class="space-y-4">
-				<div class="flex justify-between items-start tf-spartan">
-					<h1 class="w-10">1x</h1>
-					<div class="flex-1">
-						<h1 class="font-medium">Tendon</h1>
-						<button class="text-sm text-[#EE2737]">Edit</button>
+				<div class="flex flex-col space-y-4 max-h-[250px] overflow-scroll">
+					<div v-for="order in orders" :key="order.name" class="flex justify-between items-start tf-spartan">
+						<h1 class="w-10">{{ order.count }}x</h1>
+						<div class="flex-1">
+							<h1 class="font-medium">{{ order.name }}</h1>
+							<button class="text-sm text-[#EE2737]">Edit</button>
+						</div>
+						<p class="font-semibold">{{ (order.price * order.count).toLocaleString() }}.00</p>
 					</div>
-					<p class="font-semibold">243.00</p>
 				</div>
 				<hr class="border-1 border-gray-400" />
 
 				<h1 class="text-[#666666] tf-bebas">People also ordered</h1>
-
-				<div class="flex justify-between items-center w-[60%] bg-white p-4 rounded-[15px] shadow-lg tf-spartan">
-					<div>
-						<h1 class="font-medium">Tendon</h1>
-						<p class="font-semibold">243.00</p>
-					</div>
-					<div>
-						<img class="w-[80px] h-[80px]" src="/public/6762c39f9d19d.png" alt="Product Image" />
+				<div class="space-y-4 max-h-[250px] overflow-scroll">
+					<div v-for="meal in hotSelling" :key="meal.id"
+						class="flex justify-between items-center w-full bg-white p-4 rounded-[15px] shadow-lg tf-spartan">
+						<div>
+							<h1 class="font-medium">{{ meal.name }}</h1>
+							<p class="font-semibold">{{ meal.price.toLocaleString() }}.00</p>
+						</div>
+						<div>
+							<img class="w-[80px] h-[80px] object-contain" :src="meal.image_small" alt="Product Image" />
+						</div>
+						<OrderAdd :meal="meal" class="flex items-center space-x-2 mt-2 bottom-0 right-0" />
 					</div>
 				</div>
 
@@ -79,7 +85,7 @@
 
 				<div class="grid grid-cols-2 gap-y-2 w-full tf-spartan">
 					<h3>Subtotal</h3>
-					<p class="text-right">₱2053.00</p>
+					<p class="text-right">₱{{ price }}.00</p>
 					<h3>Delivery Fee</h3>
 					<p class="text-right">₱140.00</p>
 					<h3>Applicable Fees</h3>
@@ -153,7 +159,13 @@
 </template>
 
 <script setup>
-
+const orders = useState('order', () => []);
+const total_price = useState('total_price', () => 0)
+const hotSelling = useState('hotSelling', () => [])
+const price = computed(() => {
+    total_price.value = Object.values(orders.value).reduce((total, item) => parseInt(total) + parseInt(parseInt(item.price) * parseInt(item.count) || 0), 0).toLocaleString('en-US');
+    return total_price.value
+})
 </script>
 
 <style scoped></style>

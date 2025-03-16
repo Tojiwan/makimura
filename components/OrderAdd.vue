@@ -13,7 +13,7 @@
         <span v-else-if="showBorder" class="font-semibold">0</span>
 
         <button v-if="showBorder || orderCount === null"
-            @click.stop="increaseOrder(meal.name, meal.price, meal.name); showTempBorder()"
+            @click.stop="increaseOrder(meal.name, meal.price, meal.name, meal.image_small); showTempBorder()"
             class="rounded-full w-full h-full flex items-center justify-center">
             <font-awesome :class="showBorder ? 'text-gray-500' : 'text-white'" icon="fa-solid fa-plus" />
         </button>
