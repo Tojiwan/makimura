@@ -1,25 +1,38 @@
 <template>
     <section class="left-0 z-25 w-full flex gap-2 my-2 bg-white ">
-        <div @click="filterOpen = !filterOpen"
+        <div v-if="!searchOpen" @click="filterOpen = !filterOpen"
             class="cursor-pointer grow bg-gray-100 flex justify-between items-center px-5 rounded-full">
             <p class="tf-tf-spartan font-bold">{{ filter_category }}</p>
             <font-awesome v-if="!filterOpen" icon="fas chevron-down" />
             <font-awesome v-if="filterOpen" icon="fas chevron-up" />
         </div>
-        <div>
-            
+        <div @click="openFocus" :class="[searchOpen ? 'grow' : '']"
+            class="bg-gray-100 flex justify-between items-center px-3 tf-spartan rounded-full text-gray-500">
+            <font-awesome icon="fas magnifying-glass" />
+            <p v-if="!searchOpen">Search</p>
+            <input v-if="!isHeaderFixed && searchOpen" ref="search" @keyup="handleSearch" @focusout="searchOpen = false; search = ''"
+                @click.stop="" class="grow pl-3 py-1 bg-transparent outline-0" type="text"
+                placeholder="Have a craving?">
         </div>
         <button
             class="ml-auto bg-[#EE2737] text-white rounded-md p-2 w-[35px] h-[35px] flex items-center justify-center"
             @click="BDMenuOpen = !BDMenuOpen"><font-awesome icon="fas location-dot" /></button>
     </section>
     <transition name="fade-in">
-        <section v-if="isHeaderFixed" class="fixed top-[70px] left-0 z-20 w-full flex gap-2 px-5 py-2 bg-white ">
-            <div @click="filterOpen = !filterOpen"
+        <section v-if="isHeaderFixed"
+            class="fixed drop-shadow-lg top-[70px] left-0 z-20 w-full flex gap-2 px-5 py-2 bg-white ">
+            <div v-if="!searchOpen" @click="filterOpen = !filterOpen"
                 class="cursor-pointer grow bg-gray-100 flex justify-between items-center px-5 rounded-full">
                 <p class="tf-tf-spartan font-bold">{{ filter_category }}</p>
                 <font-awesome v-if="!filterOpen" icon="fas chevron-down" />
                 <font-awesome v-if="filterOpen" icon="fas chevron-up" />
+            </div>
+            <div @click="openFocus" :class="[searchOpen ? 'grow' : '']"
+                class="bg-gray-100 flex justify-between items-center px-3 tf-spartan rounded-full text-gray-500">
+                <font-awesome icon="fas magnifying-glass" />
+                <p v-if="!searchOpen">Search</p>
+                <input ref="search" @keyup="handleSearch" @focusout="searchOpen = false; search = ''" @click.stop="" v-if="searchOpen"
+                    class="grow pl-3 py-1 bg-transparent outline-0" type="text" placeholder="Have a craving?">
             </div>
             <button
                 class="ml-auto bg-[#EE2737] text-white rounded-md p-2 w-[35px] h-[35px] flex items-center justify-center"
@@ -51,7 +64,9 @@ const { isHeaderFixed } = useScrollHandler()
 const BDMenuOpen = useState('BDMenuOpen', () => true)
 const categoryMeals = useState('categoryMeals', () => { })
 
+const searchOpen = ref(false)
 const filterOpen = ref(false)
+const search = ref(null)
 const filter_category = ref('HOT SELLING')
 
 const filterArray = computed(() => {
@@ -75,6 +90,22 @@ const scrollTo = (id, name) => {
     filter_category.value = name
 }
 
+// handle open of search
+const openFocus = async () => {
+    searchOpen.value = true;
+
+    await nextTick();
+
+    if (search.value) {
+        search.value.focus();
+    }
+};
+
+// handle search query
+const handleSearch = (event)=>{
+    console.log(event.target.value);
+    
+}
 </script>
 
 <style scoped>
