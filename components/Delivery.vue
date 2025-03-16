@@ -1,4 +1,5 @@
 <template>
+	<NavBar />
 	<div class="bg-white p-6 space-y-5">
 		<!-- <div class="flex justify-start items-center gap-5">
 			<button class="px-3 py-1 bg-[#EE2737] rounded-full text-white flex justify-center items-center">
@@ -68,7 +69,8 @@
 				<div v-if="filteredMeals.length > 0" class="space-y-4">
 					<h1 class="text-[#666666] tf-bebas">People also ordered</h1>
 					<section class="w-full flex gap-4 overflow-x-auto pb-5">
-						<div @click.stop="increaseOrder(meal.name, meal.price, meal.name, meal.image_small)" v-for="meal in filteredMeals" :key="meal.name"
+						<div @click.stop="increaseOrder(meal.name, meal.price, meal.name, meal.image_small)"
+							v-for="meal in filteredMeals" :key="meal.name"
 							class="flex  items-center justify-between text-wrap border min-w-[200px] bg-white p-4 rounded-[15px] shadow-lg tf-spartan">
 							<div class="text-sm">
 								<h1 class="font-medium">{{ meal.name }}</h1>
