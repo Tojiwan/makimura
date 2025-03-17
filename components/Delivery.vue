@@ -55,12 +55,12 @@
 			</div>
 
 			<div class="space-y-4">
-				<div class="flex flex-col space-y-4 max-h-[250px] overflow-scroll">
+				<div class="flex flex-col space-y-4 max-h-[250px] overflow-y-auto">
 					<div v-for="order in orders" :key="order.name" class="flex justify-between items-start tf-spartan">
 						<h1 class="w-10">{{ order.count }}x</h1>
 						<div class="flex-1">
 							<h1 class="font-medium">{{ order.name }}</h1>
-							<button class="text-sm text-[#EE2737]">Edit</button>
+							<button @click="navigateTo(`/edit/${order.name.split(' ').join('-')}`)" class="text-sm text-[#EE2737]">Edit</button>
 						</div>
 						<p class="font-semibold">{{ (order.price * order.count).toLocaleString() }}.00</p>
 					</div>
