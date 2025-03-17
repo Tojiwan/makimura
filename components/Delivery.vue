@@ -71,10 +71,10 @@
 					<section class="w-full flex gap-4 overflow-x-auto pb-5">
 						<div @click.stop="increaseOrder(meal.name, meal.price, meal.name, meal.image_small)"
 							v-for="meal in filteredMeals" :key="meal.name"
-							class="flex  items-center justify-between text-wrap border min-w-[200px] bg-white p-4 rounded-[15px] shadow-lg tf-spartan">
+							class="cursor-pointer flex items-center justify-between text-wrap border min-w-[200px] bg-white p-4 rounded-[15px] shadow-lg tf-spartan">
 							<div class="text-sm">
 								<h1 class="font-medium">{{ meal.name }}</h1>
-								<p class="font-semibold">{{ meal.price.toLocaleString() }}.00</p>
+								<p class="font-semibold">{{ meal.price.toLocaleString() }}</p>
 							</div>
 							<img class="h-[80px] w-[80px] object-contain" :src="meal.image_small" alt="Product Image" />
 						</div>
