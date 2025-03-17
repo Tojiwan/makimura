@@ -17,7 +17,7 @@
                 <h1 class="font-bold">Note to Makimura</h1>
                 <p class="rounded-full bg-gray-200 px-2">Optional</p>
             </div>
-            <textarea name="" id="" class="w-full border rounded-lg p-3 outline-0 focus:ring-1 ring-[#EE2737] focus:border-[#EE2737]"
+            <textarea name="" id="" class="w-full border rounded-lg p-3 outline-0 focus:ring focus:ring-1 ring-[#EE2737] focus:border-[#EE2737]"
                 placeholder="Add your request (subject to Makimura's discretion)"></textarea>
             <div class="w-full flex items-center justify-center">
                 <div class="rounded-full flex items-center justify-between h-8 w-[150px]">
