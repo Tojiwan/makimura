@@ -81,13 +81,15 @@ const loadSLots = async () => {
     slots.value = await getIntervals(date.value, selBranch.value.value)
 }
 
+const order = useState('order', () => ({}));
 const hotSelling = useState('hotSelling', () => []);
 const categoryMeals = useState('categoryMeals', () => {});
 const saveOptions = async () => {
     if (selBranch.value.value.trim().length != 0 && date.value.trim().length != 0 && interval.value.value.trim().length != 0) {
         hotSelling.value = []
         categoryMeals.value = []
-        
+        order.value = {}
+
         BDMenuOpen.value = false
         saved.value = true;
 
