@@ -60,7 +60,7 @@ const meal_details = computed(() => {
 })
 
 const update_order = () => {
-    orders.value[meal_details.value.name].count++
+    orders.value[meal_details.value.name].count = count.value
     navigateTo('/payment')
 }
 const remove_order = () => {
