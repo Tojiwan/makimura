@@ -2,7 +2,7 @@
     <div @click="showTempBorder"
         class="rounded-full flex items-center justify-center transition-width duration-300 cursor-pointer h-10" :class="{
             'border border-[#EE2737] bg-white w-[100px]': showBorder,
-            'bg-[#EE2737] text-white w-10': !showBorder
+            'bg-main text-white w-10': !showBorder
         }">
         <button v-if="showBorder" @click.stop="decreaseOrder(meal.name); showTempBorder()"
             class="rounded-full w-full h-full flex items-center justify-center">
@@ -37,11 +37,11 @@ const orderCount = computed(() => (order.value[props.meal.name] ? order.value[pr
 
 // **Handles the temporary border visibility**
 const showTempBorder = () => {
-    
-    if(orderCount.value === null){
+
+    if (orderCount.value === null) {
         showBorder.value = false;
     }
-    else{
+    else {
         showBorder.value = true;
         clearTimeout(timeoutId);
         timeoutId = setTimeout(() => {

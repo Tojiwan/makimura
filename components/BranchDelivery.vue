@@ -14,15 +14,18 @@
                     <option value="delivery">Delivery</option>
                 </select>
 
-                <select name="branches" ref="selBranch" id="branches" @change="loadSLots" class="h-[65px] px-4 text-base font-medium text-[#666666] rounded-[10px] border border-[#dddddd] focus:ring-1 focus:ring-[#EE2737] focus:border-[#EE2737]">
+                <select name="branches" ref="selBranch" id="branches" @change="loadSLots"
+                    class="h-[65px] px-4 text-base font-medium text-[#666666] rounded-[10px] border border-[#dddddd] focus:ring-1 focus:ring-[#EE2737] focus:border-[#EE2737]">
                     <option value="" disabled selected>Select a branch</option>
                     <option v-for="branch in branches" :key="branch.id" :value="branch.slug">{{
                         branch.name }}</option>
                 </select>
 
-                <input v-model="date" :min="today" type="date" name="date" id="date" @focusout="loadSLots" class="h-[65px] px-4 text-base font-medium text-[#666666] rounded-[10px] border border-[#dddddd] focus:ring-1 focus:ring-[#EE2737] focus:border-[#EE2737]">
+                <input v-model="date" :min="today" type="date" name="date" id="date" @focusout="loadSLots"
+                    class="h-[65px] px-4 text-base font-medium text-[#666666] rounded-[10px] border border-[#dddddd] focus:ring-1 focus:ring-[#EE2737] focus:border-[#EE2737]">
 
-                <select ref="interval" name="interval" id="interval" class="h-[65px] px-4 text-base font-medium text-[#666666] rounded-[10px] border border-[#dddddd] focus:ring-1 focus:ring-[#EE2737] focus:border-[#EE2737]">
+                <select ref="interval" name="interval" id="interval"
+                    class="h-[65px] px-4 text-base font-medium text-[#666666] rounded-[10px] border border-[#dddddd] focus:ring-1 focus:ring-[#EE2737] focus:border-[#EE2737]">
                     <option value="" disabled selected>Select a slot</option>
                     <option v-for="slot in slots" :key="slot.id" :value="slot.id">{{ slot.start_time }} - {{
                         slot.end_time }} - {{ slot.categories[0].name }} {{ slot.categories[0].pivot.slots }} available
@@ -35,7 +38,7 @@
 
                 <div class="flex items-center justify-between gap-6 my-6">
                     <button
-                        class="px-4 py-2 bg-[#EE2737] w-full h-[45px] rounded-[5px] text-white flex justify-center items-center"
+                        class="px-4 py-2 bg-main w-full h-[45px] rounded-[5px] text-white flex justify-center items-center"
                         @click="saveOptions"> Save</button>
                     <button
                         class="px-4 py-2 bg-white border-[#EE2737] border w-full h-[45px] rounded-[5px] text-[#EE2737] flex justify-center items-center"
@@ -83,7 +86,7 @@ const loadSLots = async () => {
 
 const order = useState('order', () => ({}));
 const hotSelling = useState('hotSelling', () => []);
-const categoryMeals = useState('categoryMeals', () => {});
+const categoryMeals = useState('categoryMeals', () => { });
 const saveOptions = async () => {
     if (selBranch.value.value.trim().length != 0 && date.value.trim().length != 0 && interval.value.value.trim().length != 0) {
         hotSelling.value = []

@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col">
         <!-- <NavBar /> -->
-        <button @click="navigateTo('/payment')" class=" absolute top-4 left-4 z-10 bg-[#EE2737] text-white rounded-full w-10 h-10 flex items-center justify-center
+        <button @click="navigateTo('/payment')" class=" absolute top-4 left-4 z-10 bg-main text-white rounded-full w-10 h-10 flex items-center justify-center
             shadow-lg">
             <font-awesome :icon="['fas', 'x']" />
         </button>
@@ -17,19 +17,19 @@
                 <h1 class="font-bold">Note to Makimura</h1>
                 <p class="rounded-full bg-gray-200 px-2">Optional</p>
             </div>
-            <textarea name="" id="" class="w-full border rounded-lg p-3 outline-0 focus:ring focus:ring-1 ring-[#EE2737] focus:border-[#EE2737]"
+            <textarea name="" id=""
+                class="w-full border rounded-lg p-3 outline-0 focus:ring focus:ring-1 ring-[#EE2737] focus:border-[#EE2737]"
                 placeholder="Add your request (subject to Makimura's discretion)"></textarea>
             <div class="w-full flex items-center justify-center">
                 <div class="rounded-full flex items-center justify-between h-8 w-[150px]">
                     <button @click.stop="count > 0 ? count-- : count = count"
-                        class="bg-[#EE2737]/70 rounded-full w-8 h-8 flex items-center justify-center">
+                        class="bg-main/70 rounded-full w-8 h-8 flex items-center justify-center">
                         <font-awesome icon="fa-solid fa-minus" />
                     </button>
 
                     <span class="font-semibold">{{ count }}</span>
 
-                    <button @click.stop="count++"
-                        class="bg-[#EE2737] rounded-full w-8 h-8 flex items-center justify-center">
+                    <button @click.stop="count++" class="bg-main rounded-full w-8 h-8 flex items-center justify-center">
                         <font-awesome icon="fa-solid fa-plus" style="color: #ffffff;" />
                     </button>
                 </div>
@@ -40,7 +40,7 @@
         <div
             class="flex items-center justify-center p-3 px-5 absolute bottom-0 w-full bg-white border rounded-t-2xl shadow-[rgba(0,0,0,0.2)_0px_0px_10px_1px]">
             <button @click="remove_order" v-if="count === 0"
-                class="p-3 w-full rounded-full text-white font-bold bg-[#EE2737]">Remove</button>
+                class="p-3 w-full rounded-full text-white font-bold bg-main">Remove</button>
             <button @click="update_order" v-else
                 class="p-3 w-full rounded-full text-white font-bold bg-[#1FA530]">Update Item</button>
         </div>

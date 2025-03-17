@@ -2,7 +2,7 @@
 	<NavBar />
 	<div class="bg-white p-6 space-y-5">
 		<!-- <div class="flex justify-start items-center gap-5">
-			<button class="px-3 py-1 bg-[#EE2737] rounded-full text-white flex justify-center items-center">
+			<button class="px-3 py-1 bg-main rounded-full text-white flex justify-center items-center">
 				Delivery
 			</button>
 			<button class="px-3 py-1 rounded-full text-[#EE2737] flex justify-center items-center">
@@ -33,9 +33,10 @@
 				<font-awesome icon="fa-solid fa-location-dot" style="color: #ee2737" />
 				<div class="flex flex-col items-start justify-center">
 					<h1 class="flex-1 text-center truncate px-4 tf-spartan min-w-0">
-					Near Guagua-Santa Rita-Porac Road
-				</h1>
-				<p class="flex-1 text-center truncate px-4 tf-spartan min-w-0 text-gray-400">Becuran, Santa Rita, Pampanga</p>
+						Near Guagua-Santa Rita-Porac Road
+					</h1>
+					<p class="flex-1 text-center truncate px-4 tf-spartan min-w-0 text-gray-400">Becuran, Santa Rita,
+						Pampanga</p>
 				</div>
 				<button>
 					<font-awesome :icon="['fas', 'chevron-right']" style="color: #ee2737" />
@@ -45,10 +46,10 @@
 			<div class="bg-gray-200 w-full rounded-md">
 				<NuxtLink to="/editLocation">
 					<button class="p-4 text-[12px] w-full">
-					<p class="tf-spartan">
-						Add address details and delivery instructions
-						<span class="text-[#EE2737] ml-4">Add</span>
-					</p>
+						<p class="tf-spartan">
+							Add address details and delivery instructions
+							<span class="text-[#EE2737] ml-4">Add</span>
+						</p>
 					</button>
 				</NuxtLink>
 			</div>
