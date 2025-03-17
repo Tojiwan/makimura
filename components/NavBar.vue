@@ -1,19 +1,37 @@
 <template>
   <div>
-    <div class="z-20 p-5 flex w-full bg-white">
-      <nav class="w-full flex items-center justify-center">
-        <img @click="navigateTo('/')" class="cursor-pointer w-[50%]"
+    <div class="z-20 p-5 flex w-full bg-white tf-spartan">
+      <nav class="w-full flex items-center justify-center lg:justify-between lg:px-5 gap-10">
+        <img @click="navigateTo('/')" class="cursor-pointer max-w-[180px] lg:mr-auto"
           src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png" alt="">
+        <p class="hidden lg:block">Balibago Branch</p>
+        <div :class="[isPayment ? 'text-white bg-main' : '']"
+          class="hidden lg:flex items-center justify-center cursor-pointer relative border shadow-xl rounded-xl w-[45px] h-[45px]">
+          <font-awesome :icon="['fas', 'bag-shopping']" class=" " />
+          <p
+            class="absolute -top-2 -right-2 text-sm bg-gray-500 rounded-full h-[20px] w-[20px] flex items-center justify-center text-white tf-spartan">
+            1</p>
+        </div>
       </nav>
     </div>
+
+    <!-- fixed header -->
     <transition name="slide-down">
       <div v-if="isHeaderFixed"
         class="fixed h-[70px] top-0 left-0 z-20 p-5 flex items-center justify-center w-full bg-white"
-        :class="{ 'shadow-lg':isPayment }">
-        <nav class="w-full flex items-center justify-center">
-          <img @click="navigateTo('/')" class="cursor-pointer w-[50%]"
-            src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png" alt="">
-        </nav>
+        :class="{ 'shadow-lg': isPayment }">
+        <nav class="w-full flex items-center justify-center lg:justify-between lg:px-5 gap-10">
+        <img @click="navigateTo('/')" class="cursor-pointer max-w-[180px] lg:mr-auto"
+          src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png" alt="">
+        <p class="hidden lg:block">Balibago Branch</p>
+        <div :class="[isPayment ? 'text-white bg-main' : '']"
+          class="hidden lg:flex items-center justify-center cursor-pointer relative border shadow-xl rounded-xl w-[45px] h-[45px]">
+          <font-awesome :icon="['fas', 'bag-shopping']" class=" " />
+          <p
+            class="absolute -top-2 -right-2 text-sm bg-gray-500 rounded-full h-[20px] w-[20px] flex items-center justify-center text-white tf-spartan">
+            1</p>
+        </div>
+      </nav>
       </div>
     </transition>
   </div>
@@ -23,7 +41,7 @@
 import { useScrollHandler } from '#imports';
 const { isHeaderFixed } = useScrollHandler()
 const route = useRoute()
-const isPayment = computed(()=>{
+const isPayment = computed(() => {
   return route.fullPath.includes('payment')
 })
 </script>
