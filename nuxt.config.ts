@@ -36,9 +36,18 @@ export default defineNuxtConfig({
     fontsDir: 'fonts',
     fontsPath: '../fonts'
   },
+
   css: [
     '@/assets/css/google-fonts.css',
     '@/assets/css/main.css',
+  ],
 
+  // Auto-import components from all subdirectories
+  components: [
+    {
+      path: '~/components',
+      pathPrefix: false, // Allows direct use of component names without folder prefixes
+      global: true, // (Optional) Makes all components globally available
+    },
   ]
 })
