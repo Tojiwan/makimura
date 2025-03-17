@@ -1,17 +1,15 @@
 <template>
   <div>
     <div class="z-20 p-5 flex w-full bg-white">
-      <!-- <img @click="navigateTo('/')" class="cursor-pointer w-[50%]" src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png" alt=""> -->
       <nav class="w-full flex items-center justify-center">
         <img @click="navigateTo('/')" class="cursor-pointer w-[50%]"
           src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png" alt="">
       </nav>
-      <!-- <button class="ml-auto bg-main text-white rounded-md p-2 w-[35px] h-[35px] flex items-center justify-center"
-        @click="BDMenuOpen = !BDMenuOpen"><font-awesome icon="fas location-dot" /></button> -->
     </div>
     <transition name="slide-down">
       <div v-if="isHeaderFixed"
-        class="fixed h-[70px] top-0 left-0 z-20 p-5 flex items-center justify-center w-full bg-white">
+        class="fixed h-[70px] top-0 left-0 z-20 p-5 flex items-center justify-center w-full bg-white"
+        :class="{ 'shadow-lg':isPayment }">
         <nav class="w-full flex items-center justify-center">
           <img @click="navigateTo('/')" class="cursor-pointer w-[50%]"
             src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png" alt="">
@@ -23,9 +21,11 @@
 
 <script setup>
 import { useScrollHandler } from '#imports';
-
 const { isHeaderFixed } = useScrollHandler()
-
+const route = useRoute()
+const isPayment = computed(()=>{
+  return route.fullPath.includes('payment')
+})
 </script>
 
 <style scoped>
