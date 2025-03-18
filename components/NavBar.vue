@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div :class="[ (isOrder || isMobile) ? 'bg-white' : 'bg-black' ]" class="z-20 py-4 px-6 lg:px-10 xl:px-28 flex w-full tf-spartan">
+    <div :class="[ (isOrder || isMobile) ? 'bg-white' : 'bg-gray-800 bg-opacity-90 border-0' ]" class="z-20 py-4 px-6 lg:px-10 xl:px-28 flex w-full tf-spartan">
       <nav class="w-full flex items-center justify-center lg:justify-between lg:px-5 gap-10">
         <img :class="{'filter brightness-0 invert':!isOrder}" @click="navigateTo('/')" class="cursor-pointer max-w-[180px] lg:mr-auto"
           src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png" alt="">
