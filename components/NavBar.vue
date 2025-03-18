@@ -1,16 +1,19 @@
 <template>
   <div>
-    <div class="z-20 pt-4 px-6 lg:px-10 xl:px-28 flex w-full bg-white tf-spartan">
+    <div :class="[ (isOrder || isMobile) ? 'bg-white' : 'bg-black' ]" class="z-20 py-4 px-6 lg:px-10 xl:px-28 flex w-full tf-spartan">
       <nav class="w-full flex items-center justify-center lg:justify-between lg:px-5 gap-10">
-        <img @click="navigateTo('/')" class="cursor-pointer max-w-[180px] lg:mr-auto"
+        <img :class="{'filter brightness-0 invert':!isOrder}" @click="navigateTo('/')" class="cursor-pointer max-w-[180px] lg:mr-auto"
           src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png" alt="">
-        <p class="hidden lg:block">{{ branch.name }}</p>
-        <div :class="[isPayment ? 'text-white bg-main' : '']"
-          class="hidden lg:flex items-center justify-center cursor-pointer relative border shadow-xl rounded-xl w-[45px] h-[45px]">
-          <font-awesome :icon="['fas', 'bag-shopping']" class=" " />
+        <p :class="[ !isOrder ? 'text-white' : 'text-black' ]" class="hidden lg:block">{{ branch.name }}</p>
+        <div @click="isCartOpen = !isCartOpen" :class="[isPayment ? 'text-white bg-main' : '']"
+          class="hidden lg:flex items-center relative justify-center relative border shadow-xl rounded-xl w-[45px] h-[45px]">
+          <div class="w-full h-full cursor-pointer flex items-center justify-center">
+            <font-awesome :icon="['fas', 'bag-shopping']" />
+          </div>
           <p
-            class="absolute -top-2 -right-2 text-sm bg-gray-500 rounded-full h-[20px] w-[20px] flex items-center justify-center text-white tf-spartan">
+            class="absolute -top-2 -right-2 text-[12px] bg-gray-500 rounded-full h-[20px] w-[20px] flex items-center justify-center text-white tf-spartan">
             {{ count }}</p>
+          <CartMenu @click.stop v-if="!isHeaderFixed && isCartOpen" />
         </div>
       </nav>
     </div>
@@ -24,12 +27,15 @@
           <img @click="navigateTo('/')" class="cursor-pointer max-w-[180px] lg:mr-auto"
             src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png" alt="">
           <p class="hidden lg:block">{{ branch.name }}</p>
-          <div :class="[isPayment ? 'text-white bg-main' : '']"
-            class="hidden lg:flex items-center justify-center cursor-pointer relative border shadow-xl rounded-xl bg-[var(--green-color)] text-white w-[45px] h-[45px]">
-            <font-awesome :icon="['fas', 'bag-shopping']" class=" " />
+          <div @click="isCartOpen = !isCartOpen" :class="[isPayment ? 'text-white bg-main' : '']"
+            class="hidden lg:flex items-center relative justify-center relative border shadow-xl rounded-xl bg-[var(--green-color)] text-white w-[45px] h-[45px]">
+            <div class="w-full h-full cursor-pointer flex items-center justify-center">
+              <font-awesome :icon="['fas', 'bag-shopping']" />
+            </div>
             <p
-              class="absolute -top-2 -right-2 text-sm bg-gray-500 rounded-full h-[20px] w-[20px] flex items-center justify-center text-white tf-spartan">
+              class="absolute -top-2 -right-2 text-[12px] bg-gray-500 rounded-full h-[20px] w-[20px] flex items-center justify-center text-white tf-spartan">
               {{ count }}</p>
+            <CartMenu @click.stop v-if="isHeaderFixed && isCartOpen" />
           </div>
         </nav>
       </div>
@@ -40,21 +46,26 @@
 <script setup>
 import { useScrollHandler, useBranchDelivery } from '#imports';
 
+const isMobile = useMediaQuery('(max-width: 768px)')
 const { getBranch } = useBranchDelivery()
 const { isHeaderFixed } = useScrollHandler()
 const route = useRoute()
 const isPayment = computed(() => {
   return route.fullPath.includes('payment')
 })
+const isOrder = computed(() => {
+  return route.fullPath == '/'
+})
+const isCartOpen = ref(false)
 
 const branchGlobal = useState('branch', () => null)
 const branch = ref([])
 const branches = ref([])
 
-onMounted(async()=>{
-  branches.value =  await getBranch()
+onMounted(async () => {
+  branches.value = await getBranch()
 })
-watchEffect(()=>{
+watchEffect(() => {
   branch.value = branches.value.filter(item => item.slug == branchGlobal.value)[0] ?? ''
 })
 
