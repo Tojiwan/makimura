@@ -29,16 +29,17 @@
 		<h1 class="font-semibold tf-bebas">Location</h1>
 
 		<div class="flex flex-col items-center space-y-4 w-full">
-			<div class="flex items-center w-full justify-between min-w-0">
-				<font-awesome icon="fa-solid fa-location-dot" style="color: #ee2737" />
-				<div class="flex flex-col items-start justify-center">
-					<h1 class="flex-1 text-center truncate px-4 tf-spartan min-w-0">
+			<div class="flex items-center w-full justify-between min-w-0 space-x-3">
+				<font-awesome icon="fa-solid fa-location-dot" style="color: #ee2737" class="flex-shrink-0" />
+				<div class="flex flex-col flex-1 items-start justify-center min-w-0">
+					<h1 class="text-left truncate px-4 tf-spartan w-full">
 						Near Guagua-Santa Rita-Porac Road
 					</h1>
-					<p class="flex-1 text-center truncate px-4 tf-spartan min-w-0 text-gray-400">Becuran, Santa Rita,
-						Pampanga</p>
+					<p class="text-left truncate px-4 tf-spartan w-full text-gray-400">
+						Becuran, Santa Rita, Pampanga
+					</p>
 				</div>
-				<button>
+				<button class="flex-shrink-0">
 					<font-awesome :icon="['fas', 'chevron-right']" style="color: #ee2737" />
 				</button>
 			</div>
