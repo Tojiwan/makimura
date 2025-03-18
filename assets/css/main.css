@@ -27,7 +27,13 @@
     font-family: "Bebas Neue", sans-serif;
 }
 
+:root{
+    --green-color: #00b14f;
+}
 /* colors */
 .bg-main{
-    background:#EE2737;
+    background:var(--green-color);
+}
+.tc-green{
+    color: var(--green-color);
 }
