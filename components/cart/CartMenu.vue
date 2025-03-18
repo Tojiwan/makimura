@@ -5,7 +5,7 @@
                 <div class="absolute right-5 bg-main h-[25px] w-[25px] text-white flex items-center justify-center rounded-lg cursor-pointer">
                     <font-awesome :icon="['fas', 'x']" @click="remove_order(order.name)"/>
                 </div>
-                <img :src="order.img" alt="" class="w-[80px] h-[80px]">
+                <img :src="order.img" alt="" class="w-[80px] h-[80px] mr-3">
                 <div class="flex flex-col justify-evenly w-full">
                     <h1 class="tf-spartan font-bold">{{ order.name }}</h1>
                     <div class="flex justify-between w-[80%]">
