@@ -1,11 +1,11 @@
 <template>
     <transition name="slide-up">
-        <NuxtLink to="/payment" v-if="count && price" class="fixed bottom-0 w-full bg-white p-5">
-            <div class="bg-main text-white font-bold flex justify-between rounded-full p-3">
+        <div v-if="count && price" class="fixed bottom-0 w-full bg-white p-5">
+            <NuxtLink to="/payment" class="bg-main text-white font-bold flex justify-between rounded-full p-3">
                 <p>Basket - {{ count }} Items</p>
                 <p>₱{{ price }}.00</p>
-            </div>
-        </NuxtLink>
+            </NuxtLink>
+        </div>
     </transition>
 </template>
 

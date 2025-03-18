@@ -6,7 +6,7 @@
 			<div class="grid grid-cols-2 gap-4">
 				<div v-for="(meal, index) in filteredSelling" :key="meal.id"
 					class="bg-white drop-shadow-lg border p-4 flex flex-col rounded-lg">
-					<div class="flex space-x-1 mb-2 text-[#EE2737]">
+					<div class="flex space-x-1 mb-2 tc-green">
 						<font-awesome icon="fa-solid fa-fire"/>
 						<font-awesome icon="fa-solid fa-fire"/>
 						<font-awesome icon="fa-solid fa-fire"/>

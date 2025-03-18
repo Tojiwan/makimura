@@ -1,16 +1,16 @@
 <template>
   <div>
-    <div class="z-20 p-5 flex w-full bg-white tf-spartan">
+    <div class="z-20 pt-4 px-6 lg:px-10 xl:px-28 flex w-full bg-white tf-spartan">
       <nav class="w-full flex items-center justify-center lg:justify-between lg:px-5 gap-10">
         <img @click="navigateTo('/')" class="cursor-pointer max-w-[180px] lg:mr-auto"
           src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png" alt="">
-        <p class="hidden lg:block">Balibago Branch</p>
+        <p class="hidden lg:block">{{ branch.name }}</p>
         <div :class="[isPayment ? 'text-white bg-main' : '']"
           class="hidden lg:flex items-center justify-center cursor-pointer relative border shadow-xl rounded-xl w-[45px] h-[45px]">
           <font-awesome :icon="['fas', 'bag-shopping']" class=" " />
           <p
             class="absolute -top-2 -right-2 text-sm bg-gray-500 rounded-full h-[20px] w-[20px] flex items-center justify-center text-white tf-spartan">
-            1</p>
+            {{ count }}</p>
         </div>
       </nav>
     </div>
@@ -18,32 +18,51 @@
     <!-- fixed header -->
     <transition name="slide-down">
       <div v-if="isHeaderFixed"
-        class="fixed h-[70px] top-0 left-0 z-20 p-5 flex items-center justify-center w-full bg-white"
-        :class="{ 'shadow-lg': isPayment }">
+        class="fixed h-[70px] top-0 left-0 z-20 px-6 lg:px-10 xl:px-28 flex items-center justify-center w-full bg-white"
+        :class="{ 'shadow-lg': isPayment || !isMobile }">
         <nav class="w-full flex items-center justify-center lg:justify-between lg:px-5 gap-10">
-        <img @click="navigateTo('/')" class="cursor-pointer max-w-[180px] lg:mr-auto"
-          src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png" alt="">
-        <p class="hidden lg:block">Balibago Branch</p>
-        <div :class="[isPayment ? 'text-white bg-main' : '']"
-          class="hidden lg:flex items-center justify-center cursor-pointer relative border shadow-xl rounded-xl w-[45px] h-[45px]">
-          <font-awesome :icon="['fas', 'bag-shopping']" class=" " />
-          <p
-            class="absolute -top-2 -right-2 text-sm bg-gray-500 rounded-full h-[20px] w-[20px] flex items-center justify-center text-white tf-spartan">
-            1</p>
-        </div>
-      </nav>
+          <img @click="navigateTo('/')" class="cursor-pointer max-w-[180px] lg:mr-auto"
+            src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png" alt="">
+          <p class="hidden lg:block">{{ branch.name }}</p>
+          <div :class="[isPayment ? 'text-white bg-main' : '']"
+            class="hidden lg:flex items-center justify-center cursor-pointer relative border shadow-xl rounded-xl bg-[var(--green-color)] text-white w-[45px] h-[45px]">
+            <font-awesome :icon="['fas', 'bag-shopping']" class=" " />
+            <p
+              class="absolute -top-2 -right-2 text-sm bg-gray-500 rounded-full h-[20px] w-[20px] flex items-center justify-center text-white tf-spartan">
+              {{ count }}</p>
+          </div>
+        </nav>
       </div>
     </transition>
   </div>
 </template>
 
 <script setup>
-import { useScrollHandler } from '#imports';
+import { useScrollHandler, useBranchDelivery } from '#imports';
+
+const { getBranch } = useBranchDelivery()
 const { isHeaderFixed } = useScrollHandler()
 const route = useRoute()
 const isPayment = computed(() => {
   return route.fullPath.includes('payment')
 })
+
+const branchGlobal = useState('branch', () => null)
+const branch = ref([])
+const branches = ref([])
+
+onMounted(async()=>{
+  branches.value =  await getBranch()
+})
+watchEffect(()=>{
+  branch.value = branches.value.filter(item => item.slug == branchGlobal.value)[0] ?? ''
+})
+
+const order = useState('order', () => []);
+const count = computed(() => {
+  return Object.values(order.value).reduce((sum, item) => sum + (item.count || 0), 0);
+});
+
 </script>
 
 <style scoped>
