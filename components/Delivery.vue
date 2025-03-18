@@ -5,7 +5,7 @@
 			<button class="px-3 py-1 bg-main rounded-full text-white flex justify-center items-center">
 				Delivery
 			</button>
-			<button class="px-3 py-1 rounded-full text-[#EE2737] flex justify-center items-center">
+			<button class="px-3 py-1 rounded-full text-[#00b14f] flex justify-center items-center">
 				Pickup
 			</button>
 		</div> -->
@@ -13,24 +13,24 @@
 		<div class="flex flex-col justify-center items-center space-y-4 tf-spartan">
 
 			<input type="text" placeholder="First Name" required
-				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#ee2737] focus:ring-1 focus:ring-[#ee2737] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold">
+				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#00b14f] focus:ring-1 focus:ring-[#00b14f] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold">
 			<input type="text" placeholder="Last Name" required
-				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#ee2737] focus:ring-1 focus:ring-[#ee2737] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold">
+				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#00b14f] focus:ring-1 focus:ring-[#00b14f] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold">
 			<!-- <input type="text" placeholder="Apartment, suite, unit, etc." required
-				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#ee2737] focus:ring-1 focus:ring-[#ee2737] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold"> -->
+				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#00b14f] focus:ring-1 focus:ring-[#00b14f] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold"> -->
 			<input type="text" placeholder="Postcode / Zip" required
-				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#ee2737] focus:ring-1 focus:ring-[#ee2737] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold">
+				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#00b14f] focus:ring-1 focus:ring-[#00b14f] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold">
 			<input type="text" placeholder="Email" required
-				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#ee2737] focus:ring-1 focus:ring-[#ee2737] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold">
+				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#00b14f] focus:ring-1 focus:ring-[#00b14f] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold">
 			<input type="text" placeholder="Phone" required
-				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#ee2737] focus:ring-1 focus:ring-[#ee2737] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold">
+				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#00b14f] focus:ring-1 focus:ring-[#00b14f] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold">
 		</div>
 
 		<h1 class="font-semibold tf-bebas">Location</h1>
 
 		<div class="flex flex-col items-center space-y-4 w-full">
 			<div class="flex items-center w-full justify-between min-w-0 space-x-3">
-				<font-awesome icon="fa-solid fa-location-dot" style="color: #ee2737" class="flex-shrink-0" />
+				<font-awesome icon="fa-solid fa-location-dot" style="color: #00b14f" class="flex-shrink-0" />
 				<div class="flex flex-col flex-1 items-start justify-center min-w-0">
 					<h1 class="text-left truncate px-4 tf-spartan w-full">
 						Near Guagua-Santa Rita-Porac Road
@@ -40,7 +40,7 @@
 					</p>
 				</div>
 				<button class="flex-shrink-0">
-					<font-awesome :icon="['fas', 'chevron-right']" style="color: #ee2737" />
+					<font-awesome :icon="['fas', 'chevron-right']" style="color: #00b14f" />
 				</button>
 			</div>
 
@@ -49,7 +49,7 @@
 					<button class="p-4 text-[12px] w-full">
 						<p class="tf-spartan">
 							Add address details and delivery instructions
-							<span class="text-[#EE2737] ml-4">Add</span>
+							<span class="text-[#00b14f] ml-4">Add</span>
 						</p>
 					</button>
 				</NuxtLink>
@@ -59,7 +59,7 @@
 		<div class="space-y-4">
 			<div class="flex items-center justify-between">
 				<h1 class="font-semibold tf-bebas">Order Summary</h1>
-				<button @click="navigateTo('/')" class="tf-bebas"><span class="text-[#EE2737] font-semibold">Add
+				<button @click="navigateTo('/')" class="tf-bebas"><span class="text-[#00b14f] font-semibold">Add
 						items</span></button>
 			</div>
 
@@ -70,7 +70,7 @@
 						<div class="flex-1">
 							<h1 class="font-medium">{{ order.name }}</h1>
 							<button @click="navigateTo(`/edit/${order.name.split(' ').join('-')}`)"
-								class="text-sm text-[#EE2737]">Edit</button>
+								class="text-sm text-[#00b14f]">Edit</button>
 						</div>
 						<p class="font-semibold">{{ (order.price * order.count).toLocaleString() }}.00</p>
 					</div>
@@ -104,7 +104,7 @@
 				<div class="space-y-4">
 					<div class="flex items-center justify-between">
 						<h1 class="font-semibold tf-bebas">Payment Method</h1>
-						<button><span class="text-[#EE2737] font-semibold tf-bebas">See all</span></button>
+						<button><span class="text-[#00b14f] font-semibold tf-bebas">See all</span></button>
 					</div>
 
 					<div class="flex flex-col items-center justify-start gap-5 tf-spartan">

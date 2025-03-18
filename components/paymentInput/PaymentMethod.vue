@@ -6,12 +6,12 @@
 			</h1>
 			<div class="flex items-center justify-start gap-2">
 				<div class="bg-[#cacf7a] w-[6px] h-[6px] rounded-full"></div>
-				<div class="bg-[#EE2737] w-[53px] h-[4px] rounded-full"></div>
+				<div class="bg-[#00b14f] w-[53px] h-[4px] rounded-full"></div>
 			</div>
 
 			<div class="input-group input-black">
 				<select v-model="selectedPaymentType"
-					class="h-[50px] border border-gray-300 px-5 text-[15px] font-normal text-black transition-all duration-300 ease-in-out bg-white w-full focus:border-[#ee2737] focus:ring-[#ee2737] placeholder-[#666] rounded-[6px] outline-none"
+					class="h-[50px] border border-gray-300 px-5 text-[15px] font-normal text-black transition-all duration-300 ease-in-out bg-white w-full focus:border-[#00b14f] focus:ring-[#00b14f] placeholder-[#666] rounded-[6px] outline-none"
 					required @change="updatePaymentMethods">
 					<option disabled value="">Select Payment Type</option>
 					<option v-for="payment in PaymentType" :key="payment.id" :value="payment.id">
@@ -22,7 +22,7 @@
 
 			<div class="input-group input-black m-t20">
 				<select v-model="selectedPaymentMethod"
-					class="h-[50px] border border-gray-300 px-5 text-[15px] font-normal text-black transition-all duration-300 ease-in-out bg-white w-full focus:border-[#ee2737] focus:ring-[#ee2737] placeholder-[#666] rounded-[6px] outline-none"
+					class="h-[50px] border border-gray-300 px-5 text-[15px] font-normal text-black transition-all duration-300 ease-in-out bg-white w-full focus:border-[#00b14f] focus:ring-[#00b14f] placeholder-[#666] rounded-[6px] outline-none"
 					required>
 					<option disabled value="">Select Payment Method</option>
 					<option v-for="method in PaymentMethod" :key="method.id" :value="method.id">
@@ -32,7 +32,7 @@
 			</div>
 
 			<button
-				class="relative px-6 py-3 rounded-md text-[14px] font-medium leading-[1.5] inline-flex items-center justify-center transition-all duration-500 text-black bg-[#F3F3F3] hover:bg-[#ee2737] overflow-hidden group"
+				class="relative px-6 py-3 rounded-md text-[14px] font-medium leading-[1.5] inline-flex items-center justify-center transition-all duration-500 text-black bg-[#F3F3F3] hover:bg-[#00b14f] overflow-hidden group"
 				type="submit" name="btnPlaceOrder">
 				<span
 					class="relative z-10 transition-all duration-300 group-hover:-translate-x-5 group-hover:opacity-0">Place

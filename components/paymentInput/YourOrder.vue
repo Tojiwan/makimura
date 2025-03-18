@@ -4,7 +4,7 @@
 			<h1 class="text-[20px] font-black tf-bebas tracking-tighter">YOUR ORDER</h1>
 			<div class="flex items-center justify-start gap-2">
 				<div class="bg-[#cacf7a] w-[6px] h-[6px] rounded-full"></div>
-				<div class="bg-[#EE2737] w-[53px] h-[4px] rounded-full"></div>
+				<div class="bg-[#00b14f] w-[53px] h-[4px] rounded-full"></div>
 			</div>
 			<table class="w-full border border-gray-300 tf-spartan">
 				<thead class="bg-[#222222] text-white text-center">

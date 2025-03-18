@@ -1,7 +1,7 @@
 <template>
     <div @click="showTempBorder"
         class="rounded-full flex items-center justify-center transition-width duration-300 cursor-pointer h-10" :class="{
-            'border border-[#EE2737] bg-white w-[100px]': showBorder,
+            'border border-[#00b14f] bg-white w-[100px]': showBorder,
             'bg-main text-white w-10': !showBorder
         }">
         <button v-if="showBorder" @click.stop="decreaseOrder(meal.name); showTempBorder()"

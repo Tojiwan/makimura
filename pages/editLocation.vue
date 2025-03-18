@@ -20,10 +20,10 @@
 		<div class="p-6 space-y-4">
 			<h1 class="tf-bebas font-bold text-lg">Edit Location Details</h1>
 
-			<p class="tf-spartan">Address Location<span class="text-[#ee2737]">*</span></p>
+			<p class="tf-spartan">Address Location<span class="text-[#00b14f]">*</span></p>
 
 			<div class="bg-gray-200 w-full rounded-md flex items-center p-4 gap-5 border border-gray-400">
-				<font-awesome icon="fa-solid fa-location-dot" class="text-red-600 flex-shrink-0 text-[25px]" />
+				<font-awesome icon="fa-solid fa-location-dot" class="text-[#00b14f] flex-shrink-0 text-[25px]" />
 				<div class="truncate">
 					<p class="truncate font-bold text-gray-400">Near Guagua-Santa Rita-Porac Road</p>
 					<p class="truncate text-gray-400">Becuran, Santa Rita, Pampanga, Central Luzon (Region III), Pampanga</p>
@@ -32,10 +32,10 @@
 
 			<p>Address Details</p>
 			<input type="text" placeholder="Apartment, suite, unit, etc." required 
-				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#ee2737] focus:ring-1 focus:ring-[#ee2737] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold">
+				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#00b14f] focus:ring-1 focus:ring-[#00b14f] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold">
 			<p>Note to Driver</p>
 			<input type="text" placeholder="Notes about order, e.g. special notes for delivery" 
-				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#ee2737] focus:ring-1 focus:ring-[#ee2737] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold truncate">
+				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#00b14f] focus:ring-1 focus:ring-[#00b14f] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold truncate">
 		</div>
 	</div>
 </template>
