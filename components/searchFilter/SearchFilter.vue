@@ -7,11 +7,11 @@
             <font-awesome v-if="filterOpen" icon="fas chevron-up" />
         </div>
         <div @click="openFocus" :class="[searchOpen ? 'grow' : '']"
-            class="bg-gray-100 flex justify-between items-center px-3 tf-spartan rounded-full text-gray-500">
+            class="bg-main cursor-pointer flex justify-between items-center px-3 tf-spartan rounded-full text-white">
             <font-awesome icon="fas magnifying-glass" />
-            <p v-if="!searchOpen">Search</p>
+            <!-- <p v-if="!searchOpen">Search</p> -->
             <input v-if="!isHeaderFixed && searchOpen" ref="search" @keyup="handleSearch" :value="search_query"
-                @focusout="handleFocusOut" @click.stop class="grow pl-3 py-1 bg-transparent outline-0" type="text"
+                @focusout="handleFocusOut" @click.stop class="grow pl-3 py-1 bg-transparent placeholder-white    outline-0" type="text"
                 placeholder="Have a craving?">
         </div>
         <button class="ml-auto bg-main text-white rounded-md p-2 w-[35px] h-[35px] flex items-center justify-center"
@@ -29,11 +29,11 @@
                 <font-awesome v-if="filterOpen" icon="fas chevron-up" />
             </div>
             <div @click="openFocus" :class="[searchOpen ? 'grow' : '']"
-                class="bg-gray-100 flex justify-between items-center px-3 tf-spartan rounded-full text-gray-500">
+                class="bg-main cursor-pointer flex justify-between items-center px-3 tf-spartan rounded-full text-white">
                 <font-awesome icon="fas magnifying-glass" />
-                <p v-if="!searchOpen">Search</p>
+                <!-- <p v-if="!searchOpen">Search</p> -->
                 <input ref="search" @keyup="handleSearch" :value="search_query" @focusout="handleFocusOut" @click.stop
-                    v-if="searchOpen" class="grow pl-3 py-1 bg-transparent outline-0" type="text"
+                    v-if="searchOpen" class="grow pl-3 py-1 bg-transparent placeholder-white     outline-0" type="text"
                     placeholder="Have a craving?">
             </div>
             <button class="ml-auto bg-main text-white rounded-md p-2 w-[35px] h-[35px] flex items-center justify-center"

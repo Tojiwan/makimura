@@ -1,8 +1,8 @@
 <template>
 	<div>
 		<Delivery v-if="isSmallScreen" />
-		<NavBar />
-		<PaymentBanner />
+		<NavBar v-if="!isMobile" />
+		<Banner v-if="!isMobile" :title="'Shop Checkout'" />
 
 		<div v-if="!isSmallScreen">
 			<div
@@ -40,4 +40,6 @@ const isSmallScreen = useMediaQuery('(max-width: 768px)')
 // onUnmounted(() => {
 // 	window.removeEventListener('resize', handleResize)
 // })
+const isMobile = useMediaQuery('(max-width: 768px)')
+
 </script>

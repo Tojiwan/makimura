@@ -1,5 +1,5 @@
 <template>
-	<img v-if="filteredSelling.length === 0 && Object.values(hotSelling).length === 0" src="https://order.makimuraramen.com/assets/loading-C8RNs0gu.gif" alt="" class="col-span-full">
+	<img v-if="filteredSelling.length === 0 && Object.values(hotSelling).length === 0" src="https://order.makimuraramen.com/assets/loading-C8RNs0gu.gif" alt="" class="object-contain  w-[150px] self-center">
 	<section v-if="filteredSelling.length > 0" class="w-full">
 		<h1 v-if="hotSelling.length !== 0" id="hot-selling" class="mr-auto font-semibold text-xl mb-4">Hot Selling</h1>
 		<div class="rounded-lg">

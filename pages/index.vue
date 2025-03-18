@@ -7,13 +7,15 @@
 			class="ml-auto tc-green border border-[var(--green-color)] p-2 rounded-lg hover:bg-[var(--green-color)] hover:text-white font-medium tf-spartan mt-10">Select
 			Branch & Delivery</button>
 		<BranchDelivery />
+
+		<!-- desktop components -->
 		<div class="w-full" v-if="!isMobile">
 			<FilterBar />
 			<MealCards />
 		</div>
 
 		<!-- mobile only components -->
-		<div class="w-full" v-if="isMobile">
+		<div class="w-full flex flex-col" v-if="isMobile">
 			<SearchFilter />
 			<Hotselling />
 			<Product v-for="category in categoryMeals" :category="category" />

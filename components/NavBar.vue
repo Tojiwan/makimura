@@ -1,12 +1,12 @@
 <template>
   <div>
-    <div :class="[ (isOrder || isMobile) ? 'bg-white' : 'bg-gray-800 bg-opacity-90 border-0' ]" class="z-20 py-4 px-6 lg:px-10 xl:px-28 flex w-full tf-spartan">
+    <div :class="[ (isOrder || isMobile) ? 'bg-white' : 'bg-transparent border-0 absolute top-0 left-0' ]" class="z-20 py-4 px-6 lg:px-10 xl:px-28 flex w-full tf-spartan">
       <nav class="w-full flex items-center justify-center lg:justify-between lg:px-5 gap-10">
-        <img :class="{'filter brightness-0 invert':!isOrder}" @click="navigateTo('/')" class="cursor-pointer max-w-[180px] lg:mr-auto"
+        <img :class="{'filter brightness-0 invert':(!isOrder && !isMobile)}" @click="navigateTo('/')" class="cursor-pointer max-w-[180px] lg:mr-auto"
           src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png" alt="">
         <p :class="[ !isOrder ? 'text-white' : 'text-black' ]" class="hidden lg:block">{{ branch.name }}</p>
-        <div @click="isCartOpen = !isCartOpen" :class="[isPayment ? 'text-white bg-main' : '']"
-          class="hidden lg:flex items-center relative justify-center relative border shadow-xl rounded-xl w-[45px] h-[45px]">
+        <div @click="isCartOpen = !isCartOpen" :class="[!isOrder ? 'text-white bg-main' : '']"
+          class="hidden lg:flex items-center relative justify-center relative shadow-xl rounded-xl w-[45px] h-[45px]">
           <div class="w-full h-full cursor-pointer flex items-center justify-center">
             <font-awesome :icon="['fas', 'bag-shopping']" />
           </div>
@@ -27,7 +27,7 @@
           <img @click="navigateTo('/')" class="cursor-pointer max-w-[180px] lg:mr-auto"
             src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png" alt="">
           <p class="hidden lg:block">{{ branch.name }}</p>
-          <div @click="isCartOpen = !isCartOpen" :class="[isPayment ? 'text-white bg-main' : '']"
+          <div @click="isCartOpen = !isCartOpen" :class="[!isOrder ? 'text-white bg-main' : '']"
             class="hidden lg:flex items-center relative justify-center relative border shadow-xl rounded-xl bg-[var(--green-color)] text-white w-[45px] h-[45px]">
             <div class="w-full h-full cursor-pointer flex items-center justify-center">
               <font-awesome :icon="['fas', 'bag-shopping']" />

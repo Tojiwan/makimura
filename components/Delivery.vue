@@ -164,6 +164,12 @@
 				</div>
 			</div>
 		</div>
+
+		<button
+			class="w-full text-white bg-main relative px-6 py-3 rounded-md text-[14px] font-medium leading-[1.5] inline-flex items-center justify-center  overflow-hidden group"
+			type="submit" name="btnPlaceOrder">
+			Order Now
+		</button>
 	</div>
 </template>
 
