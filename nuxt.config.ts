@@ -18,24 +18,13 @@ export default defineNuxtConfig({
       'Bebas+Neue': true,
     },
     display: 'swap',
-    
-    // Download fonts instead of linking to Google Fonts CDN
-    download: true,  
-    base64: false, // Set to true if you want fonts embedded in CSS (not recommended for large projects)
-    
-    inject: false, // Prevent automatic injection (we will manually include it)
-    overwriting: true, // Avoid redundant downloads
 
-    // Set the output directory for CSS and fonts
-    outputDir: 'assets',
-    stylePath: 'css/google-fonts.css',
-    fontsDir: 'fonts',
-    fontsPath: '../fonts'
+    download: false,  // ❌ Do NOT download fonts
+    inject: true      // ✅ Inject Google Fonts via <link>
   },
 
   css: [
-    '@/assets/css/google-fonts.css',
-    '@/assets/css/main.css',
+    '~/assets/css/main.css',
   ],
 
   // Auto-import components from all subdirectories

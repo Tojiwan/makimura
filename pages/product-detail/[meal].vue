@@ -4,7 +4,7 @@
         <section class="px-6 lg:px-10 xl:px-8 xl:mx-24 mt-20 bg-white flex">
             <img :src="meal.image_small" alt="">
             <div class="flex flex-col">
-                <h1>{{ meal.name }}</h1>
+                <h1 class="text-3xl tf-spartan">{{ meal.name }}</h1>
                 <p>{{ meal.name }}</p>
                 <div class="grid grid-cols-2">
                     <div class="flex flex-col">
