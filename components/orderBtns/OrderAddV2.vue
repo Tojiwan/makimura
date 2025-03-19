@@ -20,8 +20,8 @@ const { meal } = defineProps(['meal'])
 const count_input = ref(0)
 const order = useState('order', () => {});
 watchEffect(()=>{
-    if(Object.values(order.value).length > 0){
-        count_input.value = order.value[meal.name].count
+    if(Object.values(order.value).length > 0 && order.value[meal.name]){
+        count_input.value = order.value[meal.name].count ?? 0
     }
     else{
         count_input.value = 0

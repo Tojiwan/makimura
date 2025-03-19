@@ -1,5 +1,5 @@
 <template>
-    <div class="tf-spartan">
+    <div class="tf-spartan mb-20">
         <Banner :title="'Product Detail'" />
         <section class="px-6 lg:px-10 xl:px-8 xl:mx-24 mt-20 bg-white flex">
             <img :src="meal.image_small" alt="" />

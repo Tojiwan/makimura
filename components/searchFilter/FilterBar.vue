@@ -21,7 +21,9 @@ const categories = computed(() => {
 })
 
 watchEffect(()=>{
-    if(saved.value) activeFilter.value = [true, ...new Array(filterNames.value.length - 1).fill(false)]
+    if(filterNames.value.length > 0){
+        activeFilter.value = [true, ...new Array(filterNames.value.length - 1).fill(false)]
+    } 
 })
 
 const selectFilter = (index, filter) => {
