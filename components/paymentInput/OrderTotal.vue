@@ -25,10 +25,10 @@
 <script setup>
 const orders = useState('order', () => ({}));
 const total_price = computed(()=>{
-    if(Object.values(orders.value).length){
+    if(Object.values(orders.value ?? []).length > 0){
         return Object.values(orders.value ?? []).map(item => item.price*item.count).reduce((sum,item)=> sum+item)
     }
-    
+    return 0
 })
 </script>
 
