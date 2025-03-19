@@ -1,5 +1,4 @@
 <template>
-	<NavBar />
 	<div class="px-6 lg:px-10 xl:px-8 xl:mx-24 pt-0 bg-white flex flex-col items-center justify-center"
 		:class="{ 'pb-20': count > 0 || !isMobile }">
 		<h1 class="tf-bebas text-4xl font-bold -tracking-[4px]">FROM OUR MENU</h1>
