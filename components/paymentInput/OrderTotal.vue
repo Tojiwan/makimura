@@ -10,11 +10,11 @@
 				<tbody>
 					<tr>
 						<td class="p-4 text-[15px] border border-gray-300">Order Subtotal</td>
-						<td class="p-4 text-[15px] border border-gray-300">₱99.00</td>
+						<td class="p-4 text-[15px] border border-gray-300">₱{{ total_price.toLocaleString() }}.00</td>
 					</tr>
 					<tr>
 						<td class="p-4 text-[15px] border border-gray-300">Total</td>
-						<td class="p-4 text-[15px] border border-gray-300">₱99.00</td>
+						<td class="p-4 text-[15px] border border-gray-300">₱{{ total_price.toLocaleString() }}.00</td>
 					</tr>
 				</tbody>
 			</table>
@@ -23,7 +23,13 @@
 </template>
 
 <script setup>
-
+const orders = useState('order', () => ({}));
+const total_price = computed(()=>{
+    if(Object.values(orders.value).length){
+        return Object.values(orders.value ?? []).map(item => item.price*item.count).reduce((sum,item)=> sum+item)
+    }
+    
+})
 </script>
 
 <style lang="scss" scoped></style>
