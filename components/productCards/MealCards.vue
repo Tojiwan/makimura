@@ -19,7 +19,7 @@
                 <h1 class="font-bold tf-spartan">{{ meal.name }}</h1>
                 <h1 class="font-bold tf-spartan">₱{{ meal.price }}</h1>
                 <button @click="increaseOrder(meal.name, meal.price, meal.name, meal.image_small)"
-                    class="w-full rounded-xl bg-main p-3 text-white tf-bebas">Add to cart</button>
+                    class="w-full rounded-xl bg-main p-3 text-white tf-bebas btn-slide font-bold"><span><span>Add to cart</span></span></button>
             </div>
         </div>
     </div>

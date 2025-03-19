@@ -1,25 +1,11 @@
+:root{
+    --green-color: #00b14f;
+}
+
 *{
     scroll-behavior: smooth !important;
     scrollbar-width: thin;
 }
-/* animation */
-.slide-up-enter-active,
-.slide-up-leave-active {
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-.slide-up-enter-from,
-.slide-up-leave-to {
-    transform: translateY(100%);
-    opacity: 0;
-}
-
-.slide-up-enter-to,
-.slide-up-leave-from {
-    transform: translateY(0);
-    opacity: 1;
-}
-
 /* fonts */
 .tf-spartan{
     font-family: 'League Spartan', sans-serif;
@@ -28,9 +14,6 @@
     font-family: "Bebas Neue", sans-serif;
 }
 
-:root{
-    --green-color: #00b14f;
-}
 /* colors */
 .bg-main{
     background:var(--green-color);
@@ -38,3 +21,119 @@
 .tc-green{
     color: var(--green-color);
 }
+
+
+/* animation */
+    /*  */
+        .slide-up-enter-active,
+        .slide-up-leave-active {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+        }
+
+        .slide-up-enter-from,
+        .slide-up-leave-to {
+            transform: translateY(100%);
+            opacity: 0;
+        }
+
+        .slide-up-enter-to,
+        .slide-up-leave-from {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+    /*  */
+    /*  */
+        .btn-slide {
+            overflow: hidden;
+        }
+        
+        .btn-slide span {
+            display: block;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn-slide>span {
+            overflow: hidden;
+        }
+        
+        .btn-slide:hover>span>span {
+            animation: MoveLeftInitial 0.1s forwards, MoveLeftEnd 0.3s forwards 0.2s;
+        }
+        
+        .btn-slide:not(:hover)>span>span {
+            animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;
+        }
+        
+        @keyframes MoveLeftInitial {
+            to {
+                transform: translate3d(-105%, 0, 0);
+            }
+        }
+        
+        @keyframes MoveLeftEnd {
+            from {
+                transform: translate3d(100%, 0, 0);
+            }
+        
+            to {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        @keyframes MoveRightInitial {
+            to {
+                transform: translate3d(105%, 0, 0);
+            }
+        }
+        
+        @keyframes MoveRightEnd {
+            from {
+                transform: translate3d(-100%, 0, 0);
+            }
+        
+            to {
+                transform: translate3d(0, 0, 0);
+            }
+        }
+        
+        .btn-slide::before,
+        .btn-slide::after {
+            content: '';
+            background: #000;
+        }
+        
+        .btn-slide::before {
+            width: 135%;
+            -webkit-clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
+            clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
+            transform: translate3d(100%, 0, 0);
+        }
+        
+        .btn-slide:hover::before {
+            transform: translate3d(0, 0, 0);
+            transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+        }
+        
+        .btn-slide:not(:hover)::before {
+            transform: translate3d(100%, 0, 0);
+            transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+        }
+        
+        .btn-slide::after {
+            width: 105%;
+            transform: translate3d(-100%, 0, 0);
+            transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+        }
+        
+        .btn-slide:hover::after {
+            transform: translate3d(0, 0, 0);
+            transition: transform 0.01s 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+        }
+        
+        .btn-slide:not(:hover)::after {
+            transform: translate3d(-100%, 0, 0);
+            transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+        }
+    /*  */
