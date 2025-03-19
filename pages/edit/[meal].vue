@@ -39,7 +39,7 @@
         <div
             class="flex items-center justify-center p-3 px-5 absolute bottom-0 w-full bg-white border rounded-t-2xl shadow-[rgba(0,0,0,0.2)_0px_0px_10px_1px]">
             <button @click="remove_order" v-if="count === 0"
-                class="p-3 w-full rounded-full text-white font-bold bg-main">Remove</button>
+                class="p-3 w-full rounded-full text-white font-bold bg-red-500">Remove</button>
             <button @click="update_order" v-else
                 class="p-3 w-full rounded-full text-white font-bold bg-[#1FA530]">Update Item</button>
         </div>
@@ -47,6 +47,9 @@
 </template>
 
 <script setup>
+definePageMeta({
+  layout: false
+});
 const route = useRoute()
 const selected_meal = route.params.meal
 const orders = useState('order', () => []);

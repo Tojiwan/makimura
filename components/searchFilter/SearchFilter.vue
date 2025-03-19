@@ -110,6 +110,10 @@ const handleFocusOut = async (event) => {
     searchOpen.value = false;
     await nextTick();
 };
+
+onUnmounted(()=>{
+    search_query.value = ''
+})
 </script>
 
 <style scoped>
