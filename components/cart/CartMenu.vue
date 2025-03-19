@@ -2,8 +2,8 @@
     <div class="text-black absolute top-[132%] cursor-[unset] right-0 border shadow-2xl z-50 bg-white max-h-[400px] w-[350px] rounded-lg flex flex-col">
         <div class="overflow-y-auto grow">
             <div v-for="order in orders" :key="order.name" class="border-b p-5 flex relative">
-                <div class="absolute right-5 bg-main h-[25px] w-[25px] text-white flex items-center justify-center rounded-lg cursor-pointer">
-                    <font-awesome :icon="['fas', 'x']" @click="remove_order(order.name)"/>
+                <div @click="remove_order(order.name)" class="absolute right-5 bg-main h-[25px] w-[25px] text-white flex items-center justify-center rounded-lg cursor-pointer">
+                    <font-awesome :icon="['fas', 'x']"/>
                 </div>
                 <img :src="order.img ?? 'https://order.makimuraramen.com/assets/pic1-BJG-xmCB.jpg'" alt="" class="w-[80px] h-[80px] mr-3">
                 <div class="flex flex-col justify-evenly w-full">
