@@ -58,7 +58,7 @@ const { getBranch, getIntervals, getHotSelling, getCategoryMeals } = useBranchDe
 const selBranch = ref(null);
 const date = ref(null);
 const interval = ref(null);
-const saved = ref(false)
+const saved = useState('saved')
 
 // global variables
 const branchGlobal = useState('branch', () => null)

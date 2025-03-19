@@ -21,12 +21,12 @@
             <h1 class="font-bold text-xl tf-spartan">BILL DETAILS</h1>
             <div class="flex justify-between">
                 <p>item total</p>
-                <p>{{ total_price }}</p>
+                <p>₱{{ total_price.toLocaleString() }}.00</p>
             </div>
             <hr class="my-2">
             <div class="flex justify-between">
                 <p class="font-bold text-lg tf-spartan">TOTAL</p>
-                <p>{{ total_price }}</p>
+                <p>₱{{ total_price.toLocaleString() }}.00</p>
             </div>
             <button @click="navigateTo('/payment')" class=" w-full bg-main text-white p-3 my-2 font-bold rounded-lg"><span><span>Order Now</span></span></button>
         </div>
@@ -42,7 +42,7 @@ const total_price = computed(()=>{
     if(Object.values(orders.value).length){
         return Object.values(orders.value ?? []).map(item => item.price*item.count).reduce((sum,item)=> sum+item)
     }
-    
+    return 0
 })
 const remove_order = (meal) => {
     const newArray = { ...orders.value }

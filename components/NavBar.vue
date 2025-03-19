@@ -46,6 +46,7 @@
 <script setup>
 import { useScrollHandler, useBranchDelivery } from '#imports';
 
+const selected_filter = useState('selected_filter', ()=>'Hot Selling')
 const isMobile = useMediaQuery('(max-width: 768px)')
 const { getBranch } = useBranchDelivery()
 const { isHeaderFixed } = useScrollHandler()
