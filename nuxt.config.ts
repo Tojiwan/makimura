@@ -6,7 +6,7 @@ export default defineNuxtConfig({
 
   fontawesome: {
     icons: {
-      solid: ['dollar-sign', 'cog', 'circle', 'check', 'calendar', 'fire', 'plus', 'minus', 'x', 'location-dot', 'chevron-right', 'chevron-down', 'chevron-up', 'chevron-left', 'building-columns', 'credit-card', 'magnifying-glass','bag-shopping'],
+      solid: ['dollar-sign', 'cog', 'circle', 'check', 'calendar', 'fire', 'plus', 'minus', 'x', 'location-dot', 'chevron-right', 'chevron-down', 'chevron-up', 'chevron-left', 'building-columns', 'credit-card', 'magnifying-glass','bag-shopping', 'phone', 'envelope'],
       regular: ['user', 'money-bill-1'],
       brands: ['cc-visa', 'cc-mastercard']
     }
