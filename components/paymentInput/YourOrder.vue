@@ -17,14 +17,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="border-b border-gray-300 text-center">
+					<tr v-for="order in orders" :key="order.name" class="border-b border-gray-300 text-center">
 						<td class="p-4">
-							<img src="/public/6762c39f9d19d.png" alt="Takoyaki" class="w-24 h-auto rounded-md mx-auto" />
+							<img :src="order.img" alt="Takoyaki" class="w-24 h-auto rounded-md mx-auto" />
 						</td>
-						<td class="p-4 text-[15px] border border-gray-300">Takoyaki</td>
-						<td class="p-4 text-[15px] border border-gray-300">₱99.00</td>
-						<td class="p-4 text-[15px] border border-gray-300">1</td>
-						<td class="p-4 text-[15px] border border-gray-300">₱99.00</td>
+						<td class="p-4 text-[15px] border border-gray-300">{{ order.name }}</td>
+						<td class="p-4 text-[15px] border border-gray-300">₱{{ (order.price*1).toLocaleString() }}.00</td>
+						<td class="p-4 text-[15px] border border-gray-300">{{ order.count }}</td>
+						<td class="p-4 text-[15px] border border-gray-300">₱{{ (order.price*order.count).toLocaleString() }}.00</td>
 					</tr>
 				</tbody>
 			</table>
@@ -34,7 +34,7 @@
 
 
 <script setup>
-
+const orders = useState('order', () => ({}));
 </script>
 
 <style scoped></style>

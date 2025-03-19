@@ -5,7 +5,7 @@
                 <div class="absolute right-5 bg-main h-[25px] w-[25px] text-white flex items-center justify-center rounded-lg cursor-pointer">
                     <font-awesome :icon="['fas', 'x']" @click="remove_order(order.name)"/>
                 </div>
-                <img :src="order.img" alt="" class="w-[80px] h-[80px] mr-3">
+                <img :src="order.img ?? 'https://order.makimuraramen.com/assets/pic1-BJG-xmCB.jpg'" alt="" class="w-[80px] h-[80px] mr-3">
                 <div class="flex flex-col justify-evenly w-full">
                     <h1 class="tf-spartan font-bold">{{ order.name }}</h1>
                     <div class="flex justify-between w-[80%]">
@@ -16,7 +16,7 @@
             </div>
         </div>
         <div class="p-2">
-            <button @click="navigateTo('/cart')" class="w-full bg-main p-2 text-white rounded-lg">View Cart</button>
+            <button @click="navigateTo('/cart');isCartOpen = !isCartOpen" class="w-full bg-main p-2 text-white rounded-lg ">View Cart</button>
         </div>
     </div>
 </template>
@@ -28,6 +28,7 @@ const remove_order = (meal) => {
     delete newArray[meal]
     orders.value = newArray
 }
+const isCartOpen = useState('isCartOpen', ()=>false)
 </script>
 
 <style scoped>

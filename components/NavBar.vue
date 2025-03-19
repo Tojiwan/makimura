@@ -56,7 +56,7 @@ const isPayment = computed(() => {
 const isOrder = computed(() => {
   return route.fullPath == '/'
 })
-const isCartOpen = ref(false)
+const isCartOpen = useState('isCartOpen', ()=>false)
 
 const branchGlobal = useState('branch', () => null)
 const branch = ref([])
