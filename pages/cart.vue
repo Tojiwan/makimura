@@ -1,5 +1,4 @@
 <template>
-    <NavBar />
     <Banner :title="'Shop Cart'" />
     <div class="flex justify-center items-center flex-col">
         <div class="px-6 lg:py-[100px] lg:px-10 xl:px-8 xl:mx-24 pt-0 bg-white flex flex-col  justify-center w-[50%]">

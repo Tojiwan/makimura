@@ -1,6 +1,5 @@
 <template>
     <div class="flex flex-col">
-        <!-- <NavBar /> -->
         <button @click="navigateTo('/payment')" class=" absolute top-4 left-4 z-10 bg-main text-white rounded-full w-10 h-10 flex items-center justify-center
             shadow-lg">
             <font-awesome :icon="['fas', 'x']" />

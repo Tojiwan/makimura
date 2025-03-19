@@ -1,5 +1,5 @@
 <template>
-	<NavBar />
+	<!-- <NavBar /> -->
 	<div class="bg-white p-6 space-y-5">
 		<!-- <div class="flex justify-start items-center gap-5">
 			<button class="px-3 py-1 bg-main rounded-full text-white flex justify-center items-center">

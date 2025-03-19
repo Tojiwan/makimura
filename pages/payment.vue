@@ -1,7 +1,6 @@
 <template>
 	<div>
 		<Delivery v-if="isSmallScreen" />
-		<NavBar v-if="!isMobile" />
 		<Banner v-if="!isMobile" :title="'Shop Checkout'" />
 
 		<div v-if="!isSmallScreen">
