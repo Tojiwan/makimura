@@ -23,7 +23,7 @@
 
 		<div class="bg-gray-800 bg-opacity-90 w-full min-h-[450px] flex items-center justify-center">
 			<div class="container mx-auto text-center text-white">
-				<h1 class="text-[60px] font-medium mb-4 tf-bebas tracking-tighter">{{ title }}</h1>
+				<h1 class="text-[60px] font-medium mb-4 tf-bebas">{{ title }}</h1>
 
 				<nav aria-label="breadcrumb"
 					class="w-[220px] h-[50px] bg-main rounded-[10px] flex items-center justify-center mx-auto">

@@ -1,7 +1,7 @@
 <template>
 	<div class="w-full">
 		<div class="bg-white space-y-4">
-			<h1 class="text-[20px] font-black tf-bebas tracking-tighter">YOUR ORDER</h1>
+			<h1 class="text-[20px] font-black tf-bebas">YOUR ORDER</h1>
 			<div class="flex items-center justify-start gap-2">
 				<div class="bg-[#cacf7a] w-[6px] h-[6px] rounded-full"></div>
 				<div class="bg-[#00b14f] w-[53px] h-[4px] rounded-full"></div>

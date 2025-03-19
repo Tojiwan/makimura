@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="space-y-[20px]">
-			<h1 class="text-[20px] font-black tf-bebas tracking-tighter">
+			<h1 class="text-[20px] font-black tf-bebas">
 				Payment Method
 			</h1>
 			<div class="flex items-center justify-start gap-2">

@@ -4,7 +4,7 @@
 			<div class="container mx-auto px-6 sm:px-8 lg:px-12 pt-[85px] pb-[40px]">
 				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8">
 					<div>
-						<h5 class="text-[24px] tf-bebas tracking-tighter font-bold mb-[30px] text-white">CONTACT</h5>
+						<h5 class="text-[24px] tf-bebas font-bold mb-[30px] text-white">CONTACT</h5>
 						<ul class="space-y-6 tf-spartan text-[#C2C2C2]">
 							<li class="flex items-center">
 								<font-awesome :icon="['fas', 'location-dot']" class="text-[#00b14f] text-[30px]" />
@@ -22,7 +22,7 @@
 					</div>
 
 					<div>
-						<h5 class="text-[24px] tf-bebas tracking-tighter font-bold mb-[30px] text-white">OUR LINKS</h5>
+						<h5 class="text-[24px] tf-bebas font-bold mb-[30px] text-white">OUR LINKS</h5>
 						<ul class="space-y-6 tf-spartan text-[#C2C2C2]">
 							<li class="text-[14px]"><a href="/pages/index.vue">Home</a></li>
 							<li class="text-[14px]"><a href="#">About Us</a></li>
@@ -33,7 +33,7 @@
 					</div>
 
 					<div>
-						<h5 class="text-[24px] tf-bebas tracking-tighter font-bold mb-[30px] text-white">SOCIALS</h5>
+						<h5 class="text-[24px] tf-bebas font-bold mb-[30px] text-white">SOCIALS</h5>
 						<ul class="space-y-6 tf-spartan text-[#C2C2C2]">
 							<li class="text-[14px]"><a href="https://www.facebook.com/makimuraramenbar">Facebook</a>
 							</li>
@@ -42,7 +42,7 @@
 					</div>
 
 					<div>
-						<h5 class="text-[24px] tf-bebas tracking-tighter font-bold mb-[30px] text-white">HELP CENTER</h5>
+						<h5 class="text-[24px] tf-bebas font-bold mb-[30px] text-white">HELP CENTER</h5>
 						<ul class="space-y-6 tf-spartan text-[#C2C2C2]">
 							<li class="text-[14px]"><a href="#">Shop</a></li>
 							<li class="text-[14px]"><a href="#">Contact Us</a></li>
