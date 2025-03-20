@@ -4,7 +4,7 @@
             <img src="https://order.makimuraramen.com/assets/loading-C8RNs0gu.gif" alt=""
                 class="object-contain w-[150px]">
         </div>
-        <div v-for="meal in meals" :key="meal.name" class="h-[360px]">
+        <div v-for="meal in meals" :key="meal.name" class="h-[390px]">
             <div
                 class="group overflow-hidden relative rounded-lg shadow-2xl h-full hover:-top-2 pt-3 p-5 flex flex-col items-center text-center justify-between border gap-2 transition-all duration-100 ease-in-out">
                 <div v-if="selected_filter == 'Hot Selling'" class="absolute right-0 pr-2 flex space-x-1 tc-green">
@@ -12,8 +12,8 @@
                     <font-awesome icon="fa-solid fa-fire" />
                     <font-awesome icon="fa-solid fa-fire" />
                 </div>
-                <div class="w-full h-[200px] flex items-center justify-center">
-                    <img class="h-full object-contain transform group-hover:h-[300%] transition-all duration-100 ease-in-out"
+                <div class="w-full h-[200px] transition-all duration-100 ease-in-out overflow-hidden group-hover:scale-125 flex items-center justify-center">
+                    <img class="h-full object-contain transform transition-all duration-100 ease-in-out"
                         :src="meal.image_small ?? 'https://order.makimuraramen.com/assets/pic1-BJG-xmCB.jpg'" alt="">
                 </div>
                 <h1 class="font-bold tf-spartan text-[#00b14f] hover:text-[#00b14f]/70 cursor-pointer"
