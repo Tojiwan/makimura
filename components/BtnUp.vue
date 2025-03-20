@@ -3,7 +3,7 @@
 		<!-- Scroll to Top Button -->
 		<button @click="scrollToTop"
 			:class="{ 'opacity-100 visible translate-y-0': isVisible, 'opacity-0 invisible translate-y-5': !isVisible }"
-			class="fixed lg:bottom-4 bottom-[6em] right-4 w-[50px] h-[50px] rounded-full flex items-center justify-center
+			class="fixed lg:bottom-4 bottom-5 right-4 w-[50px] h-[50px] rounded-full flex items-center justify-center
 			   transition-all duration-200 ease-linear z-[999] cursor-pointer">
 
 			<!-- SVG Circle Progress -->
