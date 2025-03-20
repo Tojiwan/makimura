@@ -60,8 +60,8 @@
 import { useScrollHandler } from '#imports';
 
 const { isHeaderFixed } = useScrollHandler()
-const BDMenuOpen = useState('BDMenuOpen', () => true)
-const categoryMeals = useState('categoryMeals', () => [])
+const BDMenuOpen = useLocalStorage('BDMenuOpen', true)
+const categoryMeals = useLocalStorage('categoryMeals', [])
 const search_query = useState('search_query', () => '')
 
 const searchOpen = ref(false)

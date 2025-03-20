@@ -9,9 +9,9 @@
                 </div>
                 <img :src="order.img ?? 'https://order.makimuraramen.com/assets/pic1-BJG-xmCB.jpg'" alt=""
                     class="w-[80px] h-[80px] mr-3">
-                <div class="flex flex-col justify-evenly w-full">
-                    <h1 class="tf-spartan font-bold">{{ order.name }}</h1>
-                    <div class="flex justify-between w-[80%]">
+                <div class="flex flex-col justify-evenly w-[60%] flex-wrap">
+                    <h1 class="tf-spartan text-base font-bold">{{ order.name }}</h1>
+                    <div class="flex justify-between">
                         <p class="tf-spartan">₱{{ order.price }}</p>
                         <p class="tf-spartan">x{{ order.count }}</p>
                     </div>
@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-const orders = useState('order', () => ({}));
+const orders = useLocalStorage('order', {});
 const remove_order = (meal) => {
     const { [meal]: _, ...newArray } = orders.value;
     orders.value = newArray;
@@ -34,4 +34,5 @@ const remove_order = (meal) => {
 const isCartOpen = useState('isCartOpen', () => false)
 </script>
 
-<style scoped></style>
+<style scoped>
+</style>

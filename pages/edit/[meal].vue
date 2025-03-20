@@ -52,8 +52,8 @@ definePageMeta({
 });
 const route = useRoute()
 const selected_meal = route.params.meal
-const orders = useState('order', () => []);
-const hotSelling = useState('hotSelling', () => []);
+const orders = useLocalStorage('order', () => []);
+const hotSelling = useLocalStorage('hotSelling', () => []);
 const count = ref(0)
 const meal_details = computed(() => {
     return { ...Object.values(orders.value).find(item => item.name == selected_meal.split('-').join(' ')), ...Object.values(hotSelling.value).find(item => item.slug == selected_meal.toLowerCase()) }

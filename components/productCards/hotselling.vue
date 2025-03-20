@@ -28,7 +28,7 @@
 </template>
 
 <script setup>
-const hotSelling = useState('hotSelling', () => [])
+const hotSelling = useLocalStorage('hotSelling', [])
 const search_query = useState('search_query')
 const filteredSelling = computed(() => {
 

@@ -1,7 +1,7 @@
 <template>
     <transition name="slide-up">
-        <div v-if="count && price" class="fixed bottom-0 w-full bg-white p-5">
-            <NuxtLink to="/payment" class="bg-main text-white font-bold flex justify-between rounded-full p-3">
+        <div v-if="count && price" :class="{'flex items-center' :isHeaderFixed}" class="fixed bottom-0 w-full bg-white p-5">
+            <NuxtLink to="/payment" class="bg-main text-white font-bold flex justify-between rounded-full p-3 space-x-2 ">
                 <p>Basket - {{ count }} Items</p>
                 <p>₱{{ price }}.00</p>
             </NuxtLink>
@@ -11,8 +11,10 @@
 
 <script setup>
 import { NuxtLink } from '#components';
+import { useScrollHandler } from '#imports';
 
-const order = useState('order', () => []);
+const { isHeaderFixed } = useScrollHandler()
+const order = useLocalStorage('order', []);
 const total_price = useState('total_price', () => 0)
 const count = computed(() => {
     return Object.values(order.value).reduce((sum, item) => sum + (item.count || 0), 0);

@@ -4,7 +4,7 @@
         <div class="px-6 lg:py-[100px] lg:px-10 xl:px-8 xl:mx-24 pt-0 bg-white flex flex-col  justify-center w-[50%]">
             <h1 class="font-bold text-xl tf-spartan">Cart({{ count }})</h1>
             <div class="max-h-[500px] lg:max-h-[650px] overflow-y-auto">
-                <div v-for="order in orders" :key="order.name" class="border-b p-5 flex relative">
+                <div v-for="order in orders" :key="order.name" class="border-b p-5 gap-10 flex relative">
                     <div
                         class="absolute right-5 bg-main h-[25px] w-[25px] text-white flex items-center justify-center rounded-lg cursor-pointer">
                         <font-awesome :icon="['fas', 'x']" @click="remove_order(order.name)" />
@@ -12,7 +12,7 @@
                     <img :src="order.img ?? 'https://order.makimuraramen.com/assets/pic1-BJG-xmCB.jpg'" alt=""
                         class="w-[80px] h-[80px]">
                     <div class="flex flex-col justify-evenly w-full">
-                        <h1 class="tf-spartan font-bold">{{ order.name }}</h1>
+                        <h1 class="tf-spartan text-base font-bold">{{ order.name }}</h1>
                         <div class="flex justify-between">
                             <OrderAddV2 :meal="order" />
                             <p>₱{{ (order.price * order.count).toLocaleString() }}.00</p>
@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-const orders = useState('order', () => ({}));
+const orders = useLocalStorage('order', {});
 const count = computed(() => {
     return Object.values(orders.value).length;
 });

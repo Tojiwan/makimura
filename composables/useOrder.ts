@@ -8,7 +8,7 @@ type OrderItem = {
 };
 
 export const useOrder = () => {
-  const order = useState<OrderItem>('order', () => ({}));
+  const order = useLocalStorage<OrderItem>('order', {});
 
   const increaseOrder = (meal: string, price: number, name: string, img:string) => {
     if (order.value[meal]) {

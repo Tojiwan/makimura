@@ -3,7 +3,7 @@
 		:class="{ 'pb-20': count > 0 || !isMobile }">
 		<h1 class="tf-bebas text-4xl font-bold">FROM OUR MENU</h1>
 		<button v-if="!isMobile"
-			class="ml-auto tc-green border border-[var(--green-color)] p-2 rounded-lg hover:bg-[var(--green-color)] hover:text-white font-medium tf-spartan mt-10"
+			class="ml-auto tc-green border border-[var(--green-color)] p-2 rounded-lg hover:bg-[var(--green-color)] hover:text-white font-medium tf-spartan mt-10 mb-5"
 			@click="BDMenuOpen = true">Select
 			Branch & Delivery</button>
 		<BranchDelivery />
@@ -25,15 +25,15 @@
 </template>
 
 <script setup>
-const BDMenuOpen = useState('BDMenuOpen', () => true)
+const BDMenuOpen = useLocalStorage('BDMenuOpen', true);
 
 const isMobile = useMediaQuery('(max-width: 768px)')
-const order = useState('order', () => []);
+const order = useLocalStorage('order', []);
 const count = computed(() => {
 	return Object.values(order.value).reduce((sum, item) => sum + (item.count || 0), 0);
 });
 
-const categoryMeals = useState('categoryMeals', () => { });
+const categoryMeals = useLocalStorage('categoryMeals', []);
 
 </script>
 

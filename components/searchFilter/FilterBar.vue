@@ -11,18 +11,18 @@
 </template>
 
 <script setup>
-const categoryMeals = useState('categoryMeals', () => { })
-const selected_filter = useState('selected_filter', ()=>'Hot Selling')
+const categoryMeals = useLocalStorage('categoryMeals', () => { })
+const selected_filter = useLocalStorage('selected_filter', () => 'Hot Selling')
 const filterNames = ref([])
 const activeFilter = ref([])
 const categories = computed(() => {
-    return ['Hot Selling', ...Object.values(categoryMeals.value ?? []).map(item => item.name)]
+    return ['Hot Selling', ...(categoryMeals.value ? Object.values(JSON.parse(categoryMeals.value)).map(item => item?.name || 'Unknown') : [])]
 })
 
-watchEffect(()=>{
-    if(filterNames.value.length > 0){
+watchEffect(() => {
+    if (filterNames.value?.length > 0) {
         activeFilter.value = [true, ...new Array(filterNames.value.length - 1).fill(false)]
-    } 
+    }
 })
 
 const selectFilter = (index, filter) => {

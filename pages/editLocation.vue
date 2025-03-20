@@ -36,6 +36,12 @@
 			<p>Note to Driver</p>
 			<input type="text" placeholder="Notes about order, e.g. special notes for delivery"
 				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#00b14f] focus:ring-1 focus:ring-[#00b14f] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold truncate">
+
+			<button
+				class="w-full text-white bg-main relative px-6 py-3 rounded-md text-[14px] font-medium leading-[1.5] inline-flex items-center justify-center  overflow-hidden group"
+				type="submit" name="btnPlaceOrder">
+				Order Now
+			</button>
 		</div>
 	</div>
 </template>

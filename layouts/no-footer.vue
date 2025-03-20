@@ -2,7 +2,6 @@
     <div>
         <NavBar />
         <NuxtPage />
-        <AppFooter />
         <BtnUp />
     </div>
 </template>
