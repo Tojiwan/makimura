@@ -58,7 +58,7 @@ const isOrder = computed(() => {
 })
 const isCartOpen = useState('isCartOpen', ()=>false)
 
-const branchGlobal = useState('branch', () => null)
+const branchGlobal = useLocalStorage('branch', null)
 const branch = ref([])
 const branches = ref([])
 
@@ -69,7 +69,7 @@ watchEffect(() => {
   branch.value = branches.value.filter(item => item.slug == branchGlobal.value)[0] ?? ''
 })
 
-const order = useState('order', () => []);
+const order = useLocalStorage('order', []);
 const count = computed(() => {
   return Object.values(order.value).reduce((sum, item) => sum + (item.count || 0), 0);
 });

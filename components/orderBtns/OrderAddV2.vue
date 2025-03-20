@@ -23,7 +23,7 @@ const { meal } = defineProps({
   }
 })
 const count_input = ref(0)
-const order = useState('order', () => {});
+const order = useLocalStorage('order', {});
 watchEffect(()=>{
     if(Object.values(order.value).length > 0 && order.value[meal.name]){
         count_input.value = order.value[meal.name].count ?? 0

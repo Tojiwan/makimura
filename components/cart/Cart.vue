@@ -12,7 +12,7 @@
 <script setup>
 import { NuxtLink } from '#components';
 
-const order = useState('order', () => []);
+const order = useLocalStorage('order', []);
 const total_price = useState('total_price', () => 0)
 const count = computed(() => {
     return Object.values(order.value).reduce((sum, item) => sum + (item.count || 0), 0);

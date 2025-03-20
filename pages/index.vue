@@ -25,15 +25,15 @@
 </template>
 
 <script setup>
-const BDMenuOpen = useState('BDMenuOpen', () => true)
+const BDMenuOpen = useLocalStorage('BDMenuOpen', true);
 
 const isMobile = useMediaQuery('(max-width: 768px)')
-const order = useState('order', () => []);
+const order = useLocalStorage('order', []);
 const count = computed(() => {
 	return Object.values(order.value).reduce((sum, item) => sum + (item.count || 0), 0);
 });
 
-const categoryMeals = useState('categoryMeals', () => { });
+const categoryMeals = useLocalStorage('categoryMeals', []);
 
 </script>
 

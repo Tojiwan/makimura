@@ -24,7 +24,7 @@
 import { useOrder } from '#imports';
 
 const { increaseOrder, decreaseOrder } = useOrder();
-const order = useState('order', () => ({}));
+const order = useLocalStorage('order', {});
 
 const props = defineProps({
   meal: {

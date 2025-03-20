@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-const orders = useState('order', () => ({}));
+const orders = useLocalStorage('order', {});
 const remove_order = (meal) => {
     const { [meal]: _, ...newArray } = orders.value;
     orders.value = newArray;

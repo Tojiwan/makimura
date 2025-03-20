@@ -35,9 +35,9 @@ const props = defineProps({
   }
 })
 
-const branchGlobal = useState('branch', () => null)
-const dateGlobal = useState('dated', () => null)
-const intervalGlobal = useState('interval', () => null)
+const branchGlobal = useLocalStorage('branch', null)
+const dateGlobal = useLocalStorage('dated', null)
+const intervalGlobal = useLocalStorage('interval', null)
 
 const meals = ref([])
 

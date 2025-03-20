@@ -29,11 +29,11 @@
 import { useOrder } from '#imports';
 const { increaseOrder } = useOrder()
 
-const hotSelling = useState('hotSelling', () => []);
+const hotSelling = useLocalStorage('hotSelling', []);
 const selected_filter = useState('selected_filter', () => 'Hot Selling')
-const branchGlobal = useState('branch', () => null)
-const dateGlobal = useState('dated', () => null)
-const intervalGlobal = useState('interval', () => null)
+const branchGlobal = useLocalStorage('branch', null)
+const dateGlobal = useLocalStorage('dated', null)
+const intervalGlobal = useLocalStorage('interval', null)
 const meals = ref([])
 const isLoading = ref(true)
 let abortController = null

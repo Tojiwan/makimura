@@ -40,7 +40,7 @@
 
 
 <script setup>
-const orders = useState('order', () => ({}));
+const orders = useLocalStorage('order', () => ({}));
 </script>
 
 <style scoped></style>

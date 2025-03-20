@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-const orders = useState('order', () => ({}));
+const orders = useLocalStorage('order', {});
 const count = computed(() => {
     return Object.values(orders.value).length;
 });

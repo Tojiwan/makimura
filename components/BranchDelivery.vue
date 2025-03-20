@@ -59,16 +59,16 @@ import { useBranchDelivery } from '#imports'
 const { getBranch, getIntervals, getHotSelling, getCategoryMeals } = useBranchDelivery()
 
 // State Management
-const BDMenuOpen = useState('BDMenuOpen', () => true)
-const saved = useState('saved', () => false)
-const order = useState('order', () => ({}))
-const hotSelling = useState('hotSelling', () => [])
-const categoryMeals = useState('categoryMeals', () => ({}))
+const BDMenuOpen = useLocalStorage('BDMenuOpen', true)
+const saved = useLocalStorage('saved', false)
+const order = useLocalStorage('order', {})
+const hotSelling = useLocalStorage('hotSelling', [])
+const categoryMeals = useLocalStorage('categoryMeals', () => ({}))
 
 // Global State
-const branchGlobal = useState('branch', () => null)
-const dateGlobal = useState('dated', () => null)
-const intervalGlobal = useState('interval', () => null)
+const branchGlobal = useLocalStorage('branch', null)
+const dateGlobal = useLocalStorage('dated', null)
+const intervalGlobal = useLocalStorage('interval', null)
 
 // Local State
 const branches = ref([])
