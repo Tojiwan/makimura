@@ -3,7 +3,7 @@
 		:class="{ 'pb-20': count > 0 || !isMobile }">
 		<h1 class="tf-bebas text-4xl font-bold">FROM OUR MENU</h1>
 		<button v-if="!isMobile"
-			class="ml-auto tc-green border border-[var(--green-color)] p-2 rounded-lg hover:bg-[var(--green-color)] hover:text-white font-medium tf-spartan mt-10"
+			class="ml-auto tc-green border border-[var(--green-color)] p-2 rounded-lg hover:bg-[var(--green-color)] hover:text-white font-medium tf-spartan mt-10 mb-5"
 			@click="BDMenuOpen = true">Select
 			Branch & Delivery</button>
 		<BranchDelivery />
