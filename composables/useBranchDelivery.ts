@@ -64,7 +64,7 @@ export const useBranchDelivery = () => {
     return req
   }
 
-  const getCategoryMeals = async (branch: string, date: string, interval: string) => {
+  const getCategoryMeals = async () => {
     const req_categories = await $fetch<Categories[]>('https://bio.makimuraramen.com/api/categories')
 
     return req_categories

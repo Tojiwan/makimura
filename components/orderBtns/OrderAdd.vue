@@ -1,11 +1,11 @@
 <template>
-    <div @click="showTempBorder"
-        class="rounded-full flex items-center justify-center transition-width duration-300 cursor-pointer h-10" :class="{
+    <div class="rounded-full flex items-center justify-center transition-width duration-300 cursor-pointer h-10"
+        :class="{
             'border border-[#00b14f] bg-white w-[100px]': showBorder,
             'bg-main text-white w-10': !showBorder
-        }">
-        <button v-if="showBorder" @click.stop="decreaseOrder(meal.name); showTempBorder()"
-            class="rounded-full w-full h-full flex items-center justify-center">
+        }" @click="showTempBorder">
+        <button v-if="showBorder" class="rounded-full w-full h-full flex items-center justify-center"
+            @click.stop="decreaseOrder(meal.name); showTempBorder()">
             <font-awesome class="text-gray-500" icon="fa-solid fa-minus" />
         </button>
 
@@ -13,8 +13,8 @@
         <span v-else-if="showBorder" class="font-semibold">0</span>
 
         <button v-if="showBorder || orderCount === null"
-            @click.stop="increaseOrder(meal.name, meal.price, meal.name, meal.image_small); showTempBorder()"
-            class="rounded-full w-full h-full flex items-center justify-center">
+            class="rounded-full w-full h-full flex items-center justify-center"
+            @click.stop="increaseOrder(meal.name, meal.price, meal.name, meal.image_small); showTempBorder()">
             <font-awesome :class="showBorder ? 'text-gray-500' : 'text-white'" icon="fa-solid fa-plus" />
         </button>
     </div>
@@ -26,7 +26,12 @@ import { useOrder } from '#imports';
 const { increaseOrder, decreaseOrder } = useOrder();
 const order = useState('order', () => ({}));
 
-const props = defineProps(['meal']);
+const props = defineProps({
+  meal: {
+    type: Object,
+    required: true
+  }
+});
 
 const showBorder = ref(false);
 let timeoutId = null;

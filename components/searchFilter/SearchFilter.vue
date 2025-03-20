@@ -1,18 +1,18 @@
 <template>
     <section class="left-0 z-25 w-full flex gap-2 my-2 bg-white">
-        <div v-if="!searchOpen" @click="filterOpen = !filterOpen"
-            class="cursor-pointer grow bg-gray-100 flex justify-between items-center px-5 rounded-full">
+        <div v-if="!searchOpen" class="cursor-pointer grow bg-gray-100 flex justify-between items-center px-5 rounded-full"
+            @click="filterOpen = !filterOpen">
             <p class="tf-tf-spartan font-bold">{{ filter_category }}</p>
             <font-awesome v-if="!filterOpen" icon="fas chevron-down" />
             <font-awesome v-if="filterOpen" icon="fas chevron-up" />
         </div>
-        <div @click="openFocus" :class="[searchOpen ? 'grow' : '']"
-            class="bg-main cursor-pointer flex justify-between items-center px-3 tf-spartan rounded-full text-white">
+        <div :class="[searchOpen ? 'grow' : '']" class="bg-main cursor-pointer flex justify-between items-center px-3 tf-spartan rounded-full text-white"
+            @click="openFocus">
             <font-awesome icon="fas magnifying-glass" />
             <!-- <p v-if="!searchOpen">Search</p> -->
-            <input v-if="!isHeaderFixed && searchOpen" ref="search" @keyup="handleSearch" :value="search_query"
-                @focusout="handleFocusOut" @click.stop class="grow pl-3 py-1 bg-transparent placeholder-white    outline-0" type="text"
-                placeholder="Have a craving?">
+            <input v-if="!isHeaderFixed && searchOpen" ref="search" :value="search_query" class="grow pl-3 py-1 bg-transparent placeholder-white    outline-0"
+                type="text" placeholder="Have a craving?" @keyup="handleSearch" @focusout="handleFocusOut"
+                @click.stop>
         </div>
         <button class="ml-auto bg-main text-white rounded-md p-2 w-[35px] h-[35px] flex items-center justify-center"
             @click="BDMenuOpen = !BDMenuOpen"><font-awesome icon="fas location-dot" /></button>
@@ -22,19 +22,19 @@
     <transition name="fade-in">
         <section v-if="isHeaderFixed"
             class="fixed drop-shadow-lg top-[70px] left-0 z-20 w-full flex gap-2 px-5 py-2 bg-white">
-            <div v-if="!searchOpen" @click="filterOpen = !filterOpen"
-                class="cursor-pointer grow bg-gray-100 flex justify-between items-center px-5 rounded-full">
+            <div v-if="!searchOpen" class="cursor-pointer grow bg-gray-100 flex justify-between items-center px-5 rounded-full"
+                @click="filterOpen = !filterOpen">
                 <p class="tf-tf-spartan font-bold">{{ filter_category }}</p>
                 <font-awesome v-if="!filterOpen" icon="fas chevron-down" />
                 <font-awesome v-if="filterOpen" icon="fas chevron-up" />
             </div>
-            <div @click="openFocus" :class="[searchOpen ? 'grow' : '']"
-                class="bg-main cursor-pointer flex justify-between items-center px-3 tf-spartan rounded-full text-white">
+            <div :class="[searchOpen ? 'grow' : '']" class="bg-main cursor-pointer flex justify-between items-center px-3 tf-spartan rounded-full text-white"
+                @click="openFocus">
                 <font-awesome icon="fas magnifying-glass" />
                 <!-- <p v-if="!searchOpen">Search</p> -->
-                <input ref="search" @keyup="handleSearch" :value="search_query" @focusout="handleFocusOut" @click.stop
-                    v-if="searchOpen" class="grow pl-3 py-1 bg-transparent placeholder-white     outline-0" type="text"
-                    placeholder="Have a craving?">
+                <input v-if="searchOpen" ref="search" :value="search_query" class="grow pl-3 py-1 bg-transparent placeholder-white     outline-0" type="text"
+                    placeholder="Have a craving?" @keyup="handleSearch" @focusout="handleFocusOut"
+                    @click.stop>
             </div>
             <button class="ml-auto bg-main text-white rounded-md p-2 w-[35px] h-[35px] flex items-center justify-center"
                 @click="BDMenuOpen = !BDMenuOpen"><font-awesome icon="fas location-dot" /></button>
@@ -43,14 +43,14 @@
 
     <!-- Category Menu -->
     <transition name="slide-up">
-        <div v-if="filterOpen" @click="filterOpen = false" class="fixed top-0 left-0 h-full w-full bg-gray-500/70 z-20">
+        <div v-if="filterOpen" class="fixed top-0 left-0 h-full w-full bg-gray-500/70 z-20" @click="filterOpen = false">
             <div class="fixed bottom-0 z-20 flex flex-col gap-2 bg-white w-full p-5 rounded-t-3xl">
                 <font-awesome :icon="['fas', 'x']" class="ml-auto text-gray-500 cursor-pointer" />
-                <NuxtLink class="border-b tf-spartan" @click.prevent="scrollTo('hot-selling', 'HOT SELLING')"
-                    to="#hot-selling">HOT SELLING</NuxtLink>
-                <NuxtLink class="border-b tf-spartan"
-                    @click.prevent="scrollTo(category.slug, category.name.toUpperCase())" :to="`#${category.slug}`"
-                    v-for="category in categoryMeals">{{ category.name.toUpperCase() }}</NuxtLink>
+                <NuxtLink class="border-b tf-spartan" to="#hot-selling"
+                    @click.prevent="scrollTo('hot-selling', 'HOT SELLING')">HOT SELLING</NuxtLink>
+                <NuxtLink v-for="category in categoryMeals" :key="category.name"
+                    class="border-b tf-spartan" :to="`#${category.slug}`"
+                    @click.prevent="scrollTo(category.slug, category.name.toUpperCase())">{{ category.name.toUpperCase() }}</NuxtLink>
             </div>
         </div>
     </transition>
@@ -68,11 +68,6 @@ const searchOpen = ref(false)
 const filterOpen = ref(false)
 const search = ref(null)
 const filter_category = ref('HOT SELLING')
-
-const filterArray = computed(() => {
-    const category_names = categoryMeals.value.map(item => item.name)
-    return ['HOT SELLING', ...category_names]
-})
 
 // Scroll to Section with Correct Offset
 const scrollTo = (id, name) => {

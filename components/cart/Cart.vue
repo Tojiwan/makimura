@@ -18,9 +18,12 @@ const count = computed(() => {
     return Object.values(order.value).reduce((sum, item) => sum + (item.count || 0), 0);
 });
 const price = computed(() => {
-    total_price.value = Object.values(order.value).reduce((total, item) => parseInt(total) + parseInt(parseInt(item.price) * parseInt(item.count) || 0), 0).toLocaleString('en-US');
-    return total_price.value
-})
+    return Object.values(order.value).reduce((total, item) => parseInt(total) + parseInt(parseInt(item.price) * parseInt(item.count) || 0), 0).toLocaleString('en-US');
+});
+
+watchEffect(() => {
+    total_price.value = Object.values(order.value).reduce((total, item) => parseInt(total) + parseInt(parseInt(item.price) * parseInt(item.count) || 0), 0);
+});
 </script>
 
 

@@ -56,9 +56,13 @@ const orders = useState('order', () => []);
 const hotSelling = useState('hotSelling', () => []);
 const count = ref(0)
 const meal_details = computed(() => {
-    const object = { ...Object.values(orders.value).find(item => item.name == selected_meal.split('-').join(' ')), ...Object.values(hotSelling.value).find(item => item.slug == selected_meal.toLowerCase()) }
-    count.value = object.count
-    return object
+    return { ...Object.values(orders.value).find(item => item.name == selected_meal.split('-').join(' ')), ...Object.values(hotSelling.value).find(item => item.slug == selected_meal.toLowerCase()) }
+})
+
+watchEffect(() => {
+    if (meal_details.value) {
+        count.value = meal_details.value.count
+    }
 })
 
 const update_order = () => {
@@ -66,8 +70,7 @@ const update_order = () => {
     navigateTo('/payment')
 }
 const remove_order = () => {
-    const newArray = { ...orders.value }
-    delete newArray[meal_details.value.name]
+    const { [meal_details.value.name]: removed, ...newArray } = orders.value
     orders.value = newArray
     navigateTo('/payment')
 }

@@ -28,7 +28,12 @@
 </template>
 
 <script setup>
-const props = defineProps(['category'])
+const props = defineProps({
+  category: {
+	type: Object,
+	required: true
+  }
+})
 
 const branchGlobal = useState('branch', () => null)
 const dateGlobal = useState('dated', () => null)

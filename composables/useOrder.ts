@@ -29,7 +29,9 @@ export const useOrder = () => {
     if (updatedOrder[meal].count > 1) {
       updatedOrder[meal].count -= 1;
     } else {
-      delete updatedOrder[meal]; 
+      const { [meal]: _, ...newArray } = updatedOrder;
+      order.value = newArray;
+      return
     }
 
     order.value = updatedOrder; 

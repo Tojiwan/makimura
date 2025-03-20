@@ -5,8 +5,8 @@
 				Payment Method
 			</h1>
 			<div class="flex items-center justify-start gap-2">
-				<div class="bg-[#cacf7a] w-[6px] h-[6px] rounded-full"></div>
-				<div class="bg-[#00b14f] w-[53px] h-[4px] rounded-full"></div>
+				<div class="bg-[#cacf7a] w-[6px] h-[6px] rounded-full"/>
+				<div class="bg-[#00b14f] w-[53px] h-[4px] rounded-full"/>
 			</div>
 
 			<div class="input-group input-black">
@@ -55,9 +55,10 @@ const selectedPaymentMethod = ref("");
 
 const fetchPaymentType = async () => {
 	try {
-		const response = await fetch(
-			"https://bio.makimuraramen.com/api/payment-methods"
-		);
+		const response = await fetch("https://bio.makimuraramen.com/api/payment-methods");
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
 		const data = await response.json();
 		PaymentType.value = data.map((m) => ({
 			id: m.id,
@@ -65,7 +66,8 @@ const fetchPaymentType = async () => {
 			methods: m.payment_methods,
 		}));
 	} catch (error) {
-		console.error("Error fetching PaymentType:", error);
+		PaymentType.value = []; // Set empty array as fallback
+		throw new Error(`Unable to load payment types: ${error.message}`);
 	}
 };
 

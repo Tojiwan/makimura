@@ -1,126 +1,146 @@
 <template>
-    <div class="fixed flex items-center justify-center bg-black/70 h-full w-full top-0 left-0 z-50"
-        :class="[BDMenuOpen ? 'block' : 'hidden']">
-        <div class="w-[90%] max-w-[600px] bg-white rounded-[5px] p-3 flex flex-col items-start">
-            <font-awesome v-if="saved" :icon="['fas', 'x']" class="text-gray-500 cursor-pointer"
-                @click="BDMenuOpen = !BDMenuOpen" />
-            <h1 class="self-center text-[25px] font-bold mt-3 tf-bebas">Branch & Delivery</h1>
-            <div class="w-full h-full flex flex-col p-4 self-center space-y-2">
+    <div v-show="BDMenuOpen" class="fixed inset-0 flex items-center justify-center bg-black/70 z-50">
+        <div class="w-[90%] max-w-[600px] bg-white rounded-[5px] p-3 flex flex-col">
+            <!-- Header -->
+            <header class="flex items-center mb-3">
+                <font-awesome v-if="saved" :icon="['fas', 'x']" class="text-gray-500 cursor-pointer"
+                    @click="closeBDMenu" />
+                <h1 class="text-[25px] font-bold tf-bebas mx-auto">Branch & Delivery</h1>
+            </header>
 
-                <select name="pickup-type" ref="pickup-type" id="pickup-type"
-                    class="h-[65px] px-4 text-base font-medium text-[#666666] rounded-[10px] border border-[#dddddd] focus:ring-1 focus:ring-[#00b14f] focus:border-[#00b14f]">
+            <!-- Form -->
+            <form class="w-full p-4 space-y-4" @submit.prevent="saveOptions">
+                <select v-model="formData.pickupType" class="form-select">
                     <option value="" disabled>Pickup or Delivery</option>
-                    <option value="pickup" selected>Pickup</option>
+                    <option value="pickup">Pickup</option>
                     <option value="delivery">Delivery</option>
                 </select>
 
-                <select name="branches" ref="selBranch" id="branches" @change="loadSLots"
-                    class="h-[65px] px-4 text-base font-medium text-[#666666] rounded-[10px] border border-[#dddddd] focus:ring-1 focus:ring-[#00b14f] focus:border-[#00b14f]">
-                    <option value="" disabled selected>Select a branch</option>
-                    <option v-for="branch in branches" :key="branch.id" :value="branch.slug">{{
-                        branch.name }}</option>
-                </select>
-
-                <input v-model="date" :min="today" type="date" name="date" id="date" @focusout="loadSLots"
-                    class="h-[65px] px-4 text-base font-medium text-[#666666] rounded-[10px] border border-[#dddddd] focus:ring-1 focus:ring-[#00b14f] focus:border-[#00b14f]">
-
-                <select ref="interval" name="interval" id="interval"
-                    class="h-[65px] px-4 text-base font-medium text-[#666666] rounded-[10px] border border-[#dddddd] focus:ring-1 focus:ring-[#00b14f] focus:border-[#00b14f]">
-                    <option value="" disabled selected>Select a slot</option>
-                    <option v-for="slot in slots" :key="slot.id" :value="slot.id">{{ slot.start_time }} - {{
-                        slot.end_time }} - {{ slot.categories[0].name }} {{ slot.categories[0].pivot.slots }} available
+                <select v-model="formData.branch" class="form-select" @change="loadSlots">
+                    <option value="" disabled>Select a branch</option>
+                    <option v-for="branch in branches" :key="branch.id" :value="branch.slug">
+                        {{ branch.name }}
                     </option>
                 </select>
 
-                <p class="text-[14px] text-[#666666] text-center">
+                <input v-model="formData.date" type="date" class="form-select" :min="today" @change="loadSlots">
+
+                <select v-model="formData.interval" class="form-select">
+                    <option value="" disabled>Select a slot</option>
+                    <option v-for="slot in slots" :key="slot.id" :value="slot.id">
+                        {{ slot.start_time }} - {{ slot.end_time }} -
+                        {{ slot.categories[0].name }}
+                        ({{ slot.categories[0].pivot.slots }} available)
+                    </option>
+                </select>
+
+                <p class="text-sm text-gray-600 text-center">
                     <strong>Important:</strong> Your cart will be cleared after saving.
                 </p>
 
-                <div class="flex items-center justify-between gap-6 my-6">
-                    <button
-                        class="px-4 py-2 bg-main w-full h-[45px] rounded-[5px] text-white flex justify-center items-center"
-                        @click="saveOptions"> Save</button>
-                    <button
-                        class="px-4 py-2 bg-white border-[#00b14f] border w-full h-[45px] rounded-[5px] text-[#00b14f] flex justify-center items-center"
-                        @click="clearOptions"> Clear</button>
+                <div class="flex gap-4">
+                    <button type="submit" class="flex-1 h-11 bg-main text-white rounded-md">
+                        Save
+                    </button>
+                    <button type="button" class="flex-1 h-11 border border-[#00b14f] text-[#00b14f] rounded-md"
+                        @click="clearOptions">
+                        Clear
+                    </button>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 </template>
 
 <script setup>
-import { useBranchDelivery } from '#imports';
+import { useBranchDelivery } from '#imports'
 
+// Composables
 const { getBranch, getIntervals, getHotSelling, getCategoryMeals } = useBranchDelivery()
 
-// ref elements
-const selBranch = ref(null);
-const date = ref(null);
-const interval = ref(null);
-const saved = useState('saved')
+// State Management
+const BDMenuOpen = useState('BDMenuOpen', () => true)
+const saved = useState('saved', () => false)
+const order = useState('order', () => ({}))
+const hotSelling = useState('hotSelling', () => [])
+const categoryMeals = useState('categoryMeals', () => ({}))
 
-// global variables
+// Global State
 const branchGlobal = useState('branch', () => null)
 const dateGlobal = useState('dated', () => null)
 const intervalGlobal = useState('interval', () => null)
 
-// variables
-const branches = ref([]);
-const slots = ref([]);
-const today = ref('');
+// Local State
+const branches = ref([])
+const slots = ref([])
+const today = ref(new Date().toISOString().split('T')[0])
 
-onMounted(async () => {
-    const now = new Date();
-    today.value = now.toISOString().split('T')[0];
-    date.value = today.value;  // Initialize date with today
-    branches.value = await getBranch();
-});
+// Form Data
+const formData = reactive({
+    pickupType: 'pickup',
+    branch: '',
+    date: today.value,
+    interval: ''
+})
 
-
-const BDMenuOpen = useState('BDMenuOpen', () => true)
-
-const loadSLots = async () => {
-    slots.value = await getIntervals(date.value, selBranch.value.value)
-}
-
-const order = useState('order', () => ({}));
-const hotSelling = useState('hotSelling', () => []);
-const categoryMeals = useState('categoryMeals', () => { });
-const saveOptions = async () => {
-    if (selBranch.value.value.trim().length != 0 && date.value.trim().length != 0 && interval.value.value.trim().length != 0) {
-        hotSelling.value = []
-        categoryMeals.value = []
-        order.value = {}
-
-        BDMenuOpen.value = false
-        saved.value = true;
-
-        branchGlobal.value = selBranch.value.value
-        dateGlobal.value = date.value
-        intervalGlobal.value = interval.value.value
-
-        hotSelling.value = await getHotSelling(selBranch.value.value, date.value, interval.value.value)
-        categoryMeals.value = await getCategoryMeals(selBranch.value.value, date.value, interval.value.value)
-
+// Methods
+const loadSlots = async () => {
+    if (formData.branch && formData.date) {
+        slots.value = await getIntervals(formData.date, formData.branch)
     }
 }
 
-const clearOptions = () => {
-    selBranch.value.value = ""
-    interval.value.value = ""
-    saved.value = false
+const saveOptions = async () => {
+    if (!formData.branch || !formData.date || !formData.interval) return
 
+    // Reset states
     hotSelling.value = []
-    categoryMeals.value = []
+    categoryMeals.value = {}
+    order.value = {}
 
-    branchGlobal.value = selBranch.value.value
-    dateGlobal.value = date.value
-    intervalGlobal.value = interval.value.value
+    // Update global state
+    branchGlobal.value = formData.branch
+    dateGlobal.value = formData.date
+    intervalGlobal.value = formData.interval
+
+    // Fetch new data
+    Promise.all([
+        getHotSelling(formData.branch, formData.date, formData.interval)
+            .then(data => hotSelling.value = data),
+        getCategoryMeals(formData.branch, formData.date, formData.interval)
+            .then(data => categoryMeals.value = data)
+    ])
+
+    saved.value = true
+    BDMenuOpen.value = false
 }
+
+const clearOptions = () => {
+    Object.assign(formData, {
+        branch: '',
+        date: today.value,
+        interval: ''
+    })
+    saved.value = false
+    hotSelling.value = []
+    categoryMeals.value = {}
+}
+
+const closeBDMenu = () => {
+    BDMenuOpen.value = false
+}
+
+// Lifecycle
+onMounted(async () => {
+    branches.value = await getBranch()
+})
 </script>
 
 <style scoped>
+.form-select {
+    @apply h-[65px] px-4 text-base font-medium text-[#666666] rounded-[10px] border border-[#dddddd] focus:ring-1 focus:ring-[#00b14f] focus:border-[#00b14f] w-full;
+}
+
 * {
     outline: none;
 }

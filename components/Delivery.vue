@@ -59,7 +59,7 @@
 		<div class="space-y-4">
 			<div class="flex items-center justify-between">
 				<h1 class="font-semibold tf-bebas">Order Summary</h1>
-				<button @click="navigateTo('/')" class="tf-bebas"><span class="text-[#00b14f] font-semibold">Add
+				<button class="tf-bebas" @click="navigateTo('/')"><span class="text-[#00b14f] font-semibold">Add
 						items</span></button>
 			</div>
 
@@ -69,27 +69,27 @@
 						<h1 class="w-10">{{ order.count }}x</h1>
 						<div class="flex-1">
 							<h1 class="font-medium">{{ order.name }}</h1>
-							<button @click="navigateTo(`/edit/${order.name.split(' ').join('-')}`)"
-								class="text-sm text-[#00b14f]">Edit</button>
+							<button class="text-sm text-[#00b14f]"
+								@click="navigateTo(`/edit/${order.name.split(' ').join('-')}`)">Edit</button>
 						</div>
 						<p class="font-semibold">{{ (order.price * order.count).toLocaleString() }}.00</p>
 					</div>
 				</div>
-				<hr class="border-1 border-gray-400" />
+				<hr class="border-1 border-gray-400" >
 				<div v-if="filteredMeals.length > 0" class="space-y-4">
 					<h1 class="text-[#666666] tf-bebas">People also ordered</h1>
 					<section class="w-full flex gap-4 overflow-x-auto pb-5">
-						<div @click.stop="increaseOrder(meal.name, meal.price, meal.name, meal.image_small)"
-							v-for="meal in filteredMeals" :key="meal.name"
-							class="cursor-pointer flex items-center justify-between text-wrap border min-w-[200px] bg-white p-4 rounded-[15px] shadow-lg tf-spartan">
+						<div v-for="meal in filteredMeals"
+							:key="meal.name" class="cursor-pointer flex items-center justify-between text-wrap border min-w-[200px] bg-white p-4 rounded-[15px] shadow-lg tf-spartan"
+							@click.stop="increaseOrder(meal.name, meal.price, meal.name, meal.image_small)">
 							<div class="text-sm">
 								<h1 class="font-medium">{{ meal.name }}</h1>
 								<p class="font-semibold">{{ meal.price.toLocaleString() }}</p>
 							</div>
-							<img class="h-[80px] w-[80px] object-contain" :src="meal.image_small" alt="Product Image" />
+							<img class="h-[80px] w-[80px] object-contain" :src="meal.image_small" alt="Product Image" >
 						</div>
 					</section>
-					<hr class="border-1 border-gray-400" />
+					<hr class="border-1 border-gray-400" >
 				</div>
 
 				<div class="grid grid-cols-2 gap-y-2 w-full tf-spartan">
@@ -174,13 +174,15 @@
 </template>
 
 <script setup>
-const { increaseOrder, decreaseOrder } = useOrder();
+const { increaseOrder } = useOrder();
 const orders = useState('order', () => []);
 const total_price = useState('total_price', () => 0)
 const hotSelling = useState('hotSelling', () => [])
 const price = computed(() => {
-	total_price.value = Object.values(orders.value).reduce((total, item) => parseInt(total) + parseInt(parseInt(item.price) * parseInt(item.count) || 0), 0).toLocaleString('en-US');
-	return total_price.value
+	return Object.values(orders.value).reduce((total, item) => parseInt(total) + parseInt(parseInt(item.price) * parseInt(item.count) || 0), 0).toLocaleString('en-US'); 
+})
+watchEffect(() => {
+	total_price.value = price.value
 })
 const filteredMeals = computed(() => {
 	return Object.values(hotSelling.value).filter(meal => !(meal.name in orders.value));

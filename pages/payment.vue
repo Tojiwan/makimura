@@ -22,23 +22,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
 const isSmallScreen = useMediaQuery('(max-width: 768px)')
-
-// const handleResize = () => {
-// 	if (typeof window !== 'undefined') {
-// 		isSmallScreen.value = window.innerWidth < 1024
-// 	}
-// }
-
-// onMounted(() => {
-// 	handleResize()
-// 	window.addEventListener('resize', handleResize)
-// })
-
-// onUnmounted(() => {
-// 	window.removeEventListener('resize', handleResize)
-// })
 const isMobile = useMediaQuery('(max-width: 768px)')
 
 </script>

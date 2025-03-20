@@ -1,18 +1,17 @@
 <template>
 	<div class="p-0 relative">
 		<NuxtLink to="/payment">
-			<button class="absolute top-4 left-4 z-10 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg">
+			<button
+				class="absolute top-4 left-4 z-10 bg-white rounded-full w-10 h-10 flex items-center justify-center shadow-lg">
 				<font-awesome :icon="['fas', 'chevron-left']" />
 			</button>
 		</NuxtLink>
 
 		<div class="w-full">
 			<div class="gmap_canvas">
-				<iframe 
-					class="w-full h-[150px]" 
-					src="https://maps.google.com/maps?q=14.971233,120.6044675&t=&z=13&ie=UTF8&iwloc=&output=embed" 
-					frameborder="0" scrolling="no" marginheight="0" marginwidth="0">
-				</iframe>
+				<iframe class="w-full h-[150px]"
+					src="https://maps.google.com/maps?q=14.971233,120.6044675&t=&z=13&ie=UTF8&iwloc=&output=embed"
+					frameborder="0" scrolling="no" marginheight="0" marginwidth="0" />
 			</div>
 		</div>
 
@@ -26,21 +25,22 @@
 				<font-awesome icon="fa-solid fa-location-dot" class="text-[#00b14f] flex-shrink-0 text-[25px]" />
 				<div class="truncate">
 					<p class="truncate font-bold text-gray-400">Near Guagua-Santa Rita-Porac Road</p>
-					<p class="truncate text-gray-400">Becuran, Santa Rita, Pampanga, Central Luzon (Region III), Pampanga</p>
+					<p class="truncate text-gray-400">Becuran, Santa Rita, Pampanga, Central Luzon (Region III),
+						Pampanga</p>
 				</div>
 			</div>
 
 			<p>Address Details</p>
-			<input type="text" placeholder="Apartment, suite, unit, etc." required 
+			<input type="text" placeholder="Apartment, suite, unit, etc." required
 				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#00b14f] focus:ring-1 focus:ring-[#00b14f] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold">
 			<p>Note to Driver</p>
-			<input type="text" placeholder="Notes about order, e.g. special notes for delivery" 
+			<input type="text" placeholder="Notes about order, e.g. special notes for delivery"
 				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#00b14f] focus:ring-1 focus:ring-[#00b14f] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold truncate">
 		</div>
 	</div>
 </template>
 <script setup>
 definePageMeta({
-  layout: false
+	layout: false
 });
 </script>
