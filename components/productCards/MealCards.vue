@@ -6,20 +6,22 @@
         </div>
         <div v-for="meal in meals" :key="meal.name" class="h-[360px]">
             <div
-                class="group relative rounded-lg shadow-2xl h-full hover:-top-1 p-2 hover:pt-0 flex flex-col items-center text-center justify-between border gap-2 transition-all duration-100 ease-in-out">
+                class="group overflow-hidden relative rounded-lg shadow-2xl h-full hover:-top-2 pt-3 p-5 flex flex-col items-center text-center justify-between border gap-2 transition-all duration-100 ease-in-out">
                 <div v-if="selected_filter == 'Hot Selling'" class="absolute right-0 pr-2 flex space-x-1 tc-green">
                     <font-awesome icon="fa-solid fa-fire" />
                     <font-awesome icon="fa-solid fa-fire" />
                     <font-awesome icon="fa-solid fa-fire" />
                 </div>
-                <div class="w-full h-[192px] flex items-center justify-center overflow-hidden">
-                    <img class="h-full object-contain transform group-hover:scale-110 transition-all duration-100 ease-in-out"
+                <div class="w-full h-[200px] flex items-center justify-center">
+                    <img class="h-full object-contain transform group-hover:h-[300%] transition-all duration-100 ease-in-out"
                         :src="meal.image_small ?? 'https://order.makimuraramen.com/assets/pic1-BJG-xmCB.jpg'" alt="">
                 </div>
-                <h1 class="font-bold tf-spartan text-[#00b14f] hover:text-[#00b14f]/70 cursor-pointer" @click="navigateTo(`/product-detail/${meal.slug}`)">{{ meal.name }}</h1>
+                <h1 class="font-bold tf-spartan text-[#00b14f] hover:text-[#00b14f]/70 cursor-pointer"
+                    @click="navigateTo(`/product-detail/${meal.slug}`)">{{ meal.name }}</h1>
                 <h1 class="font-bold tf-spartan">₱{{ meal.price }}</h1>
                 <button class="w-full rounded-xl bg-main p-3 text-white tf-bebas btn-slide font-bold"
-                    @click="increaseOrder(meal.name, meal.price, meal.name, meal.image_small)"><span><span>Add to cart</span></span></button>
+                    @click="increaseOrder(meal.name, meal.price, meal.name, meal.image_small)"><span><span>Add to
+                            cart</span></span></button>
             </div>
         </div>
     </div>
