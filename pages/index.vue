@@ -35,6 +35,10 @@ const count = computed(() => {
 
 const categoryMeals = useLocalStorage('categoryMeals', []);
 
+definePageMeta({
+  layout: 'no-footer'
+});
+
 </script>
 
 <style scoped></style>

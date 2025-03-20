@@ -104,7 +104,7 @@
 				<div class="space-y-4">
 					<div class="flex items-center justify-between">
 						<h1 class="font-semibold tf-bebas">Payment Method</h1>
-						<button><span class="text-[#00b14f] font-semibold tf-bebas">See all</span></button>
+						<!-- <button><span class="text-[#00b14f] font-semibold tf-bebas">See all</span></button> -->
 					</div>
 
 					<div class="flex flex-col items-center justify-start gap-5 tf-spartan">

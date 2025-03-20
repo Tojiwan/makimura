@@ -5,30 +5,63 @@
 				Payment Method
 			</h1>
 			<div class="flex items-center justify-start gap-2">
-				<div class="bg-[#cacf7a] w-[6px] h-[6px] rounded-full"/>
-				<div class="bg-[#00b14f] w-[53px] h-[4px] rounded-full"/>
+				<div class="bg-[#cacf7a] w-[6px] h-[6px] rounded-full" />
+				<div class="bg-[#00b14f] w-[53px] h-[4px] rounded-full" />
 			</div>
 
-			<div class="input-group input-black">
-				<select v-model="selectedPaymentType"
-					class="h-[50px] border border-gray-300 px-5 text-[15px] font-normal text-black transition-all duration-300 ease-in-out bg-white w-full focus:border-[#00b14f] focus:ring-[#00b14f] placeholder-[#666] rounded-[6px] outline-none"
-					required @change="updatePaymentMethods">
-					<option disabled value="">Select Payment Type</option>
-					<option v-for="payment in PaymentType" :key="payment.id" :value="payment.id">
-						{{ payment.name }}
-					</option>
-				</select>
-			</div>
+			<div class="flex flex-col items-center justify-start gap-5 tf-spartan">
+				<div class="w-full space-y-4">
+					<h3 class="font-semibold text-gray-400">E-wallet | Credit Card</h3>
+					<div>
+						<div class="w-full flex items-center space-x-3 pb-2">
+							<font-awesome :icon="['fab', 'cc-visa']" class="text-[40px] text-blue-600" />
+							<div class="flex-1">
+								<p class="text-lg font-semibold">Visa</p>
+								<p class="text-gray-500">**** **** **** 1234</p>
+							</div>
+							<input type="radio" name="payment" class="w-5 h-5 accent-black">
+						</div>
+						<hr class="border-t-2 border-gray-300">
+					</div>
 
-			<div class="input-group input-black m-t20">
-				<select v-model="selectedPaymentMethod"
-					class="h-[50px] border border-gray-300 px-5 text-[15px] font-normal text-black transition-all duration-300 ease-in-out bg-white w-full focus:border-[#00b14f] focus:ring-[#00b14f] placeholder-[#666] rounded-[6px] outline-none"
-					required>
-					<option disabled value="">Select Payment Method</option>
-					<option v-for="method in PaymentMethod" :key="method.id" :value="method.id">
-						{{ method.name }}
-					</option>
-				</select>
+					<div>
+						<div class="w-full flex items-center space-x-3 pb-2">
+							<font-awesome :icon="['fab', 'cc-mastercard']" class="text-[40px] text-red-500" />
+							<div class="flex-1">
+								<p class="text-lg font-semibold">Mastercard</p>
+								<p class="text-gray-500">**** **** **** 1234</p>
+							</div>
+							<input type="radio" name="payment" class="w-5 h-5 accent-black">
+						</div>
+						<hr class="border-t-2 border-gray-300">
+					</div>
+
+					<div>
+						<div class="w-full flex items-center space-x-3 pb-2">
+							<img src="/public/gcash.png" class="w-[50px] h-[50px] object-contain" alt="">
+							<div class="flex-1">
+								<p class="text-lg font-semibold">GCash</p>
+								<p class="text-gray-500">+63 9123 4567 890</p>
+							</div>
+							<input type="radio" name="payment" class="w-5 h-5 accent-black">
+						</div>
+						<hr class="border-t-2 border-gray-300">
+					</div>
+				</div>
+
+				<div class="w-full space-y-4">
+					<h3 class="font-semibold text-gray-400">Cash</h3>
+					<div>
+						<div class="w-full flex items-center space-x-3 pb-2">
+							<font-awesome :icon="['far', 'money-bill-1']" class="text-[40px] text-green-600" />
+							<div class="flex-1">
+								<p class="text-lg font-semibold">Cash</p>
+							</div>
+							<input type="radio" name="payment" class="w-5 h-5 accent-black">
+						</div>
+						<hr class="border-t-2 border-gray-300">
+					</div>
+				</div>
 			</div>
 
 			<button
@@ -46,39 +79,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from "vue";
 
-const PaymentType = ref([]);
-const PaymentMethod = ref([]);
-const selectedPaymentType = ref("");
-const selectedPaymentMethod = ref("");
-
-const fetchPaymentType = async () => {
-	try {
-		const response = await fetch("https://bio.makimuraramen.com/api/payment-methods");
-		if (!response.ok) {
-			throw new Error(`HTTP error! status: ${response.status}`);
-		}
-		const data = await response.json();
-		PaymentType.value = data.map((m) => ({
-			id: m.id,
-			name: m.name,
-			methods: m.payment_methods,
-		}));
-	} catch (error) {
-		PaymentType.value = []; // Set empty array as fallback
-		throw new Error(`Unable to load payment types: ${error.message}`);
-	}
-};
-
-const updatePaymentMethods = () => {
-	const selectedType = PaymentType.value.find(
-		(type) => type.id === selectedPaymentType.value
-	);
-	PaymentMethod.value = selectedType ? selectedType.methods : [];
-};
-
-onMounted(fetchPaymentType);
 </script>
 
 <style scoped></style>
