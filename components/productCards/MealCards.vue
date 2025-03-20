@@ -30,7 +30,7 @@ import { useOrder } from '#imports';
 const { increaseOrder } = useOrder()
 
 const hotSelling = useLocalStorage('hotSelling', []);
-const selected_filter = useState('selected_filter', () => 'Hot Selling')
+const selected_filter = useLocalStorage('selected_filter', 'Hot Selling')
 const branchGlobal = useLocalStorage('branch', null)
 const dateGlobal = useLocalStorage('dated', null)
 const intervalGlobal = useLocalStorage('interval', null)
