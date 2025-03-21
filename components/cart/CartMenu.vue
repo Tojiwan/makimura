@@ -10,8 +10,8 @@
                 <img :src="order.img ?? 'https://order.makimuraramen.com/assets/pic1-BJG-xmCB.jpg'" alt=""
                     class="w-[80px] h-[80px] mr-3">
                 <div class="flex flex-col justify-evenly w-[60%] flex-wrap">
-                    <h1 class="tf-spartan text-base font-bold">{{ order.name }}</h1>
-                    <div class="flex justify-between">
+                    <h1 class="tf-spartan text-lg font-bold">{{ order.name }}</h1>
+                    <div class="flex justify-between text-base">
                         <p class="tf-spartan">₱{{ order.price }}</p>
                         <p class="tf-spartan">x{{ order.count }}</p>
                     </div>

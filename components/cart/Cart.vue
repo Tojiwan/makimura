@@ -1,10 +1,12 @@
 <template>
     <transition name="slide-up">
-        <div v-if="count && price" :class="{'flex items-center' :isHeaderFixed}" class="fixed bottom-0 w-full bg-white p-5">
-            <NuxtLink to="/payment" class="bg-main text-white font-bold flex justify-between rounded-full p-3 space-x-2 ">
+        <div v-if="count && price" class="flex fixed bottom-0 w-full bg-white p-5">
+            <NuxtLink to="/payment"
+                class="bg-main text-white font-bold grow flex justify-between rounded-full p-3 space-x-2 ">
                 <p>Basket - {{ count }} Items</p>
                 <p>₱{{ price }}.00</p>
             </NuxtLink>
+            <div v-if="isHeaderFixed" class="w-[50px] h-[50px]"/>
         </div>
     </transition>
 </template>
