@@ -9,12 +9,12 @@
             <font-awesome class="text-gray-500" icon="fa-solid fa-minus" />
         </button>
 
-        <span v-if="orderCount !== null" class="font-semibold">{{ orderCount }}</span>
-        <span v-else-if="showBorder" class="font-semibold">0</span>
+        <span v-if="orderCount !== null" class="h-10 w-10 flex items-center justify-center font-semibold">{{ orderCount }}</span>
+        <span v-else-if="showBorder" class="h-10 w-10 flex items-center justify-center font-semibold">0</span>
 
         <button v-if="showBorder || orderCount === null"
             class="rounded-full w-full h-full flex items-center justify-center"
-            @click.stop="increaseOrder(meal.name, meal.price, meal.name, meal.image_small); showTempBorder()">
+            @click="increaseOrder(meal.name, meal.price, meal.name, meal.image_small); showTempBorder()">
             <font-awesome :class="showBorder ? 'text-gray-500' : 'text-white'" icon="fa-solid fa-plus" />
         </button>
     </div>
