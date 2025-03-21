@@ -1,11 +1,14 @@
 <template>
-  <div>
-    <div :class="[ (isOrder || isMobile) ? 'bg-white' : 'bg-transparent border-0 absolute top-0 left-0' ]" class="z-20 py-4 px-6 lg:px-10 xl:px-28 flex w-full tf-spartan">
-      <nav class="w-full flex items-center justify-center lg:justify-between lg:px-5 gap-10">
-        <img :class="{'filter brightness-0 invert':(!isOrder && !isMobile)}" class="cursor-pointer max-w-[180px] lg:mr-auto" src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png"
+  <div class="w-full flex items-center justify-center">
+    <div :class="[(isOrder || isMobile) ? 'bg-white' : 'bg-transparent border-0 absolute top-0 left-0']"
+      class="z-20 py-4 px-6 flex items-center justify-center w-full tf-spartan">
+      <nav class="w-[1200px] flex items-center justify-center gap-10">
+        <img :class="{ 'filter brightness-0 invert': (!isOrder && !isMobile) }"
+          class="cursor-pointer max-w-[180px] lg:mr-auto" src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png"
           alt="" @click="navigateTo('/')">
-        <p :class="[ !isOrder ? 'text-white' : 'text-black' ]" class="hidden lg:block">{{ branch.name }}</p>
-        <div :class="[!isOrder ? 'text-white bg-main' : '']" class="hidden lg:flex items-center relative justify-center relative shadow-xl rounded-xl w-[45px] h-[45px]"
+        <p :class="[!isOrder ? 'text-white' : 'text-black']" class="hidden lg:block">{{ branch.name }}</p>
+        <div :class="[!isOrder ? 'text-white bg-main' : '']"
+          class="hidden lg:flex items-center justify-center relative shadow-xl rounded-xl w-[45px] h-[45px]"
           @click="isCartOpen = !isCartOpen">
           <div class="w-full h-full cursor-pointer flex items-center justify-center">
             <font-awesome :icon="['fas', 'bag-shopping']" />
@@ -21,13 +24,14 @@
     <!-- fixed header -->
     <transition name="slide-down">
       <div v-if="isHeaderFixed"
-        class="fixed h-[70px] top-0 left-0 z-20 px-6 lg:px-10 xl:px-28 flex items-center justify-center w-full bg-white"
+        class="fixed h-[70px] top-0 left-0 z-20 px-6 flex w-full items-center justify-center bg-white"
         :class="{ 'shadow-lg': isPayment || !isMobile }">
-        <nav class="w-full flex items-center justify-center lg:justify-between lg:px-5 gap-10">
-          <img class="cursor-pointer max-w-[180px] lg:mr-auto" src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png"
-            alt="" @click="navigateTo('/')">
+        <nav class="w-[1200px] flex items-center justify-center gap-10">
+          <img class="cursor-pointer max-w-[180px] lg:mr-auto"
+            src="https://order.makimuraramen.com/assets/logo-LcMPCbT4.png" alt="" @click="navigateTo('/')">
           <p class="hidden lg:block">{{ branch.name }}</p>
-          <div :class="[!isOrder ? 'text-white bg-main' : '']" class="hidden lg:flex items-center relative justify-center relative border shadow-xl rounded-xl bg-[var(--green-color)] text-white w-[45px] h-[45px]"
+          <div :class="[!isOrder ? 'text-white bg-main' : '']"
+            class="hidden lg:flex items-center justify-center relative border shadow-xl rounded-xl bg-[var(--green-color)] text-white w-[45px] h-[45px]"
             @click="isCartOpen = !isCartOpen">
             <div class="w-full h-full cursor-pointer flex items-center justify-center">
               <font-awesome :icon="['fas', 'bag-shopping']" />
@@ -56,7 +60,7 @@ const isPayment = computed(() => {
 const isOrder = computed(() => {
   return route.fullPath == '/'
 })
-const isCartOpen = useState('isCartOpen', ()=>false)
+const isCartOpen = useState('isCartOpen', () => false)
 
 const branchGlobal = useLocalStorage('branch', null)
 const branch = ref([])

@@ -3,9 +3,9 @@
 		<Delivery v-if="isSmallScreen" />
 		<Banner v-if="!isMobile" :title="'Shop Checkout'" />
 
-		<div v-if="!isSmallScreen">
+		<div v-if="!isSmallScreen" class="flex w-full items-center justify-center">
 			<div
-				class="md:flex md:justify-between md:gap-6 p-5 md:p-10 lg:flex lg:justify-between lg:gap-6 p-5 lg:p-10">
+				class="md:flex md:justify-between md:gap-6 max-w-[1200px] md:p-10 lg:flex lg:justify-between lg:gap-6 p-5 lg:p-10">
 				<div class="lg:w-full md:w-full space-y-6">
 					<BillingAddress />
 					<OtherShipping />

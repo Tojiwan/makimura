@@ -9,7 +9,7 @@
 		<BranchDelivery />
 
 		<!-- desktop components -->
-		<div v-if="!isMobile" class="w-full">
+		<div v-if="!isMobile" class="w-full flex items-center justify-center flex-col">
 			<FilterBar />
 			<MealCards />
 		</div>

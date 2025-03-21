@@ -1,9 +1,9 @@
 <template>
     <Banner :title="'Shop Cart'" />
-    <div class="flex justify-center items-center flex-col">
-        <div class="py-[100px] xl:mx-24 bg-white flex flex-col  justify-center w-[50%]">
+    <div class="flex w-full items-center justify-center">
+        <div class=" w-[750px] py-[100px] bg-white">
             <h1 class="font-bold text-xl tf-bebas flex">Cart<span class="text-main">[{{ count }}]</span></h1>
-            <div class="max-h-[500px] lg:max-h-[650px] overflow-y-auto">
+            <div class=" max-h-[500px] lg:max-h-[650px] overflow-y-auto">
                 <div v-for="order in orders" :key="order.name" class="border-b p-5 gap-10 flex relative">
                     <div
                         class="absolute right-5 bg-main h-[25px] w-[25px] text-white flex items-center justify-center rounded-lg cursor-pointer">

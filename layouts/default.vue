@@ -1,8 +1,8 @@
 <template>
     <!-- <div class="lg:mx-10 xl:mx-60"> -->
-    <div>
-        <NavBar />
-        <NuxtPage />
+    <NavBar />
+    <div class="lg:flex flex-col items-center justify-center">
+        <NuxtPage class="max-w-[1200px]"/>
     </div>
     <AppFooter />
     <BtnUp />

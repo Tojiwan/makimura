@@ -1,5 +1,5 @@
 <template>
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  w-full content-center gap-8 pb-5">
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  max-w-[1200px] content-center gap-8 pb-5">
         <div v-if="isLoading" class="col-span-4 flex items-center justify-center">
             <img src="https://order.makimuraramen.com/assets/loading-C8RNs0gu.gif" alt=""
                 class="object-contain w-[150px]">
