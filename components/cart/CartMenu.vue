@@ -19,8 +19,8 @@
             </div>
         </div>
         <div class="p-2">
-            <button class="w-full bg-main p-2 text-white rounded-lg "
-                @click="navigateTo('/cart'); isCartOpen = !isCartOpen">View Cart</button>
+            <button class="w-full bg-main p-2 button--calypso text-white rounded-lg "
+                @click="navigateTo('/cart'); isCartOpen = !isCartOpen"><span/><span>View Cart</span></button>
         </div>
     </div>
 </template>
