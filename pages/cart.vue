@@ -1,8 +1,8 @@
 <template>
     <Banner :title="'Shop Cart'" />
     <div class="flex justify-center items-center flex-col">
-        <div class="px-6 lg:py-[100px] lg:px-10 xl:px-8 xl:mx-24 pt-0 bg-white flex flex-col  justify-center w-[50%]">
-            <h1 class="font-bold text-xl tf-spartan">Cart({{ count }})</h1>
+        <div class="py-[100px] xl:mx-24 bg-white flex flex-col  justify-center w-[50%]">
+            <h1 class="font-bold text-xl tf-bebas flex">Cart<span class="text-main">[{{ count }}]</span></h1>
             <div class="max-h-[500px] lg:max-h-[650px] overflow-y-auto">
                 <div v-for="order in orders" :key="order.name" class="border-b p-5 gap-10 flex relative">
                     <div
@@ -12,31 +12,37 @@
                     <img :src="order.img ?? 'https://order.makimuraramen.com/assets/pic1-BJG-xmCB.jpg'" alt=""
                         class="w-[80px] h-[80px]">
                     <div class="flex flex-col justify-evenly w-full">
-                        <h1 class="tf-spartan text-base font-bold">{{ order.name }}</h1>
+                        <h1 class="text-base font-bold tf-bebas ">{{ order.name }}</h1>
                         <div class="flex justify-between">
                             <OrderAddV2 :meal="order" />
-                            <p>₱{{ (order.price * order.count).toLocaleString() }}.00</p>
+                            <p class="mt-auto text-lg tf-bebas ">₱{{ (order.price * order.count).toLocaleString() }}.00</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <h1 class="font-bold text-xl tf-spartan">BILL DETAILS</h1>
+            <h1 class="font-bold tf-bebas">BILL DETAILS</h1>
             <div class="flex justify-between">
-                <p>item total</p>
-                <p>₱{{ total_price.toLocaleString() }}.00</p>
+                <p class="text-base">item total</p>
+                <p class="text-base">₱{{ total_price.toLocaleString() }}.00</p>
             </div>
             <hr class="my-2">
             <div class="flex justify-between">
-                <p class="font-bold text-lg tf-spartan">TOTAL</p>
-                <p>₱{{ total_price.toLocaleString() }}.00</p>
+                <h6 class="font-bold text-lg tf-bebas">TOTAL</h6>
+                <p class="text-base">₱{{ total_price.toLocaleString() }}.00</p>
             </div>
-            <button class=" w-full bg-main text-white p-3 my-2 font-bold rounded-lg"
+            <button class="button--calypso w-full bg-main text-white p-3 my-2 font-bold rounded-lg"
                 @click="navigateTo('/payment')"><span><span>Order Now</span></span></button>
         </div>
     </div>
 </template>
 
 <script setup>
+const isMobile = useMediaQuery('(max-width: 768px)')
+
+watchEffect(()=>{
+    if(isMobile.value) navigateTo('/payment')
+})
+
 const orders = useLocalStorage('order', {});
 const count = computed(() => {
     return Object.values(orders.value).length;

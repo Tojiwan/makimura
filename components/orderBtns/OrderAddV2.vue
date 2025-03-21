@@ -1,12 +1,12 @@
 <template>
 <div class="text-[13px] w-[100px] bg-gray-100 p-2 rounded-lg flex justify-between">
-    <button class="bg-white h-[20px] w-[20px]" @click.stop="decreaseOrder(meal.name)">
+    <button class="flex items-center justify-center bg-white h-[20px] w-[20px]" @click.stop="decreaseOrder(meal.name)">
         <font-awesome icon="fa-solid fa-minus"/>
     </button>
 
-    <input v-model="count_input" type="text" class="w-[30px] grow outline-0 text-center bg-transparent">
+    <input v-model="count_input" type="text" class="w-[30px] font-bold tf-bebas  grow outline-0 text-center bg-transparent">
 
-    <button class="bg-white h-[20px] w-[20px]" @click.stop="increaseOrder(meal.name, meal.price, meal.name, meal.image_small)">
+    <button class="flex items-center justify-center bg-white h-[20px] w-[20px]" @click.stop="increaseOrder(meal.name, meal.price, meal.name, meal.image_small)">
         <font-awesome icon="fa-solid fa-plus"/>
     </button>
 </div>
