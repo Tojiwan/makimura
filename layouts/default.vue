@@ -2,7 +2,7 @@
     <!-- <div class="lg:mx-10 xl:mx-60"> -->
     <NavBar />
     <div class="lg:flex flex-col items-center justify-center">
-        <NuxtPage class="max-w-[1200px]"/>
+        <NuxtPage class="container"/>
     </div>
     <AppFooter />
     <BtnUp />
