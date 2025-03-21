@@ -1,15 +1,15 @@
 <template>
 	<!-- <section>
-		<div class="relative bg-gray-900 bg-opacity-90 text-center bg-cover bg-center py-20">
+		<div class="relative py-20 text-center bg-gray-900 bg-center bg-cover bg-opacity-90">
 
-			<div class="container mx-auto px-6">
+			<div class="container px-6 mx-auto">
 				<div class="space-y-4 text-white">
 					<h1 class="text-4xl font-bold">Shop Checkout</h1>
 
 					<nav aria-label="breadcrumb">
 						<ul class="flex items-center justify-center space-x-2 text-lg">
 							<li>
-								<a href="/" class="text-gray-300 hover:text-white transition">Home</a>
+								<a href="/" class="text-gray-300 transition hover:text-white">Home</a>
 							</li>
 							<font-awesome :icon="['fas', 'chevron-right']" class="text-white" />
 							<li class="text-white">Shop Checkout</li>
