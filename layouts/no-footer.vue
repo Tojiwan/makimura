@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="lg:mx-60">
         <NavBar />
         <NuxtPage />
         <BtnUp />

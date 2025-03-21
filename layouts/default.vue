@@ -1,10 +1,11 @@
 <template>
+    <!-- <div class="lg:mx-10 xl:mx-60"> -->
     <div>
         <NavBar />
         <NuxtPage />
-        <AppFooter />
-        <BtnUp />
     </div>
+    <AppFooter />
+    <BtnUp />
 </template>
 
 <script setup>

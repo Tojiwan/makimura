@@ -2,7 +2,7 @@
     <div v-if="categories.length > 1" class="w-full flex gap-1 mb-10">
         <p v-for="(category, index) in categories" ref="filterNames" :key="category"
             :class="{ 'bg-[#00b14f]/10 tc-green': activeFilter[index] }"
-            class="transition-all duration-300 ease-in-out text-[13px] tf-spartan font-medium hover:bg-[#00b14f]/10 hover:text-[var(--green-color)] cursor-pointer p-2 rounded"
+            class="transition-all duration-300 ease-in-out lg:text-xs xl:text-base tf-spartan font-medium hover:bg-[#00b14f]/10 hover:text-[var(--green-color)] cursor-pointer p-2 rounded"
             @click="selectFilter(index, category)">
             <font-awesome v-if="index == 0" icon="fa-solid fa-fire" />
             {{ category.toUpperCase() }}

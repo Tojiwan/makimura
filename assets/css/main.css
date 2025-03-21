@@ -1,230 +1,252 @@
-:root{
-    --green-color: #00b14f;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --green-color: #00b14f;
 }
 
-*{
-    scroll-behavior: smooth !important;
-    scrollbar-width: thin;
-}
-/* fonts */
-.tf-spartan{
-    font-family: 'League Spartan', sans-serif;
-}
-.tf-bebas{
-    font-family: "Bebas Neue", sans-serif;
+* {
+  scroll-behavior: smooth !important;
+  scrollbar-width: thin;
+  font-family: "League Spartan", sans-serif;
 }
 
-/* colors */
-.bg-main{
-    background:var(--green-color);
+/* Example custom styles */
+.tf-spartan {
+  font-family: "League Spartan", sans-serif;
 }
-.tc-green{
-    color: var(--green-color);
+.tf-bebas {
+  font-family: "Bebas Neue", sans-serif;
 }
 
+.tc-green {
+  color: var(--green-color);
+}
+
+h2 {
+  @apply text-4xl lg:text-6xl;
+}
 
 /* animation */
-    /*  */
-        .slide-up-enter-active,
-        .slide-up-leave-active {
-            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
-        }
+/*  */
+.slide-up-enter-active,
+.slide-up-leave-active {
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
 
-        .slide-up-enter-from,
-        .slide-up-leave-to {
-            transform: translateY(100%);
-            opacity: 0;
-        }
+.slide-up-enter-from,
+.slide-up-leave-to {
+  transform: translateY(100%);
+  opacity: 0;
+}
 
-        .slide-up-enter-to,
-        .slide-up-leave-from {
-            transform: translateY(0);
-            opacity: 1;
-        }
+.slide-up-enter-to,
+.slide-up-leave-from {
+  transform: translateY(0);
+  opacity: 1;
+}
 
-    /*  */
-    /*  */
-        .btn-slide {
-            overflow: hidden;
-        }
-        
-        .btn-slide span {
-            display: block;
-            position: relative;
-            z-index: 1;
-        }
-        
-        .btn-slide>span {
-            overflow: hidden;
-        }
-        
-        .btn-slide:hover>span>span {
-            animation: MoveLeftInitial 0.1s forwards, MoveLeftEnd 0.3s forwards 0.2s;
-        }
-        
-        .btn-slide:not(:hover)>span>span {
-            animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;
-        }
-        
-        @keyframes MoveLeftInitial {
-            to {
-                transform: translate3d(-105%, 0, 0);
-            }
-        }
-        
-        @keyframes MoveLeftEnd {
-            from {
-                transform: translate3d(100%, 0, 0);
-            }
-        
-            to {
-                transform: translate3d(0, 0, 0);
-            }
-        }
-        
-        @keyframes MoveRightInitial {
-            to {
-                transform: translate3d(105%, 0, 0);
-            }
-        }
-        
-        @keyframes MoveRightEnd {
-            from {
-                transform: translate3d(-100%, 0, 0);
-            }
-        
-            to {
-                transform: translate3d(0, 0, 0);
-            }
-        }
-        
-        .btn-slide::before,
-        .btn-slide::after {
-            content: '';
-            background: #000;
-        }
-        
-        .btn-slide::before {
-            width: 135%;
-            -webkit-clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
-            clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
-            transform: translate3d(100%, 0, 0);
-        }
-        
-        .btn-slide:hover::before {
-            transform: translate3d(0, 0, 0);
-            transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
-        }
-        
-        .btn-slide:not(:hover)::before {
-            transform: translate3d(100%, 0, 0);
-            transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
-        }
-        
-        .btn-slide::after {
-            width: 105%;
-            transform: translate3d(-100%, 0, 0);
-            transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
-        }
-        
-        .btn-slide:hover::after {
-            transform: translate3d(0, 0, 0);
-            transition: transform 0.01s 0.3s cubic-bezier(0.7, 0, 0.2, 1);
-        }
-        
-        .btn-slide:not(:hover)::after {
-            transform: translate3d(-100%, 0, 0);
-            transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
-        }
-    /*  */
-    /*  */
-    .button--calypso {
-        --button-bg: var(--green-color, #28a745); /* Default Green */
-        --circle-color: #fff; /* Circle starts as white */
-        --t-color: white; /* Default text color */
-        --t-hover-color: var(--t-color); /* Text color after hover */
-    
-        overflow: hidden;
-        font-family: freight-display-pro, serif;
-        border-radius: 0.85rem;
-        color: var(--t-color);
-        background: var(--button-bg);
-        position: relative;
-        display: inline-block;
-        padding: 0.75rem 1.5rem;
-        cursor: pointer;
-        text-align: center;
-        transition: color 0.3s ease-in-out; /* Smooth color transition */
-    }
-    
-    /* Span (Text) */
-    .button--calypso span {
-        /* display: block; */
-        position: relative;
-        z-index: 10;
-        transition: transform 0.3s, opacity 0.3s, color 0.3s ease-in-out;
-    }
-    
-    /* On Hover: Change Text Color */
-    .button--calypso:hover {
-        color: var(--t-hover-color);
-    }
-    
-    /* On Hover: Text Moves Up */
-    .button--calypso:hover span {
-        animation: MoveScaleUpInitial 0.3s forwards, MoveScaleUpEnd 0.3s forwards 0.3s;
-    }
-    
-    /* On Mouse Leave: Reverse Animation */
-    .button--calypso:not(:hover) span {
-        animation: MoveScaleDownInitial 0.3s forwards, MoveScaleDownEnd 0.3s forwards 0.3s;
-    }
-    
-    /* Text Animations */
-    @keyframes MoveScaleUpInitial {
-        to { transform: translate3d(0,-105%,0) scale3d(1,2,1); opacity: 0; }
-    }
-    @keyframes MoveScaleUpEnd {
-        from { transform: translate3d(0,100%,0) scale3d(1,2,1); opacity: 0; }
-        to { transform: translate3d(0,0,0); opacity: 1; }
-    }
-    @keyframes MoveScaleDownInitial {
-        to { transform: translate3d(0,100%,0) scale3d(1,2,1); opacity: 0; }
-    }
-    @keyframes MoveScaleDownEnd {
-        from { transform: translate3d(0,-105%,0) scale3d(1,2,1); opacity: 0; }
-        to { transform: translate3d(0,0,0); opacity: 1; }
-    }
-    
-    /* Expanding Circle */
-    .button--calypso::before {
-        content: '';
-        position: absolute;
-        background: var(--circle-color); /* Start as white */
-        width: 120%;
-        height: 0;
-        padding-bottom: 120%;
-        top: -110%;
-        left: -10%;
-        border-radius: 50%;
-        transform: translate3d(0,68%,0) scale3d(0,0,0);
-        transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1), background 0.4s linear 0.2s;
-    }
-    
-    /* On Hover: Expand & Change Color */
-    .button--calypso:hover::before {
-        transform: translate3d(0,0,0) scale3d(1,1,1);
-        background: var(--button-bg); /* Change to button color */
-    }
-    
-    /* ✅ Fix: Shrink Back When Mouse Leaves */
-    .button--calypso:not(:hover)::before {
-        transform: translate3d(0,68%,0) scale3d(0,0,0);
-        background: var(--circle-color); /* Reset to original color */
-        transition: transform 1s cubic-bezier(0.1, 0, 0.3, 1), background 0.3s linear;
-    }
-    
-    
-    
-    /*  */
-    
+/*  */
+/*  */
+.btn-slide {
+  overflow: hidden;
+}
+
+.btn-slide span {
+  display: block;
+  position: relative;
+  z-index: 1;
+}
+
+.btn-slide > span {
+  overflow: hidden;
+}
+
+.btn-slide:hover > span > span {
+  animation: MoveLeftInitial 0.1s forwards, MoveLeftEnd 0.3s forwards 0.2s;
+}
+
+.btn-slide:not(:hover) > span > span {
+  animation: MoveRightInitial 0.1s forwards, MoveRightEnd 0.3s forwards 0.2s;
+}
+
+@keyframes MoveLeftInitial {
+  to {
+    transform: translate3d(-105%, 0, 0);
+  }
+}
+
+@keyframes MoveLeftEnd {
+  from {
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes MoveRightInitial {
+  to {
+    transform: translate3d(105%, 0, 0);
+  }
+}
+
+@keyframes MoveRightEnd {
+  from {
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.btn-slide::before,
+.btn-slide::after {
+  content: "";
+  background: #000;
+}
+
+.btn-slide::before {
+  width: 135%;
+  -webkit-clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
+  clip-path: polygon(75% 0%, 100% 50%, 75% 100%, 0% 100%, 0% 0%);
+  transform: translate3d(100%, 0, 0);
+}
+
+.btn-slide:hover::before {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.btn-slide:not(:hover)::before {
+  transform: translate3d(100%, 0, 0);
+  transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.btn-slide::after {
+  width: 105%;
+  transform: translate3d(-100%, 0, 0);
+  transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.btn-slide:hover::after {
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.01s 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+.btn-slide:not(:hover)::after {
+  transform: translate3d(-100%, 0, 0);
+  transition: transform 0.3s cubic-bezier(0.7, 0, 0.2, 1);
+}
+/*  */
+/*  */
+.button--calypso {
+  --button-bg: var(--green-color, #28a745); /* Default Green */
+  --circle-color: #fff; /* Circle starts as white */
+  --t-color: white; /* Default text color */
+  --t-hover-color: var(--t-color); /* Text color after hover */
+
+  overflow: hidden;
+  font-family: freight-display-pro, serif;
+  border-radius: 0.85rem;
+  color: var(--t-color);
+  background: var(--button-bg);
+  position: relative;
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  cursor: pointer;
+  text-align: center;
+  transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+/* Span (Text) */
+.button--calypso span {
+  /* display: block; */
+  position: relative;
+  z-index: 10;
+  transition: transform 0.3s, opacity 0.3s, color 0.3s ease-in-out;
+}
+
+/* On Hover: Change Text Color */
+.button--calypso:hover {
+  color: var(--t-hover-color);
+}
+
+/* On Hover: Text Moves Up */
+.button--calypso:hover span {
+  animation: MoveScaleUpInitial 0.3s forwards, MoveScaleUpEnd 0.3s forwards 0.3s;
+}
+
+/* On Mouse Leave: Reverse Animation */
+.button--calypso:not(:hover) span {
+  animation: MoveScaleDownInitial 0.3s forwards,
+    MoveScaleDownEnd 0.3s forwards 0.3s;
+}
+
+/* Text Animations */
+@keyframes MoveScaleUpInitial {
+  to {
+    transform: translate3d(0, -105%, 0) scale3d(1, 2, 1);
+    opacity: 0;
+  }
+}
+@keyframes MoveScaleUpEnd {
+  from {
+    transform: translate3d(0, 100%, 0) scale3d(1, 2, 1);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+@keyframes MoveScaleDownInitial {
+  to {
+    transform: translate3d(0, 100%, 0) scale3d(1, 2, 1);
+    opacity: 0;
+  }
+}
+@keyframes MoveScaleDownEnd {
+  from {
+    transform: translate3d(0, -105%, 0) scale3d(1, 2, 1);
+    opacity: 0;
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+  }
+}
+
+/* Expanding Circle */
+.button--calypso::before {
+  content: "";
+  position: absolute;
+  background: var(--circle-color); /* Start as white */
+  width: 120%;
+  height: 0;
+  padding-bottom: 120%;
+  top: -110%;
+  left: -10%;
+  border-radius: 50%;
+  transform: translate3d(0, 68%, 0) scale3d(0, 0, 0);
+  transition: transform 0.4s cubic-bezier(0.1, 0, 0.3, 1),
+    background 0.4s linear 0.2s;
+}
+
+/* On Hover: Expand & Change Color */
+.button--calypso:hover::before {
+  transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
+  background: var(--button-bg); /* Change to button color */
+}
+
+/* ✅ Fix: Shrink Back When Mouse Leaves */
+.button--calypso:not(:hover)::before {
+  transform: translate3d(0, 68%, 0) scale3d(0, 0, 0);
+  background: var(--circle-color); /* Reset to original color */
+  transition: transform 1s cubic-bezier(0.1, 0, 0.3, 1), background 0.3s linear;
+}
+
+/*  */

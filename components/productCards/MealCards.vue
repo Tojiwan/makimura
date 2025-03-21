@@ -1,27 +1,31 @@
 <template>
     <div class="grid grid-cols-4 w-full content-center gap-8 pb-5">
-        <div v-if="isLoading" class="col-span-4 flex  items-center justify-center">
+        <div v-if="isLoading" class="col-span-4 flex items-center justify-center">
             <img src="https://order.makimuraramen.com/assets/loading-C8RNs0gu.gif" alt=""
                 class="object-contain w-[150px]">
         </div>
         <div v-for="meal in meals" :key="meal.name" class="h-[390px]">
             <div
-                class="group overflow-hidden relative rounded-lg shadow-2xl h-full hover:-top-2 pt-3 p-5 flex flex-col items-center text-center justify-between border gap-2 transition-all duration-100 ease-in-out">
+                class="group relative rounded-lg shadow-2xl h-full hover:-top-2 pt-3 p-5 flex flex-col items-center text-center justify-between border gap-2 transition-all duration-100 ease-in-out">
                 <div v-if="selected_filter == 'Hot Selling'" class="absolute right-0 pr-2 flex space-x-1 tc-green">
                     <font-awesome icon="fa-solid fa-fire" />
                     <font-awesome icon="fa-solid fa-fire" />
                     <font-awesome icon="fa-solid fa-fire" />
                 </div>
-                <div class="w-full h-[200px] transition-all duration-100 ease-in-out overflow-hidden group-hover:scale-125 flex items-center justify-center">
-                    <img class="h-full object-contain transform transition-all duration-100 ease-in-out"
+                <!-- Updated image container -->
+                <div class="w-full h-[220px] flex items-center justify-center relative overflow-hidden">
+                    <img class="h-full object-contain transform group-hover:scale-110 group-hover:z-10 transition-transform duration-300 ease-in-out"
                         :src="meal.image_small ?? 'https://order.makimuraramen.com/assets/pic1-BJG-xmCB.jpg'" alt="">
                 </div>
-                <h1 class="font-bold tf-spartan text-[#00b14f] hover:text-[#00b14f]/70 cursor-pointer"
-                    @click="navigateTo(`/product-detail/${meal.slug}`)">{{ meal.name }}</h1>
-                <h1 class="font-bold tf-spartan">₱{{ meal.price }}</h1>
-                <button class="w-full rounded-xl bg-main p-3 text-white tf-bebas btn-slide font-bold"
-                    @click="increaseOrder(meal.name, meal.price, meal.name, meal.image_small)"><span><span>Add to
-                            cart</span></span></button>
+                <div class="flex flex-col items-center gap-2">
+                    <h1 class="font-bold tf-spartan text-xl text-[#00b14f] hover:text-[#00b14f]/70 cursor-pointer"
+                        @click="navigateTo(`/product-detail/${meal.slug}`)">{{ meal.name }}</h1>
+                    <h1 class="font-bold tf-spartan">₱{{ meal.price }}</h1>
+                </div>
+                <button class="w-full rounded-xl bg-main p-3 text-white text-sm btn-slide font-medium"
+                    @click="increaseOrder(meal.name, meal.price, meal.name, meal.image_small)">
+                    <span><span>Add to cart</span></span>
+                </button>
             </div>
         </div>
     </div>
