@@ -18,11 +18,11 @@
                         :src="meal.image_small ?? 'https://order.makimuraramen.com/assets/pic1-BJG-xmCB.jpg'" alt="">
                 </div>
                 <div class="flex flex-col items-center gap-2">
-                    <h1 class="font-bold tf-spartan text-xl text-[#00b14f] hover:text-[#00b14f]/70 cursor-pointer"
+                    <h1 class="font-bold tf-spartan text-xl text-main hover:text-main/70 cursor-pointer"
                         @click="navigateTo(`/product-detail/${meal.slug}`)">{{ meal.name }}</h1>
                     <h1 class="font-bold tf-spartan">₱{{ meal.price }}</h1>
                 </div>
-                <button class="w-full rounded-xl bg-main p-3 text-white text-sm btn-slide font-medium"
+                <button class="w-full rounded-xl bg-main p-3 text-white text-base xl:text-sm font-medium"
                     @click="increaseOrder(meal.name, meal.price, meal.name, meal.image_small)">
                     <span><span>Add to cart</span></span>
                 </button>

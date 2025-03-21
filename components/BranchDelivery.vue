@@ -1,12 +1,12 @@
 <template>
     <div v-show="BDMenuOpen" class="fixed inset-0 flex items-center justify-center bg-black/70 z-50">
-        <div class="w-[90%] max-w-[600px] bg-white rounded-[5px] p-3 flex flex-col">
+        <div class="w-[90%] max-w-[600px] bg-white rounded-[5px] p-5 px-7 pt-10 lg:p-10 flex flex-col relative">
             <!-- Header -->
-            <header class="flex items-center mb-3">
-                <font-awesome v-if="saved" :icon="['fas', 'x']" class="text-gray-500 cursor-pointer"
-                    @click="closeBDMenu" />
-                <h1 class="text-[25px] font-bold tf-bebas mx-auto">Branch & Delivery</h1>
-            </header>
+            <font-awesome v-if="saved" :icon="['fas', 'x']" class="text-gray-500 cursor-pointer absolute top-5 left-5"
+                @click="closeBDMenu" />
+            <div class="flex items-center mb-3">
+                <h1 class="text-3xl font-bold tf-bebas mx-auto">Branch & Delivery</h1>
+            </div>
 
             <!-- Form -->
             <form class="w-full p-4 space-y-4" @submit.prevent="saveOptions">
@@ -140,7 +140,6 @@ onMounted(async () => {
 .form-select {
     @apply h-[65px] px-4 text-base font-medium text-[#666666] rounded-[10px] border border-[#dddddd] focus:ring-1 focus:ring-[#00b14f] focus:border-[#00b14f] w-full;
 }
-
 * {
     outline: none;
 }

@@ -12,7 +12,6 @@ export default {
     extend: {
       colors: {
         'main': '#00b14f', // Example custom color
-        'green': 'var(--green-color)', // Add reusable text color
       },
       textColor: {
         'tc-green': 'var(--green-color)', // Add reusable text color
