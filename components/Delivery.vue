@@ -9,7 +9,7 @@
 				Pickup
 			</button>
 		</div> -->
-		<h1 class="font-semibold tf-bebas">Billing & Shipping Address</h1>
+		<h1 class="font-semibold tf-bebas text-[20px]">Billing & Shipping Address</h1>
 		<div class="flex flex-col justify-center items-center space-y-4 tf-spartan">
 
 			<input type="text" placeholder="First Name" required
@@ -26,7 +26,7 @@
 				class="w-full h-[50px] border border-gray-400 p-4 rounded-md focus:border-[#00b14f] focus:ring-1 focus:ring-[#00b14f] placeholder-[#AEAEAE] placeholder:text-[15px] font-semibold">
 		</div>
 
-		<h1 class="font-semibold tf-bebas">Location</h1>
+		<h1 class="font-semibold tf-bebas text-[20px]">Location</h1>
 
 		<div class="flex flex-col items-center space-y-4 w-full">
 			<div class="flex items-center w-full justify-between min-w-0 space-x-3">
@@ -58,8 +58,8 @@
 
 		<div class="space-y-4">
 			<div class="flex items-center justify-between">
-				<h1 class="font-semibold tf-bebas">Order Summary</h1>
-				<button class="tf-bebas" @click="navigateTo('/')"><span class="text-[#00b14f] font-semibold">Add
+				<h1 class="font-semibold tf-bebas text-[20px]">Order Summary</h1>
+				<button class="tf-bebas text-[20px]" @click="navigateTo('/')"><span class="text-[#00b14f] font-semibold">Add
 						items</span></button>
 			</div>
 
@@ -77,7 +77,7 @@
 				</div>
 				<hr class="border-1 border-gray-400" >
 				<div v-if="filteredMeals.length > 0" class="space-y-4">
-					<h1 class="text-[#666666] tf-bebas">People also ordered</h1>
+					<h1 class="text-[#666666] tf-bebas text-[20px]">People also ordered</h1>
 					<section class="w-full flex gap-4 overflow-x-auto pb-5">
 						<div v-for="meal in filteredMeals"
 							:key="meal.name" class="cursor-pointer flex items-center justify-between text-wrap border min-w-[200px] bg-white p-4 rounded-[15px] shadow-lg tf-spartan"
@@ -103,8 +103,8 @@
 
 				<div class="space-y-4">
 					<div class="flex items-center justify-between">
-						<h1 class="font-semibold tf-bebas">Payment Method</h1>
-						<!-- <button><span class="text-[#00b14f] font-semibold tf-bebas">See all</span></button> -->
+						<h1 class="font-semibold tf-bebas text-[20px]">Payment Method</h1>
+						<!-- <button><span class="text-[#00b14f] font-semibold tf-bebas text-[20px]">See all</span></button> -->
 					</div>
 
 					<div class="flex flex-col items-center justify-start gap-5 tf-spartan">
@@ -114,7 +114,7 @@
 								<label for="Visa" class="w-full flex items-center space-x-3 pb-2">
 									<font-awesome :icon="['fab', 'cc-visa']" class="text-[40px] text-blue-600" />
 									<div class="flex-1">
-										<p class="text-lg font-semibold">Visa</p>
+										<p class="text-[18px] font-semibold">Visa</p>
 										<p class="text-gray-500">**** **** **** 1234</p>
 									</div>
 									<input type="radio" id="Visa" name="payment" class="w-5 h-5 accent-black">
@@ -126,7 +126,7 @@
 								<label for="Mastercard" class="w-full flex items-center space-x-3 pb-2">
 									<font-awesome :icon="['fab', 'cc-mastercard']" class="text-[40px] text-red-500" />
 									<div class="flex-1">
-										<p class="text-lg font-semibold">Mastercard</p>
+										<p class="text-[18px] font-semibold">Mastercard</p>
 										<p class="text-gray-500">**** **** **** 1234</p>
 									</div>
 									<input type="radio" id="Mastercard" name="payment" class="w-5 h-5 accent-black">
@@ -138,7 +138,7 @@
 								<label for="Gcash" class="w-full flex items-center space-x-3 pb-2">
 									<img src="/public/gcash.png" class="w-[50px] h-[50px] object-contain" alt="">
 									<div class="flex-1">
-										<p class="text-lg font-semibold">GCash</p>
+										<p class="text-[18px] font-semibold">GCash</p>
 										<p class="text-gray-500">+63 9123 4567 890</p>
 									</div>
 									<input type="radio" id="Gcash" name="payment" class="w-5 h-5 accent-black">
@@ -153,7 +153,7 @@
 								<div for="Cash" class="w-full flex items-center space-x-3 pb-2">
 									<font-awesome :icon="['far', 'money-bill-1']" class="text-[40px] text-green-600" />
 									<div class="flex-1">
-										<p class="text-lg font-semibold">Cash</p>
+										<p class="text-[18px] font-semibold">Cash</p>
 									</div>
 									<input type="radio" id="Cash" name="payment" class="w-5 h-5 accent-black">
 								</div>
