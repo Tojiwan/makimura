@@ -39,6 +39,7 @@
 </template>
 
 <script setup>
+import { useRoute } from 'vue-router';
 import { useOrder } from '#imports';
 const { increaseOrder } = useOrder();
 const route = useRoute();

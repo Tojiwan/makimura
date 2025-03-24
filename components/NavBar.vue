@@ -51,7 +51,7 @@
 import { useScrollHandler, useBranchDelivery } from '#imports';
 
 const isMobile = useMediaQuery('(max-width: 768px)')
-const { getBranch } = useBranchDelivery()
+const { getBranches } = useBranchDelivery()
 const { isHeaderFixed } = useScrollHandler()
 const route = useRoute()
 const isPayment = computed(() => {
@@ -67,7 +67,7 @@ const branch = ref([])
 const branches = ref([])
 
 onMounted(async () => {
-  branches.value = await getBranch()
+  branches.value = await getBranches()
 })
 watchEffect(() => {
   branch.value = branches.value.filter(item => item.slug == branchGlobal.value)[0] ?? ''
