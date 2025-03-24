@@ -46,11 +46,11 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useRoute } from 'vue-router';
-definePageMeta({
-  layout: false
-});
+// definePageMeta({
+//   layout: false
+// });
 const route = useRoute()
 const selected_meal = route.params.meal
 const orders = useLocalStorage('order', () => []);
