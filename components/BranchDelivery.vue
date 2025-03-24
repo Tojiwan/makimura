@@ -52,28 +52,29 @@
     </div>
 </template>
 
-<script setup>
-import { useBranchDelivery } from '#imports'
+<script setup lang="ts">
+// import { useBranchDelivery } from '@/composables/api/useBranchDeliveryApi';
+import { useBranchDelivery } from '@/composables/useBranchDelivery';
 
 // Composables
-const { getBranch, getIntervals, getHotSelling, getCategoryMeals } = useBranchDelivery()
+const { getBranches, getIntervals, getHotSellings, getCategoryMeals } = useBranchDelivery()
 
 // State Management
-const BDMenuOpen = useLocalStorage('BDMenuOpen', true)
-const saved = useLocalStorage('saved', false)
-const order = useLocalStorage('order', {})
-const hotSelling = useLocalStorage('hotSelling', [])
+const BDMenuOpen    = useLocalStorage('BDMenuOpen', true)
+const saved         = useLocalStorage('saved', false)
+const order         = useLocalStorage('order', {})
+const hotSelling    = useLocalStorage('hotSelling', [])
 const categoryMeals = useLocalStorage('categoryMeals', () => ({}))
 
 // Global State
-const branchGlobal = useLocalStorage('branch', null)
-const dateGlobal = useLocalStorage('dated', null)
+const branchGlobal   = useLocalStorage('branch', null)
+const dateGlobal     = useLocalStorage('dated', null)
 const intervalGlobal = useLocalStorage('interval', null)
 
 // Local State
-const branches = ref([])
-const slots = ref([])
-const today = ref(new Date().toISOString().split('T')[0])
+const branches  = ref([])
+const slots     = ref([])
+const today     = ref(new Date().toISOString().split('T')[0])
 
 // Form Data
 const formData = reactive({
@@ -94,18 +95,18 @@ const saveOptions = async () => {
     if (!formData.branch || !formData.date || !formData.interval) return
 
     // Reset states
-    hotSelling.value = []
+    hotSelling.value    = []
     categoryMeals.value = {}
-    order.value = {}
+    order.value         = {}
 
     // Update global state
-    branchGlobal.value = formData.branch
-    dateGlobal.value = formData.date
-    intervalGlobal.value = formData.interval
+    branchGlobal.value      = formData.branch
+    dateGlobal.value        = formData.date
+    intervalGlobal.value    = formData.interval
 
     // Fetch new data
     Promise.all([
-        getHotSelling(formData.branch, formData.date, formData.interval)
+        getHotSellings(formData.branch, formData.date, formData.interval)
             .then(data => hotSelling.value = data),
         getCategoryMeals(formData.branch, formData.date, formData.interval)
             .then(data => categoryMeals.value = data)
@@ -132,7 +133,7 @@ const closeBDMenu = () => {
 
 // Lifecycle
 onMounted(async () => {
-    branches.value = await getBranch()
+    branches.value = await getBranches()
 })
 </script>
 

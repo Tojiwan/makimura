@@ -39,7 +39,7 @@ const formatTime = (time: string): string => {
 };
 
 export const useBranchDelivery = () => {
-  const getBranch = async () => {
+  const getBranches = async () => {
     const req = await $fetch('https://bio.makimuraramen.com/api/branches')
     return req
   };
@@ -59,7 +59,7 @@ export const useBranchDelivery = () => {
     return [];
   };
 
-  const getHotSelling = async (branch: string, date: string, interval: string) => {
+  const getHotSellings = async (branch: string, date: string, interval: string) => {
     const req = await $fetch(`https://bio.makimuraramen.com/api/products/branch/${branch}/hot?date=${date}&branch_interval_id=${interval}`)
     return req
   }
@@ -71,9 +71,9 @@ export const useBranchDelivery = () => {
   }
 
   return {
-    getBranch,
+    getBranches,
     getIntervals,
-    getHotSelling,
+    getHotSellings,
     getCategoryMeals
   }
 }
