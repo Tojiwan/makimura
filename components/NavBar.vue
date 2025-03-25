@@ -50,11 +50,11 @@
 <script setup>
 import { useScrollHandler, useBranchDelivery } from '#imports';
 
-const isMobile = useMediaQuery('(max-width: 768px)')
-const { getBranches } = useBranchDelivery()
+const isMobile          = useMediaQuery('(max-width: 768px)')
+const { getBranches }   = useBranchDelivery()
 const { isHeaderFixed } = useScrollHandler()
-const route = useRoute()
-const isPayment = computed(() => {
+const route             = useRoute()
+const isPayment         = computed(() => {
   return route.fullPath.includes('payment')
 })
 const isOrder = computed(() => {
@@ -63,8 +63,8 @@ const isOrder = computed(() => {
 const isCartOpen = useState('isCartOpen', () => false)
 
 const branchGlobal = useLocalStorage('branch', null)
-const branch = ref([])
-const branches = ref([])
+const branch       = ref([])
+const branches     = ref([])
 
 onMounted(async () => {
   branches.value = await getBranches()

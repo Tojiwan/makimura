@@ -44,7 +44,7 @@ watchEffect(()=>{
 })
 
 const orders = useLocalStorage('order', {});
-const count = computed(() => {
+const count  = computed(() => {
     return Object.values(orders.value).length;
 });
 const total_price = computed(() => {
@@ -55,7 +55,7 @@ const total_price = computed(() => {
 })
 const remove_order = (meal) => {
     const { [meal]: _, ...newArray } = orders.value
-    orders.value = newArray
+    orders.value                     = newArray
 }
 </script>
 

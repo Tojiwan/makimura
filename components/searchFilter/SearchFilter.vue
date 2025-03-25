@@ -60,47 +60,47 @@
 import { useScrollHandler } from '#imports';
 
 const { isHeaderFixed } = useScrollHandler()
-const BDMenuOpen = useLocalStorage('BDMenuOpen', true)
-const categoryMeals = useLocalStorage('categoryMeals', [])
-const search_query = useState('search_query', () => '')
+const BDMenuOpen        = useLocalStorage('BDMenuOpen', true)
+const categoryMeals     = useLocalStorage('categoryMeals', [])
+const search_query      = useState('search_query', () => '')
 
-const searchOpen = ref(false)
-const filterOpen = ref(false)
-const search = ref(null)
+const searchOpen      = ref(false)
+const filterOpen      = ref(false)
+const search          = ref(null)
 const filter_category = ref('HOT SELLING')
 
-// Scroll to Section with Correct Offset
+  // Scroll to Section with Correct Offset
 const scrollTo = (id, name) => {
     const targetElement = document.getElementById(id);
     if (targetElement) {
-        const offset = 120;
+        const offset          = 120;
         const elementPosition = targetElement.offsetTop;
 
         window.scrollTo({
-            top: elementPosition - offset,
+            top     : elementPosition - offset,
             behavior: 'smooth'
         });
     }
     filter_category.value = name;
 };
 
-// Handle Search Open & Focus
+  // Handle Search Open & Focus
 const openFocus = async () => {
     searchOpen.value = true;
     await nextTick();
     search.value?.focus();
 };
 
-// Handle Search Input
+  // Handle Search Input
 const handleSearch = async (event) => {
     search_query.value = event.target.value;
     await nextTick();
 };
 
-// Handle Search Focus Out
+  // Handle Search Focus Out
 const handleFocusOut = async (event) => {
     const value = event.target.value.trim();
-    if (value.length > 0) return; // Keep open if text exists
+    if (value.length > 0) return;  // Keep open if text exists
 
     searchOpen.value = false;
     await nextTick();

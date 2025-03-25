@@ -51,12 +51,12 @@ import { useRoute } from 'vue-router';
 definePageMeta({
   layout: false
 });
-const route = useRoute()
+const route         = useRoute()
 const selected_meal = route.params.meal
-const orders = useLocalStorage('order', () => []);
-const hotSelling = useLocalStorage('hotSelling', () => []);
-const count = ref(0)
-const meal_details = computed(() => {
+const orders        = useLocalStorage('order', () => []);
+const hotSelling    = useLocalStorage('hotSelling', () => []);
+const count         = ref(0)
+const meal_details  = computed(() => {
     return { ...Object.values(orders.value).find(item => item.name == selected_meal.split('-').join(' ')), ...Object.values(hotSelling.value).find(item => item.slug == selected_meal.toLowerCase()) }
 })
 
@@ -72,7 +72,7 @@ const update_order = () => {
 }
 const remove_order = () => {
     const { [meal_details.value.name]: removed, ...newArray } = orders.value
-    orders.value = newArray
+    orders.value                                              = newArray
     navigateTo('/payment')
 }
 </script>

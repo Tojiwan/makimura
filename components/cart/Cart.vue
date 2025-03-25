@@ -16,9 +16,9 @@ import { NuxtLink } from '#components';
 import { useScrollHandler } from '#imports';
 
 const { isHeaderFixed } = useScrollHandler()
-const order = useLocalStorage('order', []);
-const total_price = useState('total_price', () => 0)
-const count = computed(() => {
+const order             = useLocalStorage('order', []);
+const total_price       = useState('total_price', () => 0)
+const count             = computed(() => {
     return Object.values(order.value).reduce((sum, item) => sum + (item.count || 0), 0);
 });
 const price = computed(() => {

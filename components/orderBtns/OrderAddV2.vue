@@ -16,14 +16,14 @@
 <script setup>
 import { useOrder } from '#imports';
 const { increaseOrder, decreaseOrder } = useOrder();
-const { meal } = defineProps({
+const { meal }                         = defineProps({
   meal: {
-    type: Object,
+    type    : Object,
     required: true
   }
 })
 const count_input = ref(0)
-const order = useLocalStorage('order', {});
+const order       = useLocalStorage('order', {});
 watchEffect(()=>{
     if(Object.values(order.value).length > 0 && order.value[meal.name]){
         count_input.value = order.value[meal.name].count ?? 0

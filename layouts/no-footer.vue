@@ -8,7 +8,7 @@
 
 <script setup>
 import { useRoute } from 'vue-router';
-const route = useRoute()
+const route           = useRoute()
 const selected_filter = useLocalStorage('selected_filter', 'Hot Selling')
 watchEffect(() => {
     if (route.fullPath) {

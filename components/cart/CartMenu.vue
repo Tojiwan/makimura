@@ -26,10 +26,10 @@
 </template>
 
 <script setup>
-const orders = useLocalStorage('order', {});
+const orders       = useLocalStorage('order', {});
 const remove_order = (meal) => {
     const { [meal]: _, ...newArray } = orders.value;
-    orders.value = newArray;
+    orders.value                     = newArray;
 }
 const isCartOpen = useState('isCartOpen', () => false)
 </script>

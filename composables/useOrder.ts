@@ -2,8 +2,8 @@ type OrderItem = {
   [key: string]: {
     count: number;
     price: number;
-    name: string;
-    img:string;
+    name : string;
+    img  : string;
   };
 };
 
@@ -30,14 +30,14 @@ export const useOrder = () => {
       updatedOrder[meal].count -= 1;
     } else {
       const { [meal]: _, ...newArray } = updatedOrder;
-      order.value = newArray;
+      order.value                      = newArray;
       return
     }
 
-    order.value = updatedOrder; 
+    order.value = updatedOrder;
   };
 
-  // ✅ Add computed property for total count
+    // ✅ Add computed property for total count
   const count = computed(() => {
     return Object.values(order.value).reduce((sum, item) => sum + (item.count || 0), 0);
   });

@@ -30,23 +30,23 @@
 <script setup>
 const props = defineProps({
   category: {
-	type: Object,
+	type    : Object,
 	required: true
   }
 })
 
-const branchGlobal = useLocalStorage('branch', null)
-const dateGlobal = useLocalStorage('dated', null)
+const branchGlobal   = useLocalStorage('branch', null)
+const dateGlobal     = useLocalStorage('dated', null)
 const intervalGlobal = useLocalStorage('interval', null)
 
 const meals = ref([])
 
 onMounted(async () => {
-	const req = await $fetch(`https://bio.makimuraramen.com/api/products/branch/${branchGlobal.value}?category=${props.category.slug}&date=${dateGlobal.value}&branch_interval_id=${intervalGlobal.value}`)
-	meals.value = Object.values(req)
+	const req         = await $fetch(`https://bio.makimuraramen.com/api/products/branch/${branchGlobal.value}?category=${props.category.slug}&date=${dateGlobal.value}&branch_interval_id=${intervalGlobal.value}`)
+	      meals.value = Object.values(req)
 })
 
-const search_query = useState('search_query')
+const search_query    = useState('search_query')
 const filteredProduct = computed(()=>{
 	return (Object.values(meals.value).filter(item => item.name.toLowerCase().includes(search_query.value.toLowerCase())));
 })

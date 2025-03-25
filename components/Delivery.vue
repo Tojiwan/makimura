@@ -186,10 +186,10 @@
 
 <script setup>
 const { increaseOrder } = useOrder();
-const orders = useLocalStorage('order', []);
-const total_price = useState('total_price', () => 0)
-const hotSelling = useLocalStorage('hotSelling', [])
-const price = computed(() => {
+const orders            = useLocalStorage('order', []);
+const total_price       = useState('total_price', () => 0)
+const hotSelling        = useLocalStorage('hotSelling', [])
+const price             = computed(() => {
 	return Object.values(orders.value).reduce((total, item) => parseInt(total) + parseInt(parseInt(item.price) * parseInt(item.count) || 0), 0).toLocaleString('en-US'); 
 })
 watchEffect(() => {

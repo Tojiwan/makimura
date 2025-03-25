@@ -35,48 +35,48 @@
 import { useOrder } from '#imports';
 const { increaseOrder } = useOrder()
 
-const hotSelling = useLocalStorage('hotSelling', []);
+const hotSelling      = useLocalStorage('hotSelling', []);
 const selected_filter = useLocalStorage('selected_filter', 'Hot Selling')
-const branchGlobal = useLocalStorage('branch', null)
-const dateGlobal = useLocalStorage('dated', null)
-const intervalGlobal = useLocalStorage('interval', null)
-const meals = ref([])
-const isLoading = ref(true)
-let abortController = null
+const branchGlobal    = useLocalStorage('branch', null)
+const dateGlobal      = useLocalStorage('dated', null)
+const intervalGlobal  = useLocalStorage('interval', null)
+const meals           = ref([])
+const isLoading       = ref(true)
+let   abortController = null
 
 watchEffect(async () => {
     meals.value = [];
 
-    // Cancel the previous fetch request if one exists
+      // Cancel the previous fetch request if one exists
     if (abortController) {
         abortController.abort()  // Abort the previous request
     }
 
-    // Create a new AbortController to cancel this request later if needed
+      // Create a new AbortController to cancel this request later if needed
     abortController = new AbortController()
 
-    // Start the loading state
+      // Start the loading state
     isLoading.value = true;
 
     try {
-        // Perform the fetch request
+          // Perform the fetch request
         let req;
 
         if (selected_filter.value === 'Hot Selling' && Object.values(hotSelling.value ?? []).length > 0) {
-            meals.value = Object.values(hotSelling.value);
+            meals.value     = Object.values(hotSelling.value);
             isLoading.value = false;
         } else if (selected_filter.value !== 'Hot Selling') {
-            // Make the API request using the AbortController signal
+              // Make the API request using the AbortController signal
             req = await $fetch(`https://bio.makimuraramen.com/api/products/branch/${branchGlobal.value}?category=${selected_filter.value.toLowerCase().split(' ').join('-')}&date=${dateGlobal.value}&branch_interval_id=${intervalGlobal.value}`, {
                 signal: abortController.signal  // Pass the abort signal to the fetch request
             });
             isLoading.value = false;
-            meals.value = Object.values(req ?? []);
+            meals.value     = Object.values(req ?? []);
         }
 
 
     } catch {
-        // Silently handle fetch abort errors
+          // Silently handle fetch abort errors
     }
 });
 </script>

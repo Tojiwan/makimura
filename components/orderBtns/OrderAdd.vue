@@ -24,23 +24,23 @@
 import { useOrder } from '#imports';
 
 const { increaseOrder, decreaseOrder } = useOrder();
-const order = useLocalStorage('order', {});
+const order                            = useLocalStorage('order', {});
 
 const props = defineProps({
   meal: {
-    type: Object,
+    type    : Object,
     required: true
   }
 });
 
 const showBorder = ref(false);
-let timeoutId = null;
-const delay = 2500;
+let   timeoutId  = null;
+const delay      = 2500;
 
-// **Computed property for meal count**
+  // **Computed property for meal count**
 const orderCount = computed(() => (order.value[props.meal.name] ? order.value[props.meal.name].count : null));
 
-// **Handles the temporary border visibility**
+  // **Handles the temporary border visibility**
 const showTempBorder = () => {
 
     if (orderCount.value === null) {

@@ -26,6 +26,6 @@ definePageMeta({
   layout: 'no-footer'
 });
 const isSmallScreen = useMediaQuery('(max-width: 768px)')
-const isMobile = useMediaQuery('(max-width: 768px)')
+const isMobile      = useMediaQuery('(max-width: 768px)')
 
 </script>

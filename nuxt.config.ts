@@ -1,9 +1,9 @@
-// https://nuxt.com/docs/api/configuration/nuxt-config
+  // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  devtools: { enabled: true },
-  modules: [
-    '@nuxtjs/tailwindcss', // Tailwind CSS module
+  devtools         : { enabled: true },
+  modules          : [
+    '@nuxtjs/tailwindcss',  // Tailwind CSS module
     '@vesp/nuxt-fontawesome',
     '@nuxtjs/google-fonts',
     '@vueuse/nuxt',
@@ -13,8 +13,8 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       appName: process.env.NUXT_APP_NAME || 'Makimura Ramen',
-      appUrl: process.env.NUXT_APP_URL || 'http://127.0.0.1:1173',
-      apiUrl: process.env.NUXT_API_URL || 'http://localhost:8888',
+      appUrl : process.env.NUXT_APP_URL || 'http://127.0.0.1:1173',
+      apiUrl : process.env.NUXT_API_URL || 'http://localhost:8888',
     }
   },
 
@@ -45,38 +45,38 @@ export default defineNuxtConfig({
         'arrow-up',
       ],
       regular: ['user', 'money-bill-1'],
-      brands: ['cc-visa', 'cc-mastercard'],
+      brands : ['cc-visa', 'cc-mastercard'],
     },
   },
 
   googleFonts: {
     families: {
       'League+Spartan': [100, 200, 300, 400, 500, 600, 700, 800, 900],
-      'Bebas+Neue': true,
+      'Bebas+Neue'    : true,
     },
     display: 'swap',
 
-    download: false, // ❌ Do NOT download fonts
-    inject: true, // ✅ Inject Google Fonts via <link>
+    download: false,   // ❌ Do NOT download fonts
+    inject  : true,    // ✅ Inject Google Fonts via <link>
   },
 
   css: [
-    '~/assets/css/main.css', // Include Tailwind CSS file
+    '~/assets/css/main.css',  // Include Tailwind CSS file
   ],
 
   postcss: {
     plugins: {
-      tailwindcss: {}, // Add Tailwind CSS plugin
-      autoprefixer: {}, // Add Autoprefixer plugin
+      tailwindcss : {},   // Add Tailwind CSS plugin
+      autoprefixer: {},   // Add Autoprefixer plugin
     },
   },
 
-  // Auto-import components from all subdirectories
+    // Auto-import components from all subdirectories
   components: [
     {
-      path: '~/components',
-      pathPrefix: false, // Allows direct use of component names without folder prefixes
-      global: true, // (Optional) Makes all components globally available
+      path      : '~/components',
+      pathPrefix: false,            // Allows direct use of component names without folder prefixes
+      global    : true,             // (Optional) Makes all components globally available
     },
   ],
 });

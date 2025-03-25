@@ -42,8 +42,8 @@
 import { useRoute } from 'vue-router';
 import { useOrder } from '#imports';
 const { increaseOrder } = useOrder();
-const route = useRoute();
-const meal = ref({});
+const route             = useRoute();
+const meal              = ref({});
 onMounted(async () => {
 
     meal.value = await $fetch(
@@ -51,9 +51,9 @@ onMounted(async () => {
     ).catch((err)=>{
         if(err.response.status === 404){
             throw createError({
-                statusCode: 404,
+                statusCode   : 404,
                 statusMessage: 'Product not found',
-                fatal: true
+                fatal        : true
             })
         }
         

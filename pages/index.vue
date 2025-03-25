@@ -28,8 +28,8 @@
 const BDMenuOpen = useLocalStorage('BDMenuOpen', true);
 
 const isMobile = useMediaQuery('(max-width: 768px)')
-const order = useLocalStorage('order', []);
-const count = computed(() => {
+const order    = useLocalStorage('order', []);
+const count    = computed(() => {
 	return Object.values(order.value).reduce((sum, item) => sum + (item.count || 0), 0);
 });
 

@@ -23,28 +23,28 @@
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
 
-const isVisible = ref(false);
+const isVisible      = ref(false);
 const scrollProgress = ref(0);
 
-// Function to update scroll progress
+  // Function to update scroll progress
 const handleScroll = () => {
-	const scrollTop = window.scrollY;
-	const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-	scrollProgress.value = docHeight ? scrollTop / docHeight : 0;
-	isVisible.value = scrollTop > 200; // Show button after scrolling 200px
+	const scrollTop            = window.scrollY;
+	const docHeight            = document.documentElement.scrollHeight - window.innerHeight;
+	      scrollProgress.value = docHeight ? scrollTop / docHeight : 0;
+	      isVisible.value      = scrollTop > 200;                                             // Show button after scrolling 200px
 };
 
-// Scroll to top function
+  // Scroll to top function
 const scrollToTop = () => {
 	window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
-// Attach event listener
+  // Attach event listener
 onMounted(() => {
 	window.addEventListener('scroll', handleScroll);
 });
 
-// Remove event listener when component unmounts
+  // Remove event listener when component unmounts
 onUnmounted(() => {
 	window.removeEventListener('scroll', handleScroll);
 });

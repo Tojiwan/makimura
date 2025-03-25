@@ -4,7 +4,7 @@ import type { AxiosInstance } from 'axios';
 
 
 export default defineNuxtPlugin((nuxtApp) => {
-    const config = useRuntimeConfig()
+    const config         = useRuntimeConfig()
     const apiUrl: string = config.public.apiUrl
 
     if (!apiUrl) {
@@ -14,13 +14,13 @@ export default defineNuxtPlugin((nuxtApp) => {
     }
 
     const axiosInstance: AxiosInstance = axios.create({
-        baseURL: `${apiUrl}/api`, // You can also just use apiUrl if /api is already part of it
+        baseURL: `${apiUrl}/api`,   // You can also just use apiUrl if /api is already part of it
         headers: {
-            Accept: 'application/json',
+            Accept        : 'application/json',
             'Content-Type': 'application/json',
         },
     })
 
-    // Provide $axios globally
+      // Provide $axios globally
     nuxtApp.provide('axios', axiosInstance)
 })

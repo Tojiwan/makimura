@@ -28,8 +28,8 @@
 </template>
 
 <script setup>
-const hotSelling = useLocalStorage('hotSelling', [])
-const search_query = useState('search_query')
+const hotSelling      = useLocalStorage('hotSelling', [])
+const search_query    = useState('search_query')
 const filteredSelling = computed(() => {
 
 	return (Object.values(hotSelling.value).filter(item => item.name.toLowerCase().includes(search_query.value.toLowerCase())));

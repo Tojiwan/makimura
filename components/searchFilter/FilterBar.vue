@@ -11,11 +11,11 @@
 </template>
 
 <script setup>
-const categoryMeals = useLocalStorage('categoryMeals', () => { })
+const categoryMeals   = useLocalStorage('categoryMeals', () => { })
 const selected_filter = useLocalStorage('selected_filter', () => 'Hot Selling')
-const filterNames = ref([])
-const activeFilter = ref([])
-const categories = computed(() => {
+const filterNames     = ref([])
+const activeFilter    = ref([])
+const categories      = computed(() => {
     return ['Hot Selling', ...(categoryMeals.value ? Object.values(JSON.parse(categoryMeals.value)).map(item => item?.name || 'Unknown') : [])]
 })
 
@@ -26,10 +26,10 @@ watchEffect(() => {
 })
 
 const selectFilter = (index, filter) => {
-    // Reset all filters to false
-    activeFilter.value = activeFilter.value.map(() => false);
+      // Reset all filters to false
+    activeFilter.value        = activeFilter.value.map(() => false);
     activeFilter.value[index] = true
-    selected_filter.value = filter
+    selected_filter.value     = filter
 }
 </script>
 
