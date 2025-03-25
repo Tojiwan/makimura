@@ -1,7 +1,11 @@
 // plugins/axios.ts
 import axios from 'axios';
 import type { AxiosInstance } from 'axios';
-
+declare module '#app' {
+  interface NuxtApp {
+    $axios: AxiosInstance;
+  }
+}
 
 export default defineNuxtPlugin((nuxtApp) => {
     const config = useRuntimeConfig()
