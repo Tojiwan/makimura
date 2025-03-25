@@ -13,7 +13,8 @@
 					<div class="flex flex-col flex-grow justify-between ml-4 h-full truncate">
 						<div class="space-y-2">
 							<p class="mt-2 font-medium">{{ meal.name }}</p>
-							<p class="font-bold text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing
+							<!-- font-bold -->
+							<p class="text-sm font-normal">Lorem ipsum dolor sit amet consectetur adipisicing
 								elit. Consectetur, quibusdam obcaecati natus maiores labore rem? Ex quia assumenda sunt
 								quidem veritatis, quam cumque necessitatibus modi aliquam pariatur quod eos minus?</p>
 							<p class="font-bold text-sm">₱{{ meal.price }}</p>

@@ -44,7 +44,7 @@
 		</transition>
 
 		<textarea placeholder="Notes about your order, e.g. special notes for delivery"
-		class="border border-gray-300 px-5 py-2 text-[15px] font-normal transition-all duration-300 ease-in-out bg-white w-full focus:border-[#00b14f] focus:ring-[#00b14f] outline-none rounded-[6px] resize-none w-full h-[140px]"/>
+		class="border border-gray-300 px-5 py-2 text-[15px] font-normal transition-all duration-300 ease-in-out bg-white w-full focus:border-[#00b14f] focus:ring-[#00b14f] outline-none rounded-[6px] resize-none h-[140px]"/>
 		
 	</div>
 </template>
