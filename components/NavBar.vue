@@ -47,8 +47,9 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useScrollHandler, useBranchDelivery } from '#imports';
+import { useRoute } from 'vue-router';
 
 const isMobile = useMediaQuery('(max-width: 768px)')
 const { getBranches } = useBranchDelivery()
