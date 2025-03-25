@@ -38,7 +38,7 @@
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useRoute } from 'vue-router';
 import { useOrder } from '#imports';
 const { increaseOrder } = useOrder();

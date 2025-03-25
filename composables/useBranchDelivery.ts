@@ -30,7 +30,17 @@ interface Categories {
   updated_at: string
 }
 
-  // Function to convert time format
+interface Branch {
+  id: number,
+  name: string,
+  slug: string,
+  location: string,
+  is_store: boolean,
+  created_at: string,
+  updated_at: string
+}
+
+// Function to convert time format
 const formatTime = (time: string): string => {
   const [hours, minutes] = time.split(':').map(Number);
   const period           = hours > = 12 ? 'PM' : 'AM';
@@ -40,7 +50,7 @@ const formatTime = (time: string): string => {
 
 export const useBranchDelivery = () => {
   const getBranches = async () => {
-    const req = await $fetch('https://bio.makimuraramen.com/api/branches')
+    const req = await $fetch<Branch[]>('https://bio.makimuraramen.com/api/branches')
     return req
   };
 
