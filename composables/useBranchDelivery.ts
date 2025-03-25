@@ -43,7 +43,7 @@ interface Branch {
 // Function to convert time format
 const formatTime = (time: string): string => {
   const [hours, minutes] = time.split(':').map(Number);
-  const period           = hours > = 12 ? 'PM' : 'AM';
+  const period           = hours >= 12 ? 'PM' : 'AM';
   const formattedHours   = hours % 12 || 12;             // Convert 0 to 12
   return `${formattedHours}:${String(minutes).padStart(2, '0')} ${period}`;
 };
